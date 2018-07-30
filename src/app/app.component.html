@@ -1,0 +1,124 @@
+<!-- <span class="js-currentVersion" aria-hidden="true">3.9.5</span> -->
+<div id="wrapper" class="animate">
+
+    <main>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="top-header">
+                    <!-- Brand/logo -->
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+
+                            <a class="navbar-brand" routerLink="">
+                                <div class="header_logo">
+                                    <img src="assets/img/logo.png" class="img-responsive" alt="the-brains">
+                                </div>
+                            </a>
+
+
+                        </div>
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#example-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9 reponsive-menu">
+
+
+                            <!-- Collapsible Navbar -->
+                            <div class="collapse navbar-collapse" id="example-1">
+                                <ul class="nav navbar-nav">
+
+                                    <li routerLinkActive="active">
+                                        <a routerLink="/matches">Matches
+                                                <span class="sr-only">(current)</span>
+                                       </a>
+                                    </li>
+                                    <li routerLinkActive="active">
+                                        <a routerLink="/competition">Competitions
+                                                <span class="sr-only">(current)</span>
+                                       </a>
+                                    </li>
+                                    <!-- <li routerLinkActive="active">
+                                        <a routerLink="/group">Groups</a>
+                                    </li> -->
+                                    <!-- <li routerLinkActive="active">
+                                        <a routerLink="/knockout-stages">Knockout stages</a>
+                                    </li> -->
+                                    <!-- <li routerLinkActive="active">
+                                        <a routerLink="/teams">Teams</a>
+                                    </li> -->
+                                    <!-- <li routerLinkActive="active">
+                                        <a routerLink="/stadium">Stadiums</a>
+                                    </li> -->
+
+                                </ul>
+                                <!-- <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a href="#">
+                      <img src="assets/img/flag.png" class="img-responsive" alt="the-brains">English</a>
+                  </li>
+                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </main>
+    <div id="loading" [style.display]="loading">
+        <div class="loader loader-1">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+
+
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer_logo">
+                    <img src="assets/img/logo.png" class="img-responsive" alt="the-brains">
+                </div>
+                <div class="footer_menu">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">
+                                <h4 class="footertext">Contact Us </h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h4 class="footertext">Our App</h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h4 class="footertext">Privacy Policy</h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h4 class="footertext">About Us</h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="Copyright">
+                <p class="footertext">
+                    <a href="#">Copyright © 2018 footzyscore.com</a>
+                </p>
+            </div>
+        </div>
+    </div>

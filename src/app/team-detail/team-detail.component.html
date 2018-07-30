@@ -1,0 +1,80 @@
+<div id="loading" *ngIf='showloader'>
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="match-detail-section">
+        <!-- team-detail-header -->
+        <div class="team-detail-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="visited-team">
+                        <div class="visited-team-flag">
+                            <img [src]="team_flage" onError="this.src='assets/img/avt_flag.png'" />
+                        </div>
+                        <!-- <p>Real Sociedad</p> -->
+                        <h4 class="team_title">{{team_name}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- team-detail-header end -->
+        <!-- match-name -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel with-nav-tabs panel-default">
+                    <!-- tabs menu  -->
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab1default" data-toggle="tab">Fixtures</a>
+                            </li>
+                            <li>
+                                <a href="#tab2default" data-toggle="tab">Squads</a>
+                            </li>
+                            <li>
+                                <a href="#tab3default" data-toggle="tab">Competiton</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end tabs menu  -->
+
+
+                    <div class="row">
+                        <!-- group tab -->
+                        <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
+                            <div class="">
+                                <div class="tab-content">
+                                    <!--******** DETAILS ************-->
+                                    <div class="tab-pane fade in active" id="tab1default">
+                                        <app-team-next-matches></app-team-next-matches>
+                                    </div>
+                                    <div class="tab-pane" id="tab2default">
+                                        <app-team-squad></app-team-squad>
+                                    </div>
+                                    <div class="tab-pane" id="tab3default">
+                                        <app-team-previous-matches></app-team-previous-matches>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end group tab -->
+                        <!-- sidebar -->
+                        <div class="col-sm-12 col-md-4 col-lg-4 remove_left_padding">
+                            <app-sidebar></app-sidebar>
+                        </div>
+                        <!-- end sidebar -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--container -->

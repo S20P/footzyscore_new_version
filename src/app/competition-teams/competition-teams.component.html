@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12">
+        <div id="group1" *ngIf="teams_collection.length > 0">
+            <div class="groupp-list-navbar">
+
+                <table class=" table grouptable">
+                    <thead>
+                        <tr class="table-header">
+                            <td class="no">No.</td>
+                            <td class="player_img"> Team </td>
+                            <td class="pos"> Total </td>
+                        </tr>
+                    </thead>
+                </table>
+                <div *ngIf="this.teams_collection.length > 0">
+                    <div *ngFor="let item of teams_collection|orderBy:'type';let i = index">
+                        <div class="team_player">
+                            <h4>{{item.type}}</h4>
+                        </div>
+                        <table class="table grouptable">
+                            <tbody class="table-panel" *ngFor="let item_details of item.group;let a = index">
+                                <tr (click)="teamdetails(item_details.team_id,item_details.team_name)" class="theme-hover">
+                                    <td class="no">{{a+1}}</td>
+                                    <td class="player_img"> <img [src]="item_details.team_flag" onError="this.src='assets/img/avt_flag.png'" />{{item_details.team_name}}</td>
+                                    <td class="pos">{{item_details.count}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="teams_collection.length <= 0" class="card">
+            <div class="list-line row match-list">
+                <p class="col-md-12 text-left">No Teams Found</p>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="row" *ngIf="Group_collection.length > 0">
+    <div class="col-md-12">
+        <div class="match-page-header" [ngClass]="{'toppadd':Group_collection.length <=1}">
+            <p>Season {{season}}</p>
+            <div class="dropdown" *ngIf="Group_collection.length > 1">
+                <button class="btn  dropdown-toggle" id="dropdown_btn" type="button" data-toggle="dropdown">
+                                       <span *ngFor="let item of Group_collection;let i = index">
+                                        <span *ngIf="i==selectedpositionofGroup" class="option_title"> {{item.type}} </span>
+                                    </span>
+                                        <span class="caret"></span>
+                                    </button>
+
+                <ul class="dropdown-menu select_dropdown" id="style_scroll">
+                    <li (click)="onchangefillter_group(j)" [ngClass]="{'text_selected':j==selectedpositionofGroup}" *ngFor=" let item of Group_collection;let j=index">
+                        <a pageScroll href="#scrollsec{{j}}" class="smooth-goto">{{item.type}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- yadda yadda yadda -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div *ngIf="Group_collection.length > 0;else nogroup">
+            <!-- tabs menu  -->
+            <div class="row">
+                <!-- group tab -->
+                <div class="col-sm-12 col-md-12 col-lg-12 remove_right_padding">
+                    <div class="remove_right_padding">
+                        <!--******** DETAILS ************-->
+                        <div *ngFor="let item of Group_collection;let i=index" id="scrollsec{{i}}">
+                            <div id="group1">
+                                <div class="groupp-list-navbar">
+                                    <h4 *ngIf="item.type!=='Group'" class="col-sm-12 teamgroupname">{{item.type}}</h4>
+                                    <table class="table grouptable">
+                                        <thead>
+                                            <tr class="table-header">
+                                                <td class="first">Pos</td>
+                                                <td> Team </td>
+                                                <td> P </td>
+                                                <td> W </td>
+                                                <td> D </td>
+                                                <td> L </td>
+                                                <td> +/- </td>
+                                                <td class="last">PTS</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let item_details of item.group|orderBy_ace_desc:'position':ascending" class="theme-hover">
+                                            <tr (click)="teamdetails(item_details.team_id,item_details.team_name)">
+                                                <td>{{item_details.position}}</td>
+                                                <td>{{item_details.team_name}}</td>
+                                                <td>{{item_details.overall_gp}}</td>
+                                                <td>{{item_details.overall_w}}</td>
+                                                <td>{{item_details.overall_d}}</td>
+                                                <td>{{item_details.overall_l}}</td>
+                                                <td>{{item_details.gd}}</td>
+                                                <td>{{item_details.points}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end group tab -->
+            </div>
+        </div>
+
+        <ng-template #nogroup>
+            <div class="card">
+                <div class="list-line row match-list">
+                    <p class="col-md-12 text-left">No Groups Found</p>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

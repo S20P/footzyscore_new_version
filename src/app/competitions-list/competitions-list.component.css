@@ -1,0 +1,53 @@
+.match-page-header {
+    margin-bottom: 10px;
+}
+
+.match-list-card-body {
+    background: #ffffff;
+}
+
+.match-list-card-body p {
+    margin: 0px;
+}
+
+.match-list {
+    box-shadow: 0px 2px 4px 0px #9999994d;
+    /* border-bottom: 1px solid #eee; */
+    padding: 10px 0px 5px 0px !important;
+    text-align: left;
+    /* cursor: pointer; */
+    margin: 0px;
+}
+
+@media (max-width: 367px) {
+    .text-left {
+        text-align: center !important;
+        width: 100%;
+    }
+    .team_flag img {
+        width: 35px !important;
+        margin-right: 5px !important;
+    }
+}
+
+.team_flag img {
+    width: 35px;
+    margin-right: 10px;
+    margin-top: -3px;
+}
+
+p.rigth_arrow {
+    text-align: right;
+    color: #7a7a7bd1;
+    margin-right: 8px;
+}
+
+.team_arrow {
+    margin-top: 7px;
+}
+
+.lr-padd {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    margin-top: -5px;
+}

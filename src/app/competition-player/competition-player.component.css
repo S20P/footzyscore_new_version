@@ -1,0 +1,91 @@
+.visited-team-flag img {
+    width: 45px;
+}
+
+.visited-team h3 {
+    margin-top: 5px;
+}
+
+.grouptable thead {
+    background: var(--theme-bg-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+table.table.grouptable {
+    /* background: #fff; */
+    margin-bottom: 15px;
+}
+
+table.table.grouptable tbody tr td {
+    font-size: var(--theme-body-font1);
+    /* font-weight: bold; */
+    padding: 15px 0px 0px 0px;
+}
+
+.table.grouptable tr td.no,
+.table.grouptable tr td.pos {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+td:first-child {
+    padding-left: 20px !important;
+}
+
+td.first {
+    width: 10%;
+}
+
+.table-panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.team_player h4 {
+    font-weight: bold;
+}
+
+.no {
+    width: 10%;
+}
+
+.player_img {
+    width: 50%;
+}
+
+.pos {
+    width: 10%;
+}
+
+@media (max-width: 480px) {
+    .no {
+        width: 15%;
+    }
+    .player_img {
+        width: 45%;
+    }
+    table.table.grouptable tr td {
+        font-size: var(--theme-body-font1);
+    }
+}
+
+@media (max-width: 367px) {
+    table.table.grouptable tr td {
+        font-size: var(--theme-body-font-sm);
+    }
+    .text-left {
+        width: 100%;
+    }
+    .player_img img {
+        width: 25px;
+    }
+}
+
+.player_img img {
+    margin-bottom: 0px !important;
+}

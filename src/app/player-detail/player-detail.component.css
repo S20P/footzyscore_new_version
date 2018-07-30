@@ -1,0 +1,60 @@
+.team_title {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.player_img img {
+    width: 60px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.card {
+    border-radius: 0;
+    box-shadow: unset;
+}
+
+.playerlist {
+    border-bottom: 1px solid #eee !important;
+    padding-top: 10px;
+}
+
+.player-content p {
+    font-weight: 600;
+}
+
+.player-leftcontent p {
+    color: #223052;
+    padding-left: 10px;
+}
+
+.match-page-header h1 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0px;
+    padding: 5px 10px 0;
+    letter-spacing: 1px;
+}
+
+.player-list-card-body {
+    background: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .player-leftcontent p {
+        padding-left: 0px;
+    }
+}
+
+.NoUserInfo p {
+    margin: 0px;
+    font-size: var(--theme-body-font1);
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .player_img img {
+        width: 60px !important;
+    }
+}

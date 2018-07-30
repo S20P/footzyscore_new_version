@@ -1,0 +1,115 @@
+<div id="loading" *ngIf='showloader'>
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="match-detail-section">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="match-page-header">
+                    <p>{{competition_name}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="panel with-nav-tabs panel-default">
+                    <!-- tabs menu  -->
+                    <div class="panel-heading">
+                        <div class="no-margin row">
+                            <ul class="nav nav-tabs col-md-9 col-sm-9 col-xs-9">
+                                <li class="active">
+                                    <a href="#tab2_Matches" data-toggle="tab">Matches</a>
+                                </li>
+                                <li>
+                                    <a href="#tab1_table" data-toggle="tab">Table</a>
+                                </li>
+
+                                <li>
+                                    <a href="#tab3_TopPlayers" data-toggle="tab">Top players</a>
+                                </li>
+                                <li>
+                                    <a href="#tab4_TopTeams" data-toggle="tab">Top teams</a>
+                                </li>
+                            </ul>
+                            <div class="col-md-3 col-sm-3 col-xs-3 dropselct-auto-bg">
+
+                                <div class="dropdown" *ngIf="Competition_list.length > 0">
+                                    <button class="btn  dropdown-toggle" id="dropdown_btn" type="button" data-toggle="dropdown">
+                                           <span *ngFor="let item of Competition_list;let i = index">
+                                               <span *ngFor="let item_details of item.availableSeason;let j = index"> 
+                                            <span *ngIf="j==position" class="option_title"> {{item_details}} </span>
+                                        </span>
+                                        </span>
+                                            <span class="caret"></span>
+                                        </button>
+
+                                    <ul class="dropdown-menu select_dropdown" id="style_scroll" *ngFor="let item_main of Competition_list;let i = index">
+                                        <li (click)="onchangefillter(x)" [ngClass]="{'text_selected':x==position}" *ngFor="let item_title of item_main.availableSeason;let x=index">
+                                            {{item_title}}
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end tabs menu  -->
+
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-8 col-lg-8 top-tab-spacing remove_right_padding">
+                            <!-- tabs body  -->
+
+                            <div class="">
+                                <div class="tab-content">
+
+                                    <!--******* Matches ***********-->
+                                    <div class="tab-pane fade in active" id="tab2_Matches">
+                                        <app-competition-matches [SelectedSeason]="position"></app-competition-matches>
+                                    </div>
+                                    <!--******* end Matches ***********-->
+
+
+                                    <!--******** Table Group ************-->
+                                    <div class="tab-pane" id="tab1_table">
+                                        <app-competition-group [SelectedSeason]="position"></app-competition-group>
+                                    </div>
+                                    <!--******* end Table Group  ***********-->
+
+
+                                    <!--******** Top players ************-->
+                                    <div class="tab-pane" id="tab3_TopPlayers">
+                                        <app-competition-player [SelectedSeason]="position"></app-competition-player>
+                                    </div>
+                                    <!--******* end Top players ***********-->
+
+                                    <!--******** Top teams ************-->
+                                    <div class="tab-pane" id="tab4_TopTeams">
+                                        <app-competition-teams [SelectedSeason]="position"></app-competition-teams>
+                                    </div>
+                                    <!--******* end Top teams ***********-->
+                                </div>
+                            </div>
+                            <!--end tabs body  -->
+                        </div>
+                        <!--side bar  -->
+                        <div class="col-md-4 col-sm-12 col-lg-4 remove_left_padding">
+                            <app-competition-aside-right></app-competition-aside-right>
+                        </div>
+                        <!--end side bar  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

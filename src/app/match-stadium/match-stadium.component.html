@@ -1,0 +1,70 @@
+<div id="loading" *ngIf='showloader'>
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="match-page-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="match-page-header">
+                    <p>Stadium</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
+                <div class="" *ngFor="let stadiumItem of stadiumall_collecction;let i = index">
+                    <div class="card" *ngIf="i==0">
+                        <div class="view overlay" (click)="StadiumDetails(stadiumItem.id)">
+                            <img class="card-img-top" src="{{stadiumItem.stadium_image}}" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <div class="stadium col-xs-10">
+                                <h4 class="c">{{stadiumItem.city_arena}}</h4>
+                                <p class="stadium-subtitle">{{stadiumItem.city_name}},Russia</p>
+                            </div>
+                            <div class="map-img col-xs-2 text-right">
+                                <a href="http://maps.google.com/maps?q={{stadiumItem.lat}},{{stadiumItem.long}}" target="_blank">
+                                    <img src="assets/img/map.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row padd">
+                    <div *ngFor="let stadiumItem of stadiumall_collecction;let i = index">
+                        <div class="col-md-6 col-sm-6 no-padd-lr" *ngIf="i!==0">
+                            <div class="card">
+                                <div class="view overlay" (click)="StadiumDetails(stadiumItem.id)">
+                                    <img class="card-img-top" src="{{stadiumItem.stadium_image}}" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <div class="stadium col-xs-10">
+                                        <h4 class="c">{{stadiumItem.city_arena}}</h4>
+                                        <p class="stadium-subtitle">{{stadiumItem.city_name}},Russia</p>
+                                    </div>
+                                    <div class="map-img col-xs-2 text-right">
+                                        <a href="http://maps.google.com/maps?q={{stadiumItem.lat}},{{stadiumItem.long}}" target="_blank">
+                                            <img src="assets/img/map.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- sidebar -->
+            <div class="col-sm-12 col-md-4 col-lg-4 remove_left_padding">
+                <app-sidebar></app-sidebar>
+            </div>
+        </div>
+    </div>
+</div>

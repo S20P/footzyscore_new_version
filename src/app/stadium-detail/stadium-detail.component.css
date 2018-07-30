@@ -1,0 +1,230 @@
+.match-page-header {
+    background: #223052;
+    padding: 10px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.match-page-header P {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 24px;
+    margin: 0px;
+    padding: 5px 10px 3px;
+    letter-spacing: 1px;
+}
+
+.card {
+    margin-bottom: 15px;
+    border-radius: 0;
+    box-shadow: unset;
+}
+
+.view.overlay img {
+    width: 100%;
+}
+
+.header {
+    color: #ffffff;
+    background: #425279;
+    line-height: 2.5;
+    border-bottom: 1px solid #dcdcdc;
+    margin-top: 0px;
+    letter-spacing: 1px;
+}
+
+.header h4 {
+    font-weight: 600;
+}
+
+.stadium-detail {
+    border-bottom: 1px solid #efefef;
+}
+
+.stadium-txt {
+    padding: 8px 0 0;
+}
+
+.stadium-txt p {
+    color: #a0a0a0;
+    font-weight: 600;
+}
+
+i.fa.right-icon {
+    margin-left: 3px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+a {
+    color: #223052;
+}
+
+p.text-right {
+    color: #464646 !important;
+}
+
+@media (min-width: 991px) {
+    .remove_left_padding {
+        padding-left: 7.5px;
+    }
+    .remove_right_padding {
+        padding-right: 7.5px;
+    }
+    .match-page-section {
+        padding: 40px;
+    }
+}
+
+.list_match_compitaton {
+    cursor: pointer;
+    text-align: left;
+    padding: 40px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}
+
+.lt {
+    text-align: right;
+}
+
+.vt {
+    text-align: left
+}
+
+.score {
+    padding: 15px 20;
+    margin-top: -15px;
+}
+
+.match-page-header h1 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0px;
+    padding: 5px 10px 0;
+    letter-spacing: 1px;
+}
+
+.slogen {
+    padding: 10px 0px 0px 0px;
+    color: #838f95;
+    font-size: 14px;
+}
+
+.match-list-card-header {
+    background: #425279;
+}
+
+.match-list-card-header h4 {
+    color: #ffffff;
+    padding: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0px;
+}
+
+.match-list-card-body {
+    background: #ffffff;
+}
+
+.match-list {
+    border-bottom: 1px solid #eee;
+    padding: 15px 10px 5px 11px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.list_item {
+    margin-bottom: 20px;
+}
+
+.match_time_box p {
+    border: 1px solid transparent;
+    /* background: #00AC77; */
+    /* line-height: 30px; */
+    color: #223052;
+    font-weight: 600;
+    /* width: 50px;
+    margin-top: -5px; */
+}
+
+.match_status_box p {
+    border: 1px solid transparent;
+    /* background: #081F2C; */
+    /* line-height: 30px;
+    margin: auto; */
+    color: #223052;
+    font-weight: 600;
+    /* width: 40px;
+    margin-top: -5px; */
+}
+
+.score_r p {
+    font-weight: 600;
+}
+
+.match-page-section {
+    padding: 40px 0px;
+}
+
+select#select option {
+    background: #ffffff;
+    color: #333;
+    font-size: 16px;
+}
+
+@media (min-width: 992px) and (max-width: 1300px) {
+    .top-bar {
+        height: auto;
+    }
+    .match-page-section {
+        padding: 40px 0px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+@media (max-width: 992px) {
+    .match-page-section {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    .top-header {
+        padding: 7px;
+        background: #223052d9;
+    }
+}
+
+@media (max-width: 600px) {}
+
+@media (max-width: 480px) {
+    .score {
+        padding: 15px 10;
+    }
+}
+
+@media (max-width: 380px) {
+    .score {
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 367px) {
+    .text-left {
+        text-align: center !important;
+        width: 100%;
+    }
+}

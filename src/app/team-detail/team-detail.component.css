@@ -1,0 +1,54 @@
+.visited-team-flag img {
+    width: 45px;
+}
+
+.visited-team h3 {
+    margin-top: 5px;
+}
+
+.team_title {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+@media (max-width: 450px) {
+    .with-nav-tabs.panel-default .nav-tabs>.open>a,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:focus,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
+        color: #223052 !important;
+        padding-left: 15px;
+        border-bottom: 0px solid #ffffff !important;
+        background: #bac1d2 !important;
+    }
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:focus {
+        color: #223052 !important;
+        padding-left: 15px;
+        border-bottom: 0px solid #ffffff !important;
+        background: #bac1d2 !important;
+    }
+    .nav-tabs li {
+        float: none;
+    }
+    .nav>li>a {
+        padding-left: 15px;
+        border-radius: 0px !important;
+        margin-right: 0px !important;
+    }
+    ul.nav.nav-tabs {
+        padding-left: 0px !important;
+    }
+    .nav-tabs>li>a {
+        padding-left: 15px !important;
+        border-radius: 0px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-tabs>li>a {
+        padding: 10px 10px
+    }
+}

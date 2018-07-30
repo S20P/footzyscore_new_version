@@ -1,0 +1,413 @@
+<div id="loading" *ngIf='showloader'>
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="container">
+    <div class="match-page-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="match-page-header">
+                    <p>All Groups</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="">
+
+                    <div class="groupp-list-navbar with-nav-tabs panel-default">
+                        <!-- tabs menu  -->
+                        <div class="">
+                            <ul class="nav nav-tabs groups_list">
+                                <li class="active">
+                                    <a href="#tab1default" data-toggle="tab">Group A</a>
+                                </li>
+                                <li>
+                                    <a href="#tab2default" data-toggle="tab">Group B</a>
+                                </li>
+                                <li>
+                                    <a href="#tab3default" data-toggle="tab">Group C</a>
+                                </li>
+                                <li>
+                                    <a href="#tab4default" data-toggle="tab">Group D</a>
+                                </li>
+                                <li>
+                                    <a href="#tab5default" data-toggle="tab">Group E</a>
+                                </li>
+                                <li>
+                                    <a href="#tab6default" data-toggle="tab">Group F</a>
+                                </li>
+                                <li>
+                                    <a href="#tab7default" data-toggle="tab">Group G</a>
+                                </li>
+                                <li>
+                                    <a href="#tab8default" data-toggle="tab">Group H</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <!-- group tab -->
+                            <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
+                                <div class="">
+                                    <div class="tab-content">
+                                        <!--******** DETAILS ************-->
+                                        <div class="tab-pane fade in active" id="tab1default">
+                                            <div id="group1">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group A</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemA of GroupA_collection|orderBy:'position'">
+                                                            <tr (click)="teamdetails(itemA.team_id)">
+                                                                <td>{{itemA.position}}</td>
+                                                                <td>{{itemA.team_name}}</td>
+                                                                <td>{{itemA.overall_gp}}</td>
+                                                                <td>{{itemA.overall_w}}</td>
+                                                                <td>{{itemA.overall_d}}</td>
+                                                                <td>{{itemA.overall_l}}</td>
+                                                                <td>{{itemA.gd}}</td>
+                                                                <td>{{itemA.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupA_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="tab-pane" id="tab2default">
+                                            <div id="group1">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group B</h4>
+                                                    <table class=" table grouptable ">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last ">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemB of GroupB_collection|orderBy:'position'">
+                                                            <tr (click)="teamdetails(itemB.team_id)">
+                                                                <td>{{itemB.position}}</td>
+                                                                <td>{{itemB.team_name}}</td>
+                                                                <td>{{itemB.overall_gp}}</td>
+                                                                <td>{{itemB.overall_w}}</td>
+                                                                <td>{{itemB.overall_d}}</td>
+                                                                <td>{{itemB.overall_l}}</td>
+                                                                <td>{{itemB.gd}}</td>
+                                                                <td>{{itemB.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupB_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane " id="tab3default">
+                                            <div id="group1 ">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group C</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first ">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last ">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemC of GroupC_collection|orderBy:'position'">
+
+                                                            <tr (click)="teamdetails(itemC.team_id)">
+                                                                <td>{{itemC.position}}</td>
+                                                                <td>{{itemC.team_name}}</td>
+                                                                <td>{{itemC.overall_gp}}</td>
+                                                                <td>{{itemC.overall_w}}</td>
+                                                                <td>{{itemC.overall_d}}</td>
+                                                                <td>{{itemC.overall_l}}</td>
+                                                                <td>{{itemC.gd}}</td>
+                                                                <td>{{itemC.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupC_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab4default">
+                                            <div id="group1">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group D</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemD of GroupD_collection|orderBy:'position'">
+
+                                                            <tr (click)="teamdetails(itemD.team_id)">
+                                                                <td>{{itemD.position}}</td>
+                                                                <td>{{itemD.team_name}}</td>
+                                                                <td>{{itemD.overall_gp}}</td>
+                                                                <td>{{itemD.overall_w}}</td>
+                                                                <td>{{itemD.overall_d}}</td>
+                                                                <td>{{itemD.overall_l}}</td>
+                                                                <td>{{itemD.gd}}</td>
+                                                                <td>{{itemD.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupD_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane " id="tab5default">
+                                            <div id="group1 ">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group E</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last ">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemE of GroupE_collection|orderBy:'position'">
+
+                                                            <tr (click)="teamdetails(itemE.team_id)">
+                                                                <td>{{itemE.position}}</td>
+                                                                <td>{{itemE.team_name}}</td>
+                                                                <td>{{itemE.overall_gp}}</td>
+                                                                <td>{{itemE.overall_w}}</td>
+                                                                <td>{{itemE.overall_d}}</td>
+                                                                <td>{{itemE.overall_l}}</td>
+                                                                <td>{{itemE.gd}}</td>
+                                                                <td>{{itemE.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupE_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane " id="tab6default">
+                                            <div id="group1 ">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group F</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first ">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last ">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemF of GroupF_collection|orderBy:'position'">
+
+                                                            <tr (click)="teamdetails(itemF.team_id)">
+                                                                <td>{{itemF.position}}</td>
+                                                                <td>{{itemF.team_name}}</td>
+                                                                <td>{{itemF.overall_gp}}</td>
+                                                                <td>{{itemF.overall_w}}</td>
+                                                                <td>{{itemF.overall_d}}</td>
+                                                                <td>{{itemF.overall_l}}</td>
+                                                                <td>{{itemF.gd}}</td>
+                                                                <td>{{itemF.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupF_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane " id="tab7default">
+                                            <div id="group1 ">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group G</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemG of GroupG_collection|orderBy:'position'">
+
+                                                            <tr (click)="teamdetails(itemG.team_id)">
+                                                                <td>{{itemG.position}}</td>
+                                                                <td>{{itemG.team_name}}</td>
+                                                                <td>{{itemG.overall_gp}}</td>
+                                                                <td>{{itemG.overall_w}}</td>
+                                                                <td>{{itemG.overall_d}}</td>
+                                                                <td>{{itemG.overall_l}}</td>
+                                                                <td>{{itemG.gd}}</td>
+                                                                <td>{{itemG.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupG_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane " id="tab8default">
+                                            <div id="group1 ">
+                                                <div class="groupp-list-navbar">
+                                                    <h4 class="col-sm-12 teamgroupname">Group H</h4>
+                                                    <table class=" table grouptable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td class="first ">Pos</td>
+                                                                <td> Team </td>
+                                                                <td> P </td>
+                                                                <td> W </td>
+                                                                <td> D </td>
+                                                                <td> L </td>
+                                                                <td> +/- </td>
+                                                                <td class="last ">PTS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let itemH of GroupH_collection|orderBy:'position'">
+                                                            <tr (click)="teamdetails(itemH.team_id)">
+                                                                <td>{{itemH.position}}</td>
+                                                                <td>{{itemH.team_name}}</td>
+                                                                <td>{{itemH.overall_gp}}</td>
+                                                                <td>{{itemH.overall_w}}</td>
+                                                                <td>{{itemH.overall_d}}</td>
+                                                                <td>{{itemH.overall_l}}</td>
+                                                                <td>{{itemH.gd}}</td>
+                                                                <td>{{itemH.points}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody *ngIf="GroupH_collection.length <= 0">
+                                                            <div class="list-line row match-list show-responsive-list">
+                                                                <td>
+                                                                    <h4>Not Found</h4>
+                                                                </td>
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end group tab -->
+                            <!-- sidebar -->
+                            <div class="col-sm-12 col-md-4 col-lg-4 remove_left_padding">
+                                <app-sidebar></app-sidebar>
+                            </div>
+                            <!-- end sidebar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

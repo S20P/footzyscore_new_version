@@ -1,0 +1,448 @@
+<div id="loading" *ngIf='showloader'>
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div *ngFor="let stadiumItem of stadiumDetail_collecction;let i = index">
+
+        <div class="match-page-section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="match-page-header">
+                        <p>{{stadiumItem.city_arena}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
+                    <div class="">
+                        <div class="card">
+                            <div class="view overlay">
+                                <img class="card-img-top" src="{{stadiumItem.stadium_image}}" alt="Card image cap">
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="col-md-12 header">
+                                <h4>Stadium</h4>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Name :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.city_arena}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Inaugurated In :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.stadium_built}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Capacity :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.capacity}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Home Team :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.club}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="stadium-txt">
+                                    <p class="text-right">
+                                        <a href="{{stadiumItem.city_about}}" target="_blank"> More
+                                              <i class="fa right-icon">&#xf105;</i>
+                                         </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="col-md-12 header">
+                                <h4>City</h4>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Name :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.city_name}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Founded In :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.city_founded}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Total Population :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.city_population}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Time Zone :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.city_timezone}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 stadium-detail">
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p>Average temperature :</p>
+                                </div>
+                                <div class="col-md-6 col-xs-6 stadium-txt">
+                                    <p class="text-right">{{stadiumItem.city_temp}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="list_item">
+                            <div class="card">
+                                <div class="col-md-12 header">
+                                    <h4>Matches to play on this Stadium</h4>
+                                </div>
+
+                                <!-- Hide Section for responshive -->
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div *ngFor="let item_details of match_ground_details;let j = index">
+                                            <div class="row match-detail" (click)="matchdetails(item_details.id,item_details.comp_id)">
+
+                                                <div class="matches_date">
+                                                    <p>{{item_details.time|date:short}}</p>
+                                                </div>
+
+                                                <!-- hide Responshive -->
+                                                <div class="show-responsive-list">
+                                                    <!-- Time & Status -->
+                                                    <div class="col-sm-2 col-xs-2 match_time">
+                                                        <div *ngIf="item_details.status!=='FT';else offlineTime1">
+
+                                                            <div *ngIf="item_details.live_status;else offlineTime1">
+                                                                <div *ngIf="item_details.status=='';else status1">
+                                                                    <p>{{item_details.time|date:'hh:mm a'}}</p>
+                                                                </div>
+
+                                                                <ng-template #status1>
+                                                                    <div *ngIf="item_details.status=='HT';else second1 || item_details.status=='FT';else second1">
+                                                                        <p>{{item_details.status}}</p>
+                                                                    </div>
+                                                                    <ng-template #second1>
+                                                                        <p>{{item_details.status}}'</p>
+                                                                    </ng-template>
+                                                                </ng-template>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- offline  -->
+                                                        <ng-template #offlineTime1>
+                                                            <div *ngIf="item_details.status!=='FT' && item_details.status!=='Pen.' ;else time1">
+                                                                <p>{{item_details.time|date:'hh:mm a'}}</p>
+                                                            </div>
+                                                            <ng-template #time1>
+                                                                <p>{{item_details.status}}</p>
+                                                            </ng-template>
+                                                        </ng-template>
+                                                        <!-- end offline -->
+
+                                                    </div>
+                                                    <!--end Time & Status -->
+
+                                                    <!-- Score & Group of Team -->
+
+                                                    <div class="col-sm-2 col-xs-3 flag-width">
+                                                        <img [src]="item_details.localteam_image" onError="this.src='assets/img/avt_flag.png'" />
+                                                        <p>{{item_details.localteam_name}}</p>
+                                                    </div>
+
+                                                    <div class="col-sm-5 col-xs-3 match-team-group">
+                                                        <!-- Live -->
+
+                                                        <div *ngIf="item_details.live_status;else offlineTeam1">
+                                                            <div class="row">
+                                                                <div class="col-xs-2 col-md-3 col-sm-3 match_time">
+                                                                    <p>{{item_details.localteam_score}}</p>
+                                                                </div>
+                                                                <div class="col-xs-8 col-md-6 col-sm-6 removepadding">
+                                                                    <div *ngIf="item_details.match_number === undefined && item_details.match_type == undefined">
+                                                                        <h1 class="upertxt">-</h1>
+                                                                    </div>
+                                                                    <p class="upertxt ">{{item_details.match_number}}</p>
+                                                                    <p class="btm-txt ">{{item_details.match_type}}</p>
+                                                                </div>
+                                                                <div class="col-xs-2 col-sm-3 match_time col-md-3">
+                                                                    <p>{{item_details.visitorteam_score}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end live -->
+
+                                                        <!-- offline  -->
+                                                        <ng-template #offlineTeam1>
+                                                            <div *ngIf="item_details.status==='FT' || item_details.status==='Pen.'; else noscore1">
+                                                                <div class="row">
+                                                                    <div class="col-xs-2 col-md-2 match_time">
+                                                                        <p>{{item_details.localteam_score}}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-8 col-md-8 removepadding">
+                                                                        <div *ngIf="item_details.match_number === undefined && item_details.match_type == undefined">
+                                                                            <h1 class="upertxt">-</h1>
+                                                                        </div>
+                                                                        <p class="upertxt">{{item_details.match_number}}</p>
+                                                                        <p class="btm-txt">{{item_details.match_type}}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-2 match_time col-md-2">
+                                                                        <p>{{item_details.visitorteam_score}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ng-template #noscore1>
+                                                                <div *ngIf="item_details.match_number === undefined && item_details.match_type == undefined">
+                                                                    <h1 class="upertxt">-</h1>
+                                                                </div>
+                                                                <p class="upertxt ">{{item_details.match_number}}</p>
+                                                                <p class="btm-txt ">{{item_details.match_type}}</p>
+                                                            </ng-template>
+
+                                                        </ng-template>
+                                                        <!-- end offline -->
+
+                                                    </div>
+
+                                                    <!--end Score & Group of Team -->
+
+                                                    <div class="col-sm-2 col-xs-3 flag-width">
+
+                                                        <img [src]="item_details.visitorteam_image" onError="this.src='assets/img/avt_flag.png'" />
+                                                        <p>{{item_details.visitorteam_name}}</p>
+                                                    </div>
+
+                                                    <!--end Score & Group of Team -->
+                                                    <div class="col-sm-1 col-xs-1">
+                                                        <div *ngIf="item_details.status!=='FT' && item_details.status!=='Pen.' ">
+                                                            <div *ngIf="item_details.live_status">
+                                                                <div class="live_badge">
+                                                                    <span class="status_offon">LIVE</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <!-- Show Responshive -->
+                                                <div class="hide-responsive-list r-dashbord-team">
+
+                                                    <div class="col-md-5 col-sm-5 col-xs-5 match-team-group">
+
+                                                        <p class="upertxt ">{{item_details.match_number}}</p>
+
+                                                        <!-- Live -->
+                                                        <div *ngIf="item_details.status!=='FT' && item_details.status!=='Pen.' ;else offlineTime2">
+                                                            <div *ngIf="item_details.live_status;else offlineTime2">
+                                                                <div *ngIf="item_details.status=='';else status2">
+                                                                    <p class="match_time">{{item_details.time|date:'hh:mm a'}}</p>
+                                                                </div>
+                                                                <ng-template #status2>
+                                                                    <div *ngIf="item_details.status=='HT';else second2 || item_details.status=='FT';else second2">
+                                                                        <p class="match_time">{{item_details.status}}</p>
+                                                                    </div>
+
+                                                                    <ng-template #second2>
+                                                                        <p class="match_time">{{item_details.status}}'</p>
+                                                                    </ng-template>
+                                                                </ng-template>
+                                                            </div>
+                                                        </div>
+                                                        <!--end  Live -->
+
+                                                        <!-- offline -->
+                                                        <ng-template #offlineTime2>
+                                                            <div *ngIf="item_details.status!=='FT' && item_details.status!=='Pen.';else time2">
+                                                                <p class="match_time">{{item_details.time|date:'hh:mm a'}}</p>
+                                                            </div>
+                                                            <ng-template #time2>
+                                                                <p class="match_time">{{item_details.status}}</p>
+                                                            </ng-template>
+
+                                                        </ng-template>
+                                                        <!--end offline -->
+
+                                                        <p class="btm-txt">{{item_details.match_type}}</p>
+                                                    </div>
+
+
+                                                    <div class="col-md-6 col-sm-6 col-xs-6 r-flag-team">
+
+                                                        <!-- Live -->
+                                                        <div *ngIf="item_details.live_status;else offlineTeam2">
+                                                            <p>
+                                                                <img class="flag-width" [src]="item_details.localteam_image" onError="this.src='assets/img/avt_flag.png'" />
+                                                                <span *ngIf="item_details.visitorteam_score !==''" class="score">
+                                                         {{item_details.localteam_score}}
+                                                    </span> {{item_details.localteam_name}}
+                                                            </p>
+                                                            <p>
+                                                                <img class="flag-width" [src]="item_details.visitorteam_image" onError="this.src='assets/img/avt_flag.png'" />
+                                                                <span *ngIf="item_details.visitorteam_score !==''" class="score">
+                                                      {{item_details.visitorteam_score}} 
+                                                  </span> {{item_details.visitorteam_name}}
+                                                            </p>
+                                                        </div>
+                                                        <!--end Live -->
+
+
+                                                        <!-- offline  -->
+                                                        <ng-template #offlineTeam2>
+                                                            <p>
+                                                                <img class="flag-width" [src]="item_details.localteam_image" onError="this.src='assets/img/avt_flag.png'" />
+
+                                                                <span *ngIf="item_details.status==='FT' || item_details.status==='Pen.' && item_details.visitorteam_score !==''" class="score">
+                                                       {{item_details.localteam_score}}
+                                                   </span> {{item_details.localteam_name}}
+                                                            </p>
+                                                            <p>
+                                                                <img class="flag-width" [src]="item_details.visitorteam_image" onError="this.src='assets/img/avt_flag.png'" />
+
+                                                                <span *ngIf="item_details.status==='FT' || item_details.status!=='Pen.' && item_details.visitorteam_score !=='' " class="score">
+                                                        {{item_details.visitorteam_score}} 
+                                                   </span> {{item_details.visitorteam_name}}
+                                                            </p>
+                                                        </ng-template>
+                                                        <!--end offline  -->
+
+                                                    </div>
+
+                                                    <div class="col-md-1 col-sm-1 col-xs-1 circle">
+                                                        <div *ngIf="item_details.status!=='FT' && item_details.status!=='Pen.' ">
+                                                            <div *ngIf="item_details.live_status" class="live_badge">
+                                                                <span class="status_offon ">LIVE</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Show Responshive end-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="match_ground_details.length <= 0" class="row match-list">
+                                    <div class="list-line">
+                                        <p class="col-md-12">No matches scheduled in this Stadium</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="col-md-12 header">
+                                <h4>Matches to play on this Stadium </h4>
+                            </div>
+
+                            <div class="match-list-card-body collapse in" id="collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
+                                <div *ngFor="let item_details of match_ground_details;let j = index">
+                                    <div *ngIf="match_ground_details.length > 0;else nomatchcomp">
+                                        <div (click)="matchdetails(item_details.id,item_details.comp_id)">
+                                            <div class="row match-list show-responsive-list">
+                                                <div class="list-line">
+
+                                                    <div *ngIf="item_details.status==='FT'; else time">
+                                                        <div class="col-md-3 col-sm-3 col-xs-2">
+                                                            <div class="match_status_box">
+                                                                <p>{{item_details.status}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #time>
+                                                        <div class="col-md-3 col-sm-3 col-xs-2">
+                                                            <div class="match_time_box">
+                                                                <p>{{item_details.time| date: 'hh:mm a'}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </ng-template>
+
+                                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                                        <div class="">
+                                                            <p>{{item_details.localteam_name}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div *ngIf="item_details.status==='FT'; else noscore">
+                                                        <div class="col-md-1 col-sm-1 col-xs-1 score_r">
+                                                            <p>{{item_details.localteam_score}}</p>
+                                                        </div>
+
+                                                        <div class="col-md-1 col-sm-1 col-xs-1 score_r">
+                                                            <p>{{item_details.visitorteam_score}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #noscore>
+                                                        <div class="col-md-3 col-sm-3 col-xs-2">
+                                                            <div class="">
+                                                                <p>-</p>
+                                                            </div>
+                                                        </div>
+                                                    </ng-template>
+                                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                                        <div class="">
+                                                            <p>{{item_details.visitorteam_name}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-template #nomatchcomp>
+                                        <div *ngIf="j==0" class="list-line row match-list show-responsive-list">
+                                            <p>No matches scheduled in this Stadium</p>
+                                        </div>
+                                    </ng-template>
+                                </div>
+
+                            </div> -->
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+                <!-- sidebar -->
+                <div class="col-sm-12 col-md-4 col-lg-4 remove_left_padding">
+                    <app-sidebar></app-sidebar>
+                </div>
+                <!-- sidebar end -->
+            </div>
+        </div>
+    </div>
+</div>

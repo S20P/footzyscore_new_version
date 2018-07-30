@@ -1,0 +1,152 @@
+ul.groups_list {
+    list-style: none;
+    margin-top: 10px;
+    border-bottom: 3px solid #c7c7c7;
+    border-top: 3px solid #c7c7c7;
+    margin-bottom: 10px;
+}
+
+.groups_list li {
+    display: inline-block;
+    font-size: var(--theme-body-font2);
+    font-weight: bold;
+    color: #8e8e8e;
+    margin-bottom: 0;
+}
+
+.grouptable thead,
+.teamgroupname {
+    background: var(--theme-bg-color);
+    color: #fff;
+}
+
+.teamgroupname {
+    margin-bottom: 0;
+    padding: 13px 20px 2px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+table.table.grouptable {
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+table.table.grouptable tbody tr td {
+    font-size: var(--theme-body-font1);
+    padding: 10px 5px 10px 0px;
+}
+
+table.table.grouptable tbody {
+    cursor: pointer;
+}
+
+td:first-child {
+    padding-left: 20px !important;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    color: #223052;
+    background-color: unset;
+    border: 0;
+}
+
+.nav-tabs>li>a {
+    color: #808080;
+    margin-right: 0;
+    line-height: 1.42857143;
+    border: 0;
+    border-radius: 0;
+}
+
+ul.groups_list {
+    list-style: none;
+    margin-top: 11px;
+}
+
+.nav-tabs>li>a:hover {
+    color: #223052!important;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px 11px;
+}
+
+
+/* Dropdown css */
+
+.option_title {
+    font-size: var(--theme-body-font1);
+}
+
+.dropdown {
+    float: right;
+    top: -13px;
+    /* bottom: 37px; */
+    margin-top: -25px;
+}
+
+#dropdown_btn {
+    padding: 10px;
+}
+
+@media (max-width: 580px) {
+    .dropdown {
+        float: left!important;
+        top: 18px!important;
+        margin: 0px;
+        left: -15px!important;
+        margin-bottom: 23px;
+    }
+    #dropdown_btn {
+        margin-top: 0px;
+        padding: 10px;
+    }
+    .dropdown-menu {
+        left: 5px;
+    }
+    table.table.grouptable tr td {
+        font-size: var(--theme-body-font-sm) !important;
+    }
+}
+
+@media (max-width: 669px) {
+    #dropdown_btn {
+        padding: 10px;
+    }
+    .dropdown-menu {
+        min-width: 121px !important;
+    }
+}
+
+@media (max-width:360px) {
+    table.table.grouptable tr td {
+        font-size: 10px !important;
+    }
+}
+
+
+/* .dropdown-menu {
+    min-width: 141px;
+} */
+
+.toppadd {
+    margin-bottom: 15px;
+}
+
+.select_dropdown li {
+    padding: 0px;
+}
+
+.select_dropdown li a {
+    background: transparent;
+    padding: 10px 20px;
+}
+
+.select_dropdown li a:hover {
+    background: transparent;
+}

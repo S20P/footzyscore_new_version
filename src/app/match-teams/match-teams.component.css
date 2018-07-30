@@ -1,0 +1,131 @@
+.match-page-header {
+    background: #223052;
+    padding: 10px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.match-page-header P {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 24px;
+    margin: 0px;
+    padding: 5px 10px 3px;
+    letter-spacing: 1px;
+}
+
+.card {
+    margin-bottom: 15px;
+    border-radius: 0;
+    box-shadow: unset;
+}
+
+@media (min-width: 768px) {
+    .match-page-section {
+        padding: 40px 0px;
+    }
+}
+
+@media (min-width: 991px) {
+    .remove_left_padding {
+        padding-left: 7.5px;
+    }
+}
+
+.match-page-header h1 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0px;
+    padding: 5px 10px 0;
+    letter-spacing: 1px;
+}
+
+.match-list-card-body {
+    background: #ffffff;
+}
+
+.match-list {
+    border-bottom: 1px solid #eee;
+    padding: 7px 10px 2px 19px;
+    text-align: left;
+    cursor: pointer;
+    margin: 0px;
+}
+
+.list_item {
+    margin-bottom: 20px;
+}
+
+.match-page-section {
+    padding: 40px 0px;
+}
+
+@media (min-width: 992px) and (max-width: 1300px) {
+    .top-bar {
+        height: auto;
+    }
+    .match-page-section {
+        padding: 40px 0px;
+    }
+}
+
+@media (min-width: 992px) {
+    .remove_right_padding {
+        padding-right: 7.5px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+@media (max-width: 992px) {
+    .match-page-section {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    .top-header {
+        padding: 7px;
+        background: #223052d9;
+    }
+}
+
+@media (max-width: 600px) {}
+
+@media (max-width: 480px) {}
+
+@media (max-width: 415px) {}
+
+@media (max-width: 367px) {
+    .text-left {
+        text-align: center !important;
+        width: 100%;
+    }
+}
+
+.team_flag img {
+    width: 40px;
+    margin-right: 10px;
+    margin-top: -3px;
+}
+
+.team_name p {
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+p.rigth_arrow {
+    text-align: right;
+    color: #7a7a7bd1;
+    margin-right: 8px;
+}
+
+.team_arrow {
+    margin-top: 7px;
+}
+
+
+/* .theme-hover:hover .rigth_arrow {
+    color: #fff !important;
+} */

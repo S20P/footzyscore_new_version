@@ -1,0 +1,35 @@
+.card {
+    margin-bottom: 0px!important;
+}
+
+.groupBy-date-title {
+    font-weight: bold;
+    font-size: var(--theme-body-font2);
+    margin: 15px 0px 10px;
+}
+
+.match-page-header {
+    background: unset;
+    color: #3a3a3a;
+    padding: 0px;
+    margin-top: 2px;
+}
+
+.next-matces-page {
+    margin-bottom: 15px;
+}
+
+.match-page-header:after {
+    color: #00d15f;
+    background: transparent !important;
+    content: '';
+    width: 50px;
+    height: 3px;
+    background: #00d15f!important;
+    display: block;
+    margin-top: 10px;
+}
+
+.matches-list-sec {
+    margin-bottom: 15px;
+}

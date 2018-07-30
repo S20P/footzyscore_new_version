@@ -1,0 +1,156 @@
+<div id="loading" *ngIf='showloader'>
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="match-detail-section">
+        <div *ngFor="let player of player_collection;let i=index">
+            <!-- team-detail-header -->
+            <div *ngIf="player_collection.length > 0;else noplayer">
+
+                <div class="team-detail-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="visited-team">
+                                <div class="player_img">
+                                    <img [src]="player.picture" onError="this.src='assets/img/avt_player.png'" />
+                                </div>
+                                <!-- <p>Real Sociedad</p> -->
+                                <h4 class="team_title">{{player.name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row player_sec">
+                    <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
+                        <div class="card">
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>
+                                        <span>Full Name:</span>
+                                    </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.name}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Country: </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.nationality}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Club:</p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.team}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Position:</p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.position}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Age:</p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.age}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Height:</p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.height}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>
+                                        <span>Weight:</span>
+                                    </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.weight}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Birthdate:</p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.birthdate}}</p>
+                                </div>
+                            </div>
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Birth Place:</p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.birthplace}}</p>
+                                </div>
+                            </div>
+
+                            <div class="playerlist">
+                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                    <p>Goals: </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                    <p>{{player.goals}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- sidebar -->
+                    <div class="col-sm-12 col-md-4 col-lg-4 remove_left_padding">
+                        <app-sidebar></app-sidebar>
+                    </div>
+                    <!-- sidebar end -->
+
+                </div>
+
+                <ng-template #noplayer>
+                    <div class="list-line row match-list">
+                        <p>Not found Player details</p>
+                    </div>
+                </ng-template>
+
+
+            </div>
+        </div>
+
+
+        <!-- <div *ngIf="player_status==false">
+            <div class="card row">
+                <div class="card-body">
+                    <div class="col-md-12 NoUserInfo">
+                        <p>Not found Player details</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div *ngIf="player_status==false" class="card">
+            <div class="list-line row match-list">
+                <p class="col-md-12 text-left">Not found Player details</p>
+            </div>
+        </div>
+    </div>
+</div>

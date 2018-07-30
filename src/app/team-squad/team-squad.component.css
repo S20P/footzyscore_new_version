@@ -1,0 +1,92 @@
+.grouptable thead {
+    background: var(--theme-bg-color);
+    color: #fff;
+}
+
+table.table.grouptable {
+    margin-bottom: 15px;
+}
+
+table.table.grouptable tbody tr td {
+    font-size: var(--theme-body-font1);
+    padding: 13px 0px;
+}
+
+td:first-child {
+    padding-left: 20px !important;
+}
+
+td.first {
+    width: 10%;
+}
+
+.table-panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.team_player {
+    background: #c3c3c32e;
+    padding: 5px 20px;
+}
+
+.team_player h4 {
+    font-weight: bold;
+}
+
+.no {
+    width: 10%;
+}
+
+.player_img {
+    width: 50%;
+}
+
+.pos {
+    width: 10%;
+}
+
+.age {
+    width: 10%;
+}
+
+.apps {
+    width: 10%;
+}
+
+.goals {
+    width: 10%;
+}
+
+@media (max-width: 480px) {
+    .no {
+        width: 15%;
+    }
+    .player_img {
+        width: 45%;
+    }
+    table.table.grouptable tr td {
+        font-size: var(--theme-body-font-sm);
+        padding: 13px 2px;
+    }
+    .player_img img {
+        width: 30px;
+    }
+}
+
+@media (max-width: 367px) {
+    table.table.grouptable tr td {
+        font-size: 10px;
+        padding: 13px 2px;
+    }
+    .text-left {
+        width: 100%;
+    }
+    .player_img img {
+        width: 25px;
+    }
+}
