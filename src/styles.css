@@ -6,7 +6,10 @@
     --theme-body-font2: 16px;
     --theme-body-font3: 18px;
     --theme-hover-bg: #fafafa;
-    --theme-font-bold: 'Montserrat-Bold';
+    --theme-font-Regular: 'Montserrat';
+    --theme-font-Light: 'Montserrat-Light';
+    --theme-font-Bold: 'Montserrat-Bold';
+    --theme-font-SemiBold: 'Montserrat-SemiBold';
 }
 
 
@@ -28,42 +31,46 @@
 @font-face {
     font-family: 'Montserrat';
     src: url("assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    /* font-family: var(--theme-font-Regular); */
 }
 
 @font-face {
     font-family: 'Montserrat-Bold';
     src: url("assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
     font-weight: bold;
+    /* font-family: var(--theme-font-Bold); */
 }
 
 @font-face {
     font-family: 'Montserrat-Light';
     src: url("assets/fonts/Montserrat/Montserrat-Light.ttf") format("truetype");
+    /* font-family: var(--theme-font-Light); */
 }
 
 @font-face {
     font-family: 'Montserrat-SemiBold';
     src: url("assets/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
+    /* font-family: var(--theme-font-SemiBold); */
 }
 
 body {
     background: #eee;
-    font-family: 'Montserrat';
+    font-family: var(--theme-font-Regular);
 }
 
 b {
-    font-family: var(--theme-font-bold);
+    font-family: var(--theme-font-Bold);
 }
 
 h3,
 h2,
 h1,
 h4 {
-    font-family: var(--theme-font-bold);
+    font-family: var(--theme-font-SemiBold);
 }
 
 p {
-    font-family: 'Montserrat';
+    font-family: var(--theme-font-Regular);
     font-size: var(--theme-body-font1);
 }
 
@@ -369,7 +376,7 @@ ul.nav.navbar-nav.navbar-right img {
 
 h4.footertext {
     font-size: 20px;
-    font-family: 'Montserrat';
+    font-family: var(--theme-font-Regular);
 }
 
 .Copyright {

@@ -151,10 +151,10 @@
                                                                                                                     <p class="small">{{events.assist}} </p>
                                                                                                                 </div>
                                                                                                                 <div *ngIf="events.assist_id==''">
-                                                                                                                    <div *ngIf="events.type=='yellowcard'">
+                                                                                                                    <div *ngIf="events.ic_event_yellowred">
                                                                                                                         <p class="small">{{events.type}}</p>
                                                                                                                     </div>
-                                                                                                                    <div *ngIf="events.type=='redcard'">
+                                                                                                                    <div *ngIf="events.ic_event_redcard">
                                                                                                                         <p class="small">{{events.type}}</p>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -167,37 +167,35 @@
                                                                                                         </li>
                                                                                                         <li>
                                                                                                             <div class="ic_img_middle">
-
-                                                                                                                <div *ngIf="events.type=='yellowcard'">
-                                                                                                                    <img src="assets/img/ic_yellow_card.png">
+                                                                                                                <div *ngIf="events.ic_event_yellow_card">
+                                                                                                                    <img src="assets/img/ic_event_yellow_card.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='subst'">
-                                                                                                                    <img src="assets/img/ic_sub_on_off_both2.png">
+                                                                                                                <div *ngIf="events.ic_event_substitution">
+                                                                                                                    <img src="assets/img/ic_event_substitution.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='goal'" class="goal_img">
-
+                                                                                                                <div class="goal_img">
                                                                                                                     <div class="event-time">
                                                                                                                         <p class="small">{{events.result}}</p>
                                                                                                                     </div>
-                                                                                                                    <div *ngIf="events.ic_event_penalty_scored">
-                                                                                                                        <img src="assets/img/ic_penalty_scored.png">
+                                                                                                                    <div *ngIf="events.ic_event_goal">
+                                                                                                                        <img src="assets/img/ic_event_goal.png">
+                                                                                                                    </div>
+                                                                                                                    <div *ngIf="events.ic_event_penalty">
+                                                                                                                        <img src="assets/img/ic_event_penalty.png">
                                                                                                                     </div>
                                                                                                                     <div *ngIf="events.ic_event_own_goal">
-                                                                                                                        <img src="assets/img/ic_own_goal.png">
+                                                                                                                        <img src="assets/img/ic_event_own_goal.png">
                                                                                                                     </div>
-                                                                                                                    <div *ngIf="events.ic_event_goal">
-                                                                                                                        <img src="assets/img/ic_goal.png">
-                                                                                                                    </div>
+                                                                                                                </div>
 
+                                                                                                                <div *ngIf="events.ic_event_missed_penalty">
+                                                                                                                    <img src="assets/img/ic_event_missed_penalty.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='pen miss'">
-                                                                                                                    <img src="assets/img/ic_penalty_missed.png">
+                                                                                                                <div *ngIf="events.ic_event_redcard">
+                                                                                                                    <img src="assets/img/ic_event_redcard.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='redcard'">
-                                                                                                                    <img src="assets/img/ic_red_card.png">
-                                                                                                                </div>
-                                                                                                                <div *ngIf="events.type=='yellowred'">
-                                                                                                                    <img src="assets/img/ic_two_yellow_card.png">
+                                                                                                                <div *ngIf="events.ic_event_yellowred">
+                                                                                                                    <img src="assets/img/ic_event_yellowred.png">
                                                                                                                 </div>
 
                                                                                                             </div>
@@ -217,37 +215,35 @@
                                                                                                     <ul class="inline left_team">
                                                                                                         <li>
                                                                                                             <div class="ic_img_middle">
-
-                                                                                                                <div *ngIf="events.type=='yellowcard'">
-                                                                                                                    <img src="assets/img/ic_yellow_card.png">
+                                                                                                                <div *ngIf="events.ic_event_yellow_card">
+                                                                                                                    <img src="assets/img/ic_event_yellow_card.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='subst'">
-                                                                                                                    <img src="assets/img/ic_sub_on_off_both2.png">
+                                                                                                                <div *ngIf="events.ic_event_substitution">
+                                                                                                                    <img src="assets/img/ic_event_substitution.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='goal'" class="goal_img">
-
+                                                                                                                <div class="goal_img">
                                                                                                                     <div class="event-time">
                                                                                                                         <p class="small">{{events.result}}</p>
                                                                                                                     </div>
-                                                                                                                    <div *ngIf="events.ic_event_penalty_scored">
-                                                                                                                        <img src="assets/img/ic_penalty_scored.png">
+                                                                                                                    <div *ngIf="events.ic_event_goal">
+                                                                                                                        <img src="assets/img/ic_event_goal.png">
+                                                                                                                    </div>
+                                                                                                                    <div *ngIf="events.ic_event_penalty">
+                                                                                                                        <img src="assets/img/ic_event_penalty.png">
                                                                                                                     </div>
                                                                                                                     <div *ngIf="events.ic_event_own_goal">
-                                                                                                                        <img src="assets/img/ic_own_goal.png">
+                                                                                                                        <img src="assets/img/ic_event_own_goal.png">
                                                                                                                     </div>
-                                                                                                                    <div *ngIf="events.ic_event_goal">
-                                                                                                                        <img src="assets/img/ic_goal.png">
-                                                                                                                    </div>
+                                                                                                                </div>
 
+                                                                                                                <div *ngIf="events.ic_event_missed_penalty">
+                                                                                                                    <img src="assets/img/ic_event_missed_penalty.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='pen miss'">
-                                                                                                                    <img src="assets/img/ic_penalty_missed.png">
+                                                                                                                <div *ngIf="events.ic_event_redcard">
+                                                                                                                    <img src="assets/img/ic_event_redcard.png">
                                                                                                                 </div>
-                                                                                                                <div *ngIf="events.type=='redcard'">
-                                                                                                                    <img src="assets/img/ic_red_card.png">
-                                                                                                                </div>
-                                                                                                                <div *ngIf="events.type=='yellowred'">
-                                                                                                                    <img src="assets/img/ic_two_yellow_card.png">
+                                                                                                                <div *ngIf="events.ic_event_yellowred">
+                                                                                                                    <img src="assets/img/ic_event_yellowred.png">
                                                                                                                 </div>
 
                                                                                                             </div>
@@ -266,10 +262,10 @@
                                                                                                                     <p class="small">{{events.assist}} </p>
                                                                                                                 </div>
                                                                                                                 <div *ngIf="events.assist_id==''">
-                                                                                                                    <div *ngIf="events.type=='yellowcard'">
+                                                                                                                    <div *ngIf="events.ic_event_yellowred">
                                                                                                                         <p class="small">{{events.type}}</p>
                                                                                                                     </div>
-                                                                                                                    <div *ngIf="events.type=='redcard'">
+                                                                                                                    <div *ngIf="events.ic_event_redcard">
                                                                                                                         <p class="small">{{events.type}}</p>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -315,7 +311,6 @@
                                                         <div class="card" *ngIf="events_collection.length <= 0">
                                                             <p>No Events </p>
                                                         </div>
-
                                                     </div>
                                                     <!-- key Events end -->
                                                 </div>

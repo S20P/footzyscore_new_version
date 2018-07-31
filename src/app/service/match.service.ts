@@ -16,7 +16,7 @@ export class MatchService {
   GetMatchesByDate_API: string = this.baseurl + "MobileAPI/GetMatchesByDate";
   GetCommentariesByMatchId_API: string = this.baseurl + "MobileAPI/GetCommentariesByMatchId";
   getStadiumAll_API: string = "/assets/data/json/FifaMatchStadiums.json";
- 
+
   GetPlayerById_API: string = this.baseurl + "MobileAPI/GetPlayerProfileById";
   GetAllKnockout_API: string = this.baseurl + "MobileAPI/GetAllKnockout";
   StaticMatch_API: string = "/assets/data/json/FifaMatchSchedule.json";
@@ -24,7 +24,7 @@ export class MatchService {
   //new
   GetAllCompetitionMatchesByMonth_API: string = this._baseurl_local + "MobileAPI/GetAllCompetitionMatchesByMonth";
   GetAllCompetitionMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetAllCompetitionMatchesByDate";
-  GetMatchDeatilByMatchId_API: string = this._baseurl_local + "MobileAPI/GetMatchDeatilByMatchId";
+  // GetMatchDeatilByMatchId_API: string = this._baseurl_local + "MobileAPI/GetMatchDeatilByMatchId";
   GetCompetitionStandingById_API: string = this._baseurl_local + "MobileAPI/GetCompetitionStandingById";
   GetAllTopTeamByCompId_API: string = this._baseurl_local + "MobileAPI/GetAllTopTeamByCompId";
   GetAllTopPlayerByCompId_API: string = this._baseurl_local + "MobileAPI/GetAllTopPlayerByCompId";
@@ -32,11 +32,11 @@ export class MatchService {
   GetSquadByTeamId_API: string = this._baseurl_local + "MobileAPI/GetSquadByTeamId";
   GetPreviousMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetPreviousMatchesTeamById";
   GetNextMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetNextMatchesTeamById";
-  GetAllLeague_API : string = this._baseurl_local + "MobileAPI/GetAllLeague";
+  GetAllLeague_API: string = this._baseurl_local + "MobileAPI/GetAllLeague";
   GetAllMatchesByWeek_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByCompId";
 
-  
 
+  GetMatchDeatilByMatchId_API: string = "/assets/data/json/GetMatchDeatilByMatchId.json";
 
 
   constructor(private http: HttpClient) {
@@ -76,8 +76,8 @@ export class MatchService {
     return this.http.get(apiurl);
   }
 
-  GetPlayerById(player_id,comp_id, season) {
-    let apiurl = `${this.GetPlayerById_API + '?player_id=' + player_id+'&season=' + season + '&comp_id=' + comp_id}`;
+  GetPlayerById(player_id, comp_id, season) {
+    let apiurl = `${this.GetPlayerById_API + '?player_id=' + player_id + '&season=' + season + '&comp_id=' + comp_id}`;
     return this.http.get(apiurl);
   }
 
@@ -92,7 +92,7 @@ export class MatchService {
     return this.http.get(apiurl);
   }
 
- 
+
 
   //new 
   GetAllCompetitionMatchesByMonth(param) {
@@ -148,7 +148,7 @@ export class MatchService {
     return this.http.get(apiurl);
   }
 
- 
+
   GetAllTopPlayerByCompId(comp_id, season) {
     // console.log("comp_id is",comp_id);
     let apiurl = `${this.GetAllTopPlayerByCompId_API + '?season=' + season + '&comp_id=' + comp_id}`;
@@ -177,11 +177,11 @@ export class MatchService {
     return this.http.get(apiurl);
   }
   GetNextMatchesTeamById(team_id) {
-    let apiurl = `${this.GetNextMatchesTeamById_API + '?team_id=' + team_id +'&pageNo=1&size=1000'}`;
+    let apiurl = `${this.GetNextMatchesTeamById_API + '?team_id=' + team_id + '&pageNo=1&size=1000'}`;
     return this.http.get(apiurl);
   }
 
-  GetAllLeague(){
+  GetAllLeague() {
     let apiurl = `${this.GetAllLeague_API}`;
     return this.http.get(apiurl);
   }

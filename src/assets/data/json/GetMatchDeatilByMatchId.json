@@ -1,0 +1,3845 @@
+{
+    "id": 10324398,
+    "league_id": 2,
+    "season_id": 7907,
+    "stage_id": 5000511,
+    "round_id": null,
+    "group_id": null,
+    "aggregate_id": null,
+    "venue_id": 9777,
+    "referee_id": 34,
+    "localteam_id": 3468,
+    "visitorteam_id": 8,
+    "weather_report": {
+        "code": "clear",
+        "type": "clear sky",
+        "icon": "https://cdn.sportmonks.com/images/weather/01d.png",
+        "temperature": {
+            "temp": 67.51,
+            "unit": "fahrenheit"
+        },
+        "clouds": "0%",
+        "humidity": "31%",
+        "wind": {
+            "speed": "8.95 m/s",
+            "degree": 70
+        }
+    },
+    "commentaries": true,
+    "attendance": null,
+    "pitch": "Good",
+    "winning_odds_calculated": true,
+    "formations": {
+        "localteam_formation": "4-3-1-2",
+        "visitorteam_formation": "4-3-3"
+    },
+    "scores": {
+        "localteam_score": 3,
+        "visitorteam_score": 1,
+        "localteam_pen_score": null,
+        "visitorteam_pen_score": null,
+        "ht_score": "0-0",
+        "ft_score": "3-1",
+        "et_score": null
+    },
+    "time": {
+        "status": "FT",
+        "starting_at": {
+            "date_time": "2018-05-26 18:45:00",
+            "date": "2018-05-26",
+            "time": "18:45:00",
+            "timestamp": 1527360300,
+            "timezone": "UTC"
+        },
+        "minute": 93,
+        "second": null,
+        "added_time": 0,
+        "extra_minute": null,
+        "injury_time": 3
+    },
+    "coaches": {
+        "localteam_coach_id": 407775,
+        "visitorteam_coach_id": 455353
+    },
+    "standings": {
+        "localteam_position": 2,
+        "visitorteam_position": 1
+    },
+    "deleted": false,
+    "localTeam": {
+        "data": {
+            "id": 3468,
+            "legacy_id": 117,
+            "name": "Real Madrid",
+            "short_code": "MAD",
+            "twitter": "@realmadrid",
+            "country_id": 32,
+            "national_team": false,
+            "founded": 1902,
+            "logo_path": "https://cdn.sportmonks.com/images/soccer/teams/12/3468.png",
+            "venue_id": 2020
+        }
+    },
+    "visitorTeam": {
+        "data": {
+            "id": 8,
+            "legacy_id": 119,
+            "name": "Liverpool",
+            "short_code": "LIV",
+            "twitter": "@LFC",
+            "country_id": 462,
+            "national_team": false,
+            "founded": 1892,
+            "logo_path": "https://cdn.sportmonks.com/images/soccer/teams/8/8.png",
+            "venue_id": 230
+        }
+    },
+    "lineup": {
+        "data": [{
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 186029,
+                "player_name": "Keylor Navas",
+                "number": 1,
+                "position": "G",
+                "additional_position": null,
+                "formation_position": 1,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 1
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 13,
+                        "passes_accuracy": 61
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 1,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 2,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 186029,
+                        "team_id": 3468,
+                        "country_id": 1739,
+                        "position_id": 1,
+                        "common_name": "K. Navas",
+                        "fullname": "Keylor Navas Gamboa",
+                        "firstname": "Keylor",
+                        "lastname": "Navas Gamboa",
+                        "nationality": "Costa Rica",
+                        "birthdate": "15/12/1986",
+                        "birthcountry": "Costa Rica",
+                        "birthplace": "Pérez Zeledón",
+                        "height": "185 cm",
+                        "weight": "80 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/13/186029.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 31647,
+                "player_name": "Daniel Carvajal",
+                "number": 2,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 2,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 2,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 21,
+                        "passes_accuracy": 80
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 2,
+                        "blocks": 1,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 37
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 31647,
+                        "team_id": 3468,
+                        "country_id": 32,
+                        "position_id": 2,
+                        "common_name": "Daniel Carvajal",
+                        "fullname": "Daniel Carvajal Ramos",
+                        "firstname": "Daniel",
+                        "lastname": "Carvajal Ramos",
+                        "nationality": "Spain",
+                        "birthdate": "11/01/1992",
+                        "birthcountry": "Spain",
+                        "birthplace": "Leganés",
+                        "height": "173 cm",
+                        "weight": "73 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/31/31647.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 95807,
+                "player_name": "Raphaël Varane",
+                "number": 5,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 3,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 55,
+                        "passes_accuracy": 90
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 1,
+                        "interceptions": 2,
+                        "clearances": 6,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 95807,
+                        "team_id": 3468,
+                        "country_id": 17,
+                        "position_id": 2,
+                        "common_name": "R. Varane",
+                        "fullname": "Raphaël Varane",
+                        "firstname": "Raphaël",
+                        "lastname": "Varane",
+                        "nationality": "France",
+                        "birthdate": "25/04/1993",
+                        "birthcountry": "France",
+                        "birthplace": "Lille",
+                        "height": "191 cm",
+                        "weight": "81 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/31/95807.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 184941,
+                "player_name": "Sergio Ramos",
+                "number": 4,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 4,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 3,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 80,
+                        "passes_accuracy": 93
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 2,
+                        "blocks": 1,
+                        "interceptions": 1,
+                        "clearances": 3,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 184941,
+                        "team_id": 3468,
+                        "country_id": 32,
+                        "position_id": 2,
+                        "common_name": "Sergio Ramos",
+                        "fullname": "Sergio Ramos García",
+                        "firstname": "Sergio",
+                        "lastname": "Ramos García",
+                        "nationality": "Spain",
+                        "birthdate": "30/03/1986",
+                        "birthcountry": "Spain",
+                        "birthplace": "Camas",
+                        "height": "184 cm",
+                        "weight": "82 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/13/184941.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 185140,
+                "player_name": "Marcelo",
+                "number": 12,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 5,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 2
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 3,
+                        "crosses_accuracy": 1,
+                        "passes": 60,
+                        "passes_accuracy": 84
+                    },
+                    "other": {
+                        "assists": 1,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 2,
+                        "blocks": 0,
+                        "interceptions": 2,
+                        "clearances": 1,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 185140,
+                        "team_id": 3468,
+                        "country_id": 5,
+                        "position_id": 2,
+                        "common_name": "Marcelo",
+                        "fullname": "Marcelo Vieira da Silva Júnior",
+                        "firstname": "Marcelo",
+                        "lastname": "Vieira da Silva Júnior",
+                        "nationality": "Brazil",
+                        "birthdate": "12/05/1988",
+                        "birthcountry": "Brazil",
+                        "birthplace": "Rio de Janeiro",
+                        "height": "174 cm",
+                        "weight": "80 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/20/185140.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 268,
+                "player_name": "Luka Modrić",
+                "number": 10,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 6,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 1,
+                        "crosses_accuracy": 0,
+                        "passes": 68,
+                        "passes_accuracy": 94
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 4,
+                        "blocks": 1,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 268,
+                        "team_id": 3468,
+                        "country_id": 266,
+                        "position_id": 3,
+                        "common_name": "L. Modrić",
+                        "fullname": "Luka Modrić",
+                        "firstname": "Luka",
+                        "lastname": "Modrić",
+                        "nationality": "Croatia",
+                        "birthdate": "09/09/1985",
+                        "birthcountry": "Croatia",
+                        "birthplace": "Zadar",
+                        "height": "172 cm",
+                        "weight": "66 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/12/268.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 159700,
+                "player_name": "Casemiro",
+                "number": 14,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 7,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 35,
+                        "passes_accuracy": 83
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 2,
+                        "interceptions": 2,
+                        "clearances": 2,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 159700,
+                        "team_id": 3468,
+                        "country_id": 5,
+                        "position_id": 3,
+                        "common_name": "Casemiro",
+                        "fullname": "Carlos Henrique Casimiro",
+                        "firstname": "Carlos Henrique",
+                        "lastname": "Casimiro",
+                        "nationality": "Brazil",
+                        "birthdate": "23/02/1992",
+                        "birthcountry": "Brazil",
+                        "birthplace": "São José dos Campos",
+                        "height": "185 cm",
+                        "weight": "84 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/20/159700.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 30289,
+                "player_name": "Toni Kroos",
+                "number": 8,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 8,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 3,
+                        "crosses_accuracy": 0,
+                        "passes": 83,
+                        "passes_accuracy": 94
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 1,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 30289,
+                        "team_id": 3468,
+                        "country_id": 11,
+                        "position_id": 3,
+                        "common_name": "T. Kroos",
+                        "fullname": "Toni Kroos",
+                        "firstname": "Toni",
+                        "lastname": "Kroos",
+                        "nationality": "Germany",
+                        "birthdate": "04/01/1990",
+                        "birthcountry": "Germany",
+                        "birthplace": "Greifswald",
+                        "height": "183 cm",
+                        "weight": "76 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/17/30289.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 185972,
+                "player_name": "Isco",
+                "number": 22,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 9,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 2,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 2,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 2,
+                        "crosses_accuracy": 1,
+                        "passes": 47,
+                        "passes_accuracy": 92
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 1,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 61
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 185972,
+                        "team_id": 3468,
+                        "country_id": 32,
+                        "position_id": 3,
+                        "common_name": "Isco",
+                        "fullname": "Francisco Román Alarcón Suárez",
+                        "firstname": "Francisco Román",
+                        "lastname": "Alarcón Suárez",
+                        "nationality": "Spain",
+                        "birthdate": "21/04/1992",
+                        "birthcountry": "Spain",
+                        "birthplace": "Benalmádena",
+                        "height": "176 cm",
+                        "weight": "79 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/20/185972.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 93948,
+                "player_name": "Karim Benzema",
+                "number": 9,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": 10,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 4,
+                        "shots_on_goal": 2
+                    },
+                    "goals": {
+                        "scored": 1,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 1,
+                        "crosses_accuracy": 0,
+                        "passes": 35,
+                        "passes_accuracy": 89
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 89
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 93948,
+                        "team_id": 3468,
+                        "country_id": 17,
+                        "position_id": 4,
+                        "common_name": "K. Benzema",
+                        "fullname": "Karim Benzema",
+                        "firstname": "Karim",
+                        "lastname": "Benzema",
+                        "nationality": "France",
+                        "birthdate": "19/12/1987",
+                        "birthcountry": "France",
+                        "birthplace": "Lyon",
+                        "height": "185 cm",
+                        "weight": "81 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/28/93948.png"
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 580,
+                "player_name": "Cristiano Ronaldo",
+                "number": 7,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": 11,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 3,
+                        "shots_on_goal": 1
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 33,
+                        "passes_accuracy": 91
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 1,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 580,
+                        "team_id": 625,
+                        "country_id": 20,
+                        "position_id": 4,
+                        "common_name": "Cristiano Ronaldo",
+                        "fullname": "Cristiano Ronaldo dos Santos Aveiro",
+                        "firstname": "Cristiano Ronaldo",
+                        "lastname": "dos Santos Aveiro",
+                        "nationality": "Portugal",
+                        "birthdate": "05/02/1985",
+                        "birthcountry": "Portugal",
+                        "birthplace": "Funchal",
+                        "height": "187 cm",
+                        "weight": "83 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/4/580.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 4817,
+                "player_name": "Loris Karius",
+                "number": 1,
+                "position": "G",
+                "additional_position": null,
+                "formation_position": 1,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 3
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 22,
+                        "passes_accuracy": 81
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 2,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 4817,
+                        "team_id": 8,
+                        "country_id": 11,
+                        "position_id": 1,
+                        "common_name": "L. Karius",
+                        "fullname": "Loris Karius",
+                        "firstname": "Loris",
+                        "lastname": "Karius",
+                        "nationality": "Germany",
+                        "birthdate": "22/06/1993",
+                        "birthcountry": "Germany",
+                        "birthplace": "Biberach an der Riß",
+                        "height": "189 cm",
+                        "weight": "75 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/17/4817.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1917,
+                "player_name": "Trent Alexander-Arnold",
+                "number": 66,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 2,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 1
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 2
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 5,
+                        "crosses_accuracy": 0,
+                        "passes": 15,
+                        "passes_accuracy": 48
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 2,
+                        "blocks": 0,
+                        "interceptions": 1,
+                        "clearances": 1,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1917,
+                        "team_id": 8,
+                        "country_id": 462,
+                        "position_id": 2,
+                        "common_name": "T. Alexander-Arnold",
+                        "fullname": "Trent Alexander-Arnold",
+                        "firstname": "Trent",
+                        "lastname": "Alexander-Arnold",
+                        "nationality": "England",
+                        "birthdate": "07/10/1998",
+                        "birthcountry": "England",
+                        "birthplace": "Liverpool",
+                        "height": "175 cm",
+                        "weight": "69 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/29/1917.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1168,
+                "player_name": "Dejan Lovren",
+                "number": 6,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 3,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 24,
+                        "passes_accuracy": 75
+                    },
+                    "other": {
+                        "assists": 1,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 1,
+                        "blocks": 0,
+                        "interceptions": 1,
+                        "clearances": 2,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1168,
+                        "team_id": 8,
+                        "country_id": 266,
+                        "position_id": 2,
+                        "common_name": "D. Lovren",
+                        "fullname": "Dejan Lovren",
+                        "firstname": "Dejan",
+                        "lastname": "Lovren",
+                        "nationality": "Croatia",
+                        "birthdate": "05/07/1989",
+                        "birthcountry": "Bosnia and Herzegovina",
+                        "birthplace": "Zenica",
+                        "height": "188 cm",
+                        "weight": "84 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/16/1168.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1743,
+                "player_name": "Virgil van Dijk",
+                "number": 4,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 4,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 21,
+                        "passes_accuracy": 65
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 1,
+                        "interceptions": 1,
+                        "clearances": 3,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1743,
+                        "team_id": 8,
+                        "country_id": 38,
+                        "position_id": 2,
+                        "common_name": "V. van Dijk",
+                        "fullname": "Virgil van Dijk",
+                        "firstname": "Virgil",
+                        "lastname": "van Dijk",
+                        "nationality": "Netherlands",
+                        "birthdate": "08/07/1991",
+                        "birthcountry": "Netherlands",
+                        "birthplace": "Breda",
+                        "height": "193 cm",
+                        "weight": "92 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/15/1743.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1078,
+                "player_name": "Andrew Robertson",
+                "number": 26,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": 5,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 2,
+                        "crosses_accuracy": 1,
+                        "passes": 26,
+                        "passes_accuracy": 81
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 3,
+                        "blocks": 2,
+                        "interceptions": 2,
+                        "clearances": 3,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1078,
+                        "team_id": 8,
+                        "country_id": 1161,
+                        "position_id": 2,
+                        "common_name": "A. Robertson",
+                        "fullname": "Andrew Robertson",
+                        "firstname": "Andrew",
+                        "lastname": "Robertson",
+                        "nationality": "Scotland",
+                        "birthdate": "11/03/1994",
+                        "birthcountry": "Scotland",
+                        "birthplace": "Glasgow",
+                        "height": "178 cm",
+                        "weight": "64 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/22/1078.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1365,
+                "player_name": "Georginio Wijnaldum",
+                "number": 5,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 6,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 28,
+                        "passes_accuracy": 75
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 2,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 1,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1365,
+                        "team_id": 8,
+                        "country_id": 38,
+                        "position_id": 3,
+                        "common_name": "G. Wijnaldum",
+                        "fullname": "Georginio Wijnaldum",
+                        "firstname": "Georginio",
+                        "lastname": "Wijnaldum",
+                        "nationality": "Netherlands",
+                        "birthdate": "11/11/1990",
+                        "birthcountry": "Netherlands",
+                        "birthplace": "Rotterdam",
+                        "height": "175 cm",
+                        "weight": "69 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/21/1365.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 323,
+                "player_name": "Jordan Henderson",
+                "number": 14,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 7,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 37,
+                        "passes_accuracy": 94
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 2,
+                        "blocks": 0,
+                        "interceptions": 2,
+                        "clearances": 1,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 323,
+                        "team_id": 8,
+                        "country_id": 462,
+                        "position_id": 3,
+                        "common_name": "J. Henderson",
+                        "fullname": "Jordan Brian Henderson",
+                        "firstname": "Jordan Brian",
+                        "lastname": "Henderson",
+                        "nationality": "England",
+                        "birthdate": "17/06/1990",
+                        "birthcountry": "England",
+                        "birthplace": "Sunderland",
+                        "height": "182 cm",
+                        "weight": "67 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/3/323.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 197,
+                "player_name": "James Milner",
+                "number": 7,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": 8,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 2
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 8,
+                        "crosses_accuracy": 1,
+                        "passes": 21,
+                        "passes_accuracy": 84
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 1,
+                        "minutes_played": 83
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 197,
+                        "team_id": 8,
+                        "country_id": 462,
+                        "position_id": 3,
+                        "common_name": "J. Milner",
+                        "fullname": "James Philip Milner",
+                        "firstname": "James Philip",
+                        "lastname": "Milner",
+                        "nationality": "England",
+                        "birthdate": "04/01/1986",
+                        "birthcountry": "England",
+                        "birthplace": "Leeds",
+                        "height": "175 cm",
+                        "weight": "70 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/5/197.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 4125,
+                "player_name": "Mohamed Salah",
+                "number": 11,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": 9,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 2,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 1,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 1,
+                        "crosses_accuracy": 1,
+                        "passes": 9,
+                        "passes_accuracy": 90
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 31
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 4125,
+                        "team_id": 8,
+                        "country_id": 886,
+                        "position_id": 4,
+                        "common_name": "Mohamed Salah",
+                        "fullname": "Mohamed  Salah Ghaly",
+                        "firstname": "Mohamed",
+                        "lastname": "Salah Ghaly",
+                        "nationality": "Egypt",
+                        "birthdate": "15/06/1992",
+                        "birthcountry": "Egypt",
+                        "birthplace": "Muḥāfaẓat al Gharbiyya",
+                        "height": "175 cm",
+                        "weight": "71 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/29/4125.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1461,
+                "player_name": "Roberto Firmino",
+                "number": 9,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": 10,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 2,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 3
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 21,
+                        "passes_accuracy": 65
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 1,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 2,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1461,
+                        "team_id": 8,
+                        "country_id": 5,
+                        "position_id": 4,
+                        "common_name": "Roberto Firmino",
+                        "fullname": "Roberto Firmino Barbosa de Oliveira",
+                        "firstname": "Roberto Firmino",
+                        "lastname": "Barbosa de Oliveira",
+                        "nationality": "Brazil",
+                        "birthdate": "02/10/1991",
+                        "birthcountry": "Brazil",
+                        "birthplace": "Maceió",
+                        "height": "181 cm",
+                        "weight": "76 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/21/1461.png"
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1389,
+                "player_name": "Sadio Mané",
+                "number": 19,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": 11,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 3,
+                        "shots_on_goal": 1
+                    },
+                    "goals": {
+                        "scored": 1,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 3,
+                        "committed": 5
+                    },
+                    "cards": {
+                        "yellowcards": 1,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 2,
+                        "crosses_accuracy": 0,
+                        "passes": 14,
+                        "passes_accuracy": 82
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 1,
+                        "tackles": 6,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 90
+                    }
+                },
+                "player": {
+                    "data": {
+                        "player_id": 1389,
+                        "team_id": 8,
+                        "country_id": 200,
+                        "position_id": 4,
+                        "common_name": "S. Mané",
+                        "fullname": "Sadio Mané",
+                        "firstname": "Sadio",
+                        "lastname": "Mané",
+                        "nationality": "Senegal",
+                        "birthdate": "10/04/1992",
+                        "birthcountry": "Senegal",
+                        "birthplace": "Sedhiou",
+                        "height": "175 cm",
+                        "weight": "69 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/13/1389.png"
+                    }
+                }
+            }
+        ]
+    },
+    "bench": {
+        "data": [{
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 185653,
+                "player_name": "Kiko Casilla",
+                "number": 13,
+                "position": "G",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 186353,
+                "player_name": "Nacho Fernández",
+                "number": 6,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 1,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 2,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 1,
+                        "crosses_accuracy": 1,
+                        "passes": 39,
+                        "passes_accuracy": 84
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 1,
+                        "clearances": 0,
+                        "minutes_played": 56
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 186995,
+                "player_name": "Theo Hernández",
+                "number": 15,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 73147,
+                "player_name": "Mateo Kovačić",
+                "number": 23,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 186543,
+                "player_name": "Lucas Vázquez",
+                "number": 17,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 186668,
+                "player_name": "Marco Asensio",
+                "number": 20,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 1,
+                        "crosses_accuracy": 0,
+                        "passes": 1,
+                        "passes_accuracy": 100
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 4
+                    }
+                }
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "player_id": 251,
+                "player_name": "Gareth Bale",
+                "number": 11,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 2,
+                        "shots_on_goal": 2
+                    },
+                    "goals": {
+                        "scored": 2,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 7,
+                        "passes_accuracy": 77
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 1,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 32
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 633,
+                "player_name": "Simon Mignolet",
+                "number": 22,
+                "position": "G",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1906,
+                "player_name": "Ragnar Klavan",
+                "number": 17,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1202,
+                "player_name": "Nathaniel Clyne",
+                "number": 2,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1471,
+                "player_name": "Alberto Moreno",
+                "number": 18,
+                "position": "D",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1388,
+                "player_name": "Emre Can",
+                "number": 23,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 0
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 3,
+                        "passes_accuracy": 100
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 0,
+                        "blocks": 0,
+                        "interceptions": 0,
+                        "clearances": 0,
+                        "minutes_played": 10
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 1149,
+                "player_name": "Adam Lallana",
+                "number": 20,
+                "position": "M",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": 0,
+                        "shots_on_goal": 0
+                    },
+                    "goals": {
+                        "scored": 0,
+                        "conceded": 0
+                    },
+                    "fouls": {
+                        "drawn": 0,
+                        "committed": 1
+                    },
+                    "cards": {
+                        "yellowcards": 0,
+                        "redcards": 0
+                    },
+                    "passing": {
+                        "total_crosses": 0,
+                        "crosses_accuracy": 0,
+                        "passes": 7,
+                        "passes_accuracy": 63
+                    },
+                    "other": {
+                        "assists": 0,
+                        "offsides": 0,
+                        "saves": 0,
+                        "pen_scored": 0,
+                        "pen_missed": 0,
+                        "pen_saved": 0,
+                        "pen_committed": 0,
+                        "pen_won": 0,
+                        "hit_woodwork": 0,
+                        "tackles": 1,
+                        "blocks": 0,
+                        "interceptions": 1,
+                        "clearances": 0,
+                        "minutes_played": 62
+                    }
+                }
+            },
+            {
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "player_id": 4203,
+                "player_name": "Dominic Solanke",
+                "number": 29,
+                "position": "F",
+                "additional_position": null,
+                "formation_position": null,
+                "posx": null,
+                "posy": null,
+                "stats": {
+                    "shots": {
+                        "shots_total": null,
+                        "shots_on_goal": null
+                    },
+                    "goals": {
+                        "scored": null,
+                        "conceded": null
+                    },
+                    "fouls": {
+                        "drawn": null,
+                        "committed": null
+                    },
+                    "cards": {
+                        "yellowcards": null,
+                        "redcards": null
+                    },
+                    "passing": {
+                        "total_crosses": null,
+                        "crosses_accuracy": null,
+                        "passes": null,
+                        "passes_accuracy": null
+                    },
+                    "other": {
+                        "assists": null,
+                        "offsides": null,
+                        "saves": null,
+                        "pen_scored": null,
+                        "pen_missed": null,
+                        "pen_saved": null,
+                        "pen_committed": null,
+                        "pen_won": null,
+                        "hit_woodwork": null,
+                        "tackles": null,
+                        "blocks": null,
+                        "interceptions": null,
+                        "clearances": null,
+                        "minutes_played": null
+                    }
+                }
+            }
+        ]
+    },
+    "stats": {
+        "data": [{
+                "team_id": 8,
+                "fixture_id": 10324398,
+                "shots": {
+                    "total": 13,
+                    "ongoal": 2,
+                    "offgoal": 7,
+                    "blocked": 8,
+                    "insidebox": 9,
+                    "outsidebox": 4
+                },
+                "passes": {
+                    "total": 328,
+                    "accurate": 248,
+                    "percentage": 76
+                },
+                "attacks": {
+                    "attacks": 76,
+                    "dangerous_attacks": 56
+                },
+                "fouls": 18,
+                "corners": 5,
+                "offsides": 3,
+                "possessiontime": 35,
+                "yellowcards": 1,
+                "redcards": 0,
+                "saves": 2,
+                "substitutions": 2,
+                "goal_kick": 8,
+                "goal_attempts": 5,
+                "free_kick": 11,
+                "throw_in": 16,
+                "ball_safe": 72
+            },
+            {
+                "team_id": 3468,
+                "fixture_id": 10324398,
+                "shots": {
+                    "total": 14,
+                    "ongoal": 5,
+                    "offgoal": 8,
+                    "blocked": 3,
+                    "insidebox": 11,
+                    "outsidebox": 3
+                },
+                "passes": {
+                    "total": 649,
+                    "accurate": 577,
+                    "percentage": 89
+                },
+                "attacks": {
+                    "attacks": 98,
+                    "dangerous_attacks": 72
+                },
+                "fouls": 5,
+                "corners": 9,
+                "offsides": 7,
+                "possessiontime": 65,
+                "yellowcards": null,
+                "redcards": 0,
+                "saves": 1,
+                "substitutions": 3,
+                "goal_kick": 3,
+                "goal_attempts": 11,
+                "free_kick": 20,
+                "throw_in": 19,
+                "ball_safe": 98
+            }
+        ]
+    },
+    "comments": {
+        "data": [{
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 4,
+                "goal": false,
+                "minute": 2,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Daniel Carvajal with a pass, however Isco is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 3,
+                "goal": false,
+                "minute": 1,
+                "extra_minute": null,
+                "comment": "Fouled by Dejan Lovren  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 2,
+                "goal": false,
+                "minute": 1,
+                "extra_minute": null,
+                "comment": "Cristiano Ronaldo  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 5,
+                "goal": false,
+                "minute": 3,
+                "extra_minute": null,
+                "comment": "Shot blocked. Georginio Wijnaldum  - Liverpool -  shot with right foot from outside the box is blocked. Assist -  Mohamed Salah."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 7,
+                "goal": false,
+                "minute": 5,
+                "extra_minute": null,
+                "comment": "Mohamed Salah  - Liverpool -  won a free kick in attack."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 6,
+                "goal": false,
+                "minute": 5,
+                "extra_minute": null,
+                "comment": "Fouled by Marcelo  - Real Madrid"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 8,
+                "goal": false,
+                "minute": 6,
+                "extra_minute": null,
+                "comment": "Shot blocked. Mohamed Salah  - Liverpool -  shot with left foot from outside the box is blocked. Assist -  James Milner."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 10,
+                "goal": false,
+                "minute": 8,
+                "extra_minute": null,
+                "comment": "Keylor Navas  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 9,
+                "goal": false,
+                "minute": 8,
+                "extra_minute": null,
+                "comment": "Fouled by Trent Alexander-Arnold  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 12,
+                "goal": false,
+                "minute": 10,
+                "extra_minute": null,
+                "comment": "Fouled by Sadio Mané  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 11,
+                "goal": false,
+                "minute": 8,
+                "extra_minute": null,
+                "comment": "Missed chance. Roberto Firmino  - Liverpool -  shot with the head from the centre of the box is high and wide to the left. Assist -  Andrew Robertson with a cross."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 13,
+                "goal": false,
+                "minute": 10,
+                "extra_minute": null,
+                "comment": "Luka Modric  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 14,
+                "goal": false,
+                "minute": 11,
+                "extra_minute": null,
+                "comment": "Missed chance. Marcelo  - Real Madrid -  shot with left foot from outside the box missed."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 16,
+                "goal": false,
+                "minute": 13,
+                "extra_minute": null,
+                "comment": "Sadio Mané  - Liverpool -  won a free kick in attack."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 15,
+                "goal": false,
+                "minute": 13,
+                "extra_minute": null,
+                "comment": "Fouled by Toni Kroos  - Real Madrid"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 17,
+                "goal": false,
+                "minute": 14,
+                "extra_minute": null,
+                "comment": "Shot blocked. James Milner  - Liverpool -  shot with left foot from outside the box is blocked."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 18,
+                "goal": false,
+                "minute": 14,
+                "extra_minute": null,
+                "comment": "Shot blocked. Mohamed Salah  - Liverpool -  shot with left foot from the centre of the box is blocked. Assist -  Sadio Mané."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 19,
+                "goal": false,
+                "minute": 14,
+                "extra_minute": null,
+                "comment": "Shot blocked. Sadio Mané  - Liverpool -  shot with right foot from the centre of the box is blocked."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 20,
+                "goal": false,
+                "minute": 15,
+                "extra_minute": null,
+                "comment": "Missed chance. Cristiano Ronaldo  - Real Madrid -  shot with right foot from the right side of the box is very close to the goal. Assist -  Daniel Carvajal."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 21,
+                "goal": false,
+                "minute": 18,
+                "extra_minute": null,
+                "comment": "Corner -  Liverpool. Conceded by Daniel Carvajal."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 22,
+                "goal": false,
+                "minute": 18,
+                "extra_minute": null,
+                "comment": "Missed chance. Virgil van Dijk  - Liverpool -  shot with the head from few metres is high and wide to the left. Assist -  Mohamed Salah with a cross after corner."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 23,
+                "goal": false,
+                "minute": 20,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Raphael Varane with a pass, however Isco is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 25,
+                "goal": false,
+                "minute": 21,
+                "extra_minute": null,
+                "comment": "Isco  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 24,
+                "goal": false,
+                "minute": 21,
+                "extra_minute": null,
+                "comment": "Fouled by Mohamed Salah  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 27,
+                "goal": false,
+                "minute": 22,
+                "extra_minute": null,
+                "comment": "Fouled by James Milner  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 26,
+                "goal": false,
+                "minute": 22,
+                "extra_minute": null,
+                "comment": "Daniel Carvajal  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 28,
+                "goal": false,
+                "minute": 23,
+                "extra_minute": null,
+                "comment": "Shot blocked. Roberto Firmino  - Liverpool -  shot with right foot from the centre of the box is blocked. Assist -  James Milner."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 30,
+                "goal": false,
+                "minute": 25,
+                "extra_minute": null,
+                "comment": "Fouled by Andrew Robertson  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 29,
+                "goal": false,
+                "minute": 23,
+                "extra_minute": null,
+                "comment": "New attacking attempt. Trent Alexander-Arnold  - Liverpool -  shot with right foot from the right side of the box is saved by goalkeeper in the centre of the goal."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 31,
+                "goal": false,
+                "minute": 25,
+                "extra_minute": null,
+                "comment": "Isco  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 34,
+                "goal": false,
+                "minute": 28,
+                "extra_minute": null,
+                "comment": "Corner -  Liverpool. Conceded by Daniel Carvajal."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 33,
+                "goal": false,
+                "minute": 27,
+                "extra_minute": null,
+                "comment": "Delay over. They are ready to continue."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 32,
+                "goal": false,
+                "minute": 26,
+                "extra_minute": null,
+                "comment": "Delay in match Mohamed Salah  - Liverpool -   - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 37,
+                "goal": false,
+                "minute": 29,
+                "extra_minute": null,
+                "comment": "Delay in match Mohamed Salah  - Liverpool -   - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 36,
+                "goal": false,
+                "minute": 28,
+                "extra_minute": null,
+                "comment": "Fouled by Georginio Wijnaldum  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 35,
+                "goal": false,
+                "minute": 28,
+                "extra_minute": null,
+                "comment": "Daniel Carvajal  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 38,
+                "goal": false,
+                "minute": 30,
+                "extra_minute": null,
+                "comment": "Delay over. They are ready to continue."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 39,
+                "goal": false,
+                "minute": 30,
+                "extra_minute": null,
+                "comment": "Substitution -  Liverpool. Adam Lallana for Mohamed Salah  - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 42,
+                "goal": false,
+                "minute": 33,
+                "extra_minute": null,
+                "comment": "Casemiro  - Real Madrid -  won a free kick on the left wing."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 41,
+                "goal": false,
+                "minute": 32,
+                "extra_minute": null,
+                "comment": "Shot blocked. Karim Benzema  - Real Madrid -  shot with right foot from the centre of the box is blocked. Assist -  Cristiano Ronaldo."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 40,
+                "goal": false,
+                "minute": 32,
+                "extra_minute": null,
+                "comment": "Shot blocked. Luka Modric  - Real Madrid -  shot with right foot from the right side of the box is blocked. Assist -  Karim Benzema."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 43,
+                "goal": false,
+                "minute": 33,
+                "extra_minute": null,
+                "comment": "Fouled by Sadio Mané  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 45,
+                "goal": false,
+                "minute": 36,
+                "extra_minute": null,
+                "comment": "Delay over. They are ready to continue."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 44,
+                "goal": false,
+                "minute": 35,
+                "extra_minute": null,
+                "comment": "Delay in match Daniel Carvajal  - Real Madrid -   - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 46,
+                "goal": false,
+                "minute": 37,
+                "extra_minute": null,
+                "comment": "Substitution -  Real Madrid. Nacho for Daniel Carvajal  - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 47,
+                "goal": false,
+                "minute": 39,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Virgil van Dijk."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 48,
+                "goal": false,
+                "minute": 40,
+                "extra_minute": null,
+                "comment": "Fouled by Sadio Mané  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 49,
+                "goal": false,
+                "minute": 40,
+                "extra_minute": null,
+                "comment": "Sergio Ramos  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 50,
+                "goal": false,
+                "minute": 41,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Raphael Varane with a pass, however Cristiano Ronaldo is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 51,
+                "goal": false,
+                "minute": 43,
+                "extra_minute": null,
+                "comment": "New attacking attempt. Cristiano Ronaldo  - Real Madrid -  shot with the head from the centre of the box is saved by goalkeeper in the centre of the goal. Assist -  Isco with a cross."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 52,
+                "goal": false,
+                "minute": 43,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Cristiano Ronaldo with a pass, however Karim Benzema is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 55,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": null,
+                "comment": "Missed chance. Nacho  - Real Madrid -  shot with right foot from the right side of the box is close, but missed. Assist -  Karim Benzema."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 54,
+                "goal": false,
+                "minute": 44,
+                "extra_minute": null,
+                "comment": "Hand ball by Roberto Firmino  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 53,
+                "goal": false,
+                "minute": 44,
+                "extra_minute": null,
+                "comment": "Offside - Liverpool. Loris Karius with a pass, however Roberto Firmino is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 56,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": 2,
+                "comment": "Corner -  Real Madrid. Conceded by Trent Alexander-Arnold."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 57,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": 3,
+                "comment": "Missed chance. Karim Benzema  - Real Madrid -  shot with right foot from outside the box is close, but missed to the left. Assist -  Marcelo."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 61,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": 4,
+                "comment": "First Half ended - Real Madrid 0, Liverpool 0."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 60,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": null,
+                "comment": "Delay over. They are ready to continue."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 59,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": null,
+                "comment": "Delay in match Roberto Firmino  - Liverpool -   - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 58,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": null,
+                "comment": "Delay in match Casemiro  - Real Madrid -   - injury."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 62,
+                "goal": false,
+                "minute": 45,
+                "extra_minute": null,
+                "comment": "Second Half starts Real Madrid 0, Liverpool 0."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 63,
+                "goal": false,
+                "minute": 48,
+                "extra_minute": null,
+                "comment": "Isco  - Real Madrid -  hits the bar with a shot with right foot from the centre of the box."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 64,
+                "goal": false,
+                "minute": 48,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Andrew Robertson."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 66,
+                "goal": false,
+                "minute": 50,
+                "extra_minute": null,
+                "comment": "Marcelo  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 65,
+                "goal": false,
+                "minute": 50,
+                "extra_minute": null,
+                "comment": "Fouled by Roberto Firmino  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": true,
+                "order": 67,
+                "goal": true,
+                "minute": 51,
+                "extra_minute": null,
+                "comment": "Goal!  Real Madrid 1, Liverpool 0. Karim Benzema  - Real Madrid -  shot with right foot from the centre of the box to the left corner."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 69,
+                "goal": false,
+                "minute": 52,
+                "extra_minute": null,
+                "comment": "Sergio Ramos  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 68,
+                "goal": false,
+                "minute": 52,
+                "extra_minute": null,
+                "comment": "Fouled by Sadio Mané  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 70,
+                "goal": false,
+                "minute": 53,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Marcelo with a pass, however Karim Benzema is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 71,
+                "goal": false,
+                "minute": 54,
+                "extra_minute": null,
+                "comment": "Corner -  Liverpool. Conceded by Raphael Varane."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 72,
+                "goal": false,
+                "minute": 55,
+                "extra_minute": null,
+                "comment": "Shot blocked. Dejan Lovren  - Liverpool -  shot with the head from the centre of the box is blocked. Assist -  James Milner with a cross."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": true,
+                "order": 73,
+                "goal": true,
+                "minute": 55,
+                "extra_minute": null,
+                "comment": "Goal!  Real Madrid 1, Liverpool 1. Sadio Mané  - Liverpool -  shot with right foot from few metres to the centre of the goal. Assist -  Dejan Lovren after corner."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 75,
+                "goal": false,
+                "minute": 61,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Loris Karius."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 74,
+                "goal": false,
+                "minute": 60,
+                "extra_minute": null,
+                "comment": "Missed chance. Isco  - Real Madrid -  shot with right foot from the centre of the box is close, but missed. Assist -  Nacho with a cross."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 77,
+                "goal": false,
+                "minute": 61,
+                "extra_minute": null,
+                "comment": "Substitution -  Real Madrid. Gareth Bale for Isco."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 76,
+                "goal": false,
+                "minute": 61,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Nacho with a pass, however Toni Kroos is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": true,
+                "order": 78,
+                "goal": true,
+                "minute": 64,
+                "extra_minute": null,
+                "comment": "Goal!  Real Madrid 2, Liverpool 1. Gareth Bale  - Real Madrid -  shot with left foot from the centre of the box to the top left corner. Assist -  Marcelo with a cross."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 80,
+                "goal": false,
+                "minute": 65,
+                "extra_minute": null,
+                "comment": "Karim Benzema  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 79,
+                "goal": false,
+                "minute": 65,
+                "extra_minute": null,
+                "comment": "Fouled by James Milner  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 81,
+                "goal": false,
+                "minute": 68,
+                "extra_minute": null,
+                "comment": "Offside - Liverpool. Trent Alexander-Arnold with a pass, however Adam Lallana is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 82,
+                "goal": false,
+                "minute": 69,
+                "extra_minute": null,
+                "comment": "Corner -  Liverpool. Conceded by Sergio Ramos."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 83,
+                "goal": false,
+                "minute": 70,
+                "extra_minute": null,
+                "comment": "Sadio Mané  - Liverpool -  hits the left post with a shot with left foot from outside the box. Assist -  Georginio Wijnaldum."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 84,
+                "goal": false,
+                "minute": 70,
+                "extra_minute": null,
+                "comment": "Corner -  Liverpool. Conceded by Gareth Bale."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 85,
+                "goal": false,
+                "minute": 73,
+                "extra_minute": null,
+                "comment": "Offside - Liverpool. Roberto Firmino with a pass, however Adam Lallana is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 86,
+                "goal": false,
+                "minute": 74,
+                "extra_minute": null,
+                "comment": "Shot blocked. Cristiano Ronaldo  - Real Madrid -  shot with left foot from the centre of the box is blocked."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 89,
+                "goal": false,
+                "minute": 75,
+                "extra_minute": null,
+                "comment": "Nacho  - Real Madrid -  won a free kick on the right wing."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 88,
+                "goal": false,
+                "minute": 75,
+                "extra_minute": null,
+                "comment": "Fouled by Trent Alexander-Arnold  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 87,
+                "goal": false,
+                "minute": 74,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Andrew Robertson."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 90,
+                "goal": false,
+                "minute": 75,
+                "extra_minute": null,
+                "comment": "Offside - Real Madrid. Toni Kroos with a pass, however Gareth Bale is in offside."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 91,
+                "goal": false,
+                "minute": 76,
+                "extra_minute": null,
+                "comment": "Hand ball by Adam Lallana  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 92,
+                "goal": false,
+                "minute": 82,
+                "extra_minute": null,
+                "comment": "New attacking attempt. Karim Benzema  - Real Madrid -  shot with right foot from the centre of the box is saved in the top centre of the goal. Assist -  Gareth Bale."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": true,
+                "order": 95,
+                "goal": false,
+                "minute": 82,
+                "extra_minute": null,
+                "comment": "Sadio Mané  - Liverpool -  receive yellow card for a foul."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 94,
+                "goal": false,
+                "minute": 82,
+                "extra_minute": null,
+                "comment": "Sergio Ramos  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 93,
+                "goal": false,
+                "minute": 82,
+                "extra_minute": null,
+                "comment": "Fouled by Sadio Mané  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": true,
+                "order": 97,
+                "goal": true,
+                "minute": 83,
+                "extra_minute": null,
+                "comment": "Goal!  Real Madrid 3, Liverpool 1. Gareth Bale  - Real Madrid -  shot with left foot from outside the box to the top right corner. Assist -  Marcelo."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 96,
+                "goal": false,
+                "minute": 83,
+                "extra_minute": null,
+                "comment": "Substitution -  Liverpool. Emre Can for James Milner."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 98,
+                "goal": false,
+                "minute": 85,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Dejan Lovren."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 100,
+                "goal": false,
+                "minute": 86,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Sadio Mané."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 99,
+                "goal": false,
+                "minute": 86,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Sadio Mané."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 102,
+                "goal": false,
+                "minute": 87,
+                "extra_minute": null,
+                "comment": "Georginio Wijnaldum  - Liverpool -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 101,
+                "goal": false,
+                "minute": 87,
+                "extra_minute": null,
+                "comment": "Fouled by Marcelo  - Real Madrid"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 103,
+                "goal": false,
+                "minute": 88,
+                "extra_minute": null,
+                "comment": "Fouled by Roberto Firmino  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 104,
+                "goal": false,
+                "minute": 88,
+                "extra_minute": null,
+                "comment": "Nacho  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 105,
+                "goal": false,
+                "minute": 89,
+                "extra_minute": null,
+                "comment": "Substitution -  Real Madrid. Marco Asensio for Karim Benzema."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 107,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Sadio Mané  - Liverpool -  won a free kick on the left wing."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 106,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Fouled by Nacho  - Real Madrid"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 109,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Fouled by Virgil van Dijk  - Liverpool"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 108,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": 1,
+                "comment": "Shot blocked. Adam Lallana  - Liverpool -  shot with left foot from the centre of the box is blocked."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 110,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Toni Kroos  - Real Madrid -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 112,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": 2,
+                "comment": "Fouled by Marco Asensio  - Real Madrid"
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 111,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Corner -  Real Madrid. Conceded by Virgil van Dijk."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 113,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": 2,
+                "comment": "Sadio Mané  - Liverpool -  won a free kick in defence."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 114,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Second Half ended - Real Madrid 3, Liverpool 1."
+            },
+            {
+                "fixture_id": 10324398,
+                "important": false,
+                "order": 115,
+                "goal": false,
+                "minute": 90,
+                "extra_minute": null,
+                "comment": "Thats all. Game finished -  Real Madrid 3, Liverpool 1."
+            }
+        ]
+    },
+    "stage": {
+        "data": {
+            "id": 5000511,
+            "name": "Final",
+            "type": "Knock Out",
+            "league_id": 2,
+            "season_id": 7907
+        }
+    },
+    "events": {
+        "data": [{
+                "id": 103243980006,
+                "team_id": "3468",
+                "type": "goal",
+                "fixture_id": 10324398,
+                "player_id": 251,
+                "player_name": "G. Bale",
+                "related_player_id": 185140,
+                "related_player_name": "Marcelo",
+                "minute": 64,
+                "extra_minute": null,
+                "reason": "Shot",
+                "injuried": null,
+                "result": "2-1",
+                "player": {
+                    "data": {
+                        "player_id": 251,
+                        "team_id": 3468,
+                        "country_id": 515,
+                        "position_id": 4,
+                        "common_name": "G. Bale",
+                        "fullname": "Gareth Frank Bale",
+                        "firstname": "Gareth Frank",
+                        "lastname": "Bale",
+                        "nationality": "Wales",
+                        "birthdate": "16/07/1989",
+                        "birthcountry": "Wales",
+                        "birthplace": "Cardiff",
+                        "height": "185 cm",
+                        "weight": "82 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/27/251.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980009,
+                "team_id": "3468",
+                "type": "goal",
+                "fixture_id": 10324398,
+                "player_id": 251,
+                "player_name": "G. Bale",
+                "related_player_id": null,
+                "related_player_name": null,
+                "minute": 83,
+                "extra_minute": null,
+                "reason": "Shot",
+                "injuried": null,
+                "result": "3-1",
+                "player": {
+                    "data": {
+                        "player_id": 251,
+                        "team_id": 3468,
+                        "country_id": 515,
+                        "position_id": 4,
+                        "common_name": "G. Bale",
+                        "fullname": "Gareth Frank Bale",
+                        "firstname": "Gareth Frank",
+                        "lastname": "Bale",
+                        "nationality": "Wales",
+                        "birthdate": "16/07/1989",
+                        "birthcountry": "Wales",
+                        "birthplace": "Cardiff",
+                        "height": "185 cm",
+                        "weight": "82 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/27/251.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980005,
+                "team_id": "3468",
+                "type": "substitution",
+                "fixture_id": 10324398,
+                "player_id": 251,
+                "player_name": "G. Bale",
+                "related_player_id": 185972,
+                "related_player_name": "Isco",
+                "minute": 61,
+                "extra_minute": null,
+                "reason": null,
+                "injuried": null,
+                "result": null,
+                "player": {
+                    "data": {
+                        "player_id": 251,
+                        "team_id": 3468,
+                        "country_id": 515,
+                        "position_id": 4,
+                        "common_name": "G. Bale",
+                        "fullname": "Gareth Frank Bale",
+                        "firstname": "Gareth Frank",
+                        "lastname": "Bale",
+                        "nationality": "Wales",
+                        "birthdate": "16/07/1989",
+                        "birthcountry": "Wales",
+                        "birthplace": "Cardiff",
+                        "height": "185 cm",
+                        "weight": "82 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/27/251.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980001,
+                "team_id": "8",
+                "type": "substitution",
+                "fixture_id": 10324398,
+                "player_id": 1149,
+                "player_name": "A. Lallana",
+                "related_player_id": 4125,
+                "related_player_name": "M. Salah",
+                "minute": 31,
+                "extra_minute": null,
+                "reason": null,
+                "injuried": null,
+                "result": null,
+                "player": {
+                    "data": {
+                        "player_id": 1149,
+                        "team_id": 8,
+                        "country_id": 462,
+                        "position_id": 3,
+                        "common_name": "A. Lallana",
+                        "fullname": "Adam David Lallana",
+                        "firstname": "Adam David",
+                        "lastname": "Lallana",
+                        "nationality": "England",
+                        "birthdate": "10/05/1988",
+                        "birthcountry": "England",
+                        "birthplace": "St Albans",
+                        "height": "172 cm",
+                        "weight": "73 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/29/1149.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980008,
+                "team_id": "8",
+                "type": "substitution",
+                "fixture_id": 10324398,
+                "player_id": 1388,
+                "player_name": "E. Can",
+                "related_player_id": 197,
+                "related_player_name": "J. Milner",
+                "minute": 83,
+                "extra_minute": null,
+                "reason": null,
+                "injuried": null,
+                "result": null,
+                "player": {
+                    "data": {
+                        "player_id": 1388,
+                        "team_id": 625,
+                        "country_id": 11,
+                        "position_id": 3,
+                        "common_name": "E. Can",
+                        "fullname": "Emre Can",
+                        "firstname": "Emre",
+                        "lastname": "Can",
+                        "nationality": "Germany",
+                        "birthdate": "12/01/1994",
+                        "birthcountry": "Germany",
+                        "birthplace": "Frankfurt am Main",
+                        "height": "184 cm",
+                        "weight": "82 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/12/1388.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980004,
+                "team_id": "8",
+                "type": "goal",
+                "fixture_id": 10324398,
+                "player_id": 1389,
+                "player_name": "S. Mane",
+                "related_player_id": 1168,
+                "related_player_name": "D. Lovren",
+                "minute": 55,
+                "extra_minute": null,
+                "reason": "Shot",
+                "injuried": null,
+                "result": "1-1",
+                "player": {
+                    "data": {
+                        "player_id": 1389,
+                        "team_id": 8,
+                        "country_id": 200,
+                        "position_id": 4,
+                        "common_name": "S. Mané",
+                        "fullname": "Sadio Mané",
+                        "firstname": "Sadio",
+                        "lastname": "Mané",
+                        "nationality": "Senegal",
+                        "birthdate": "10/04/1992",
+                        "birthcountry": "Senegal",
+                        "birthplace": "Sedhiou",
+                        "height": "175 cm",
+                        "weight": "69 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/13/1389.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980007,
+                "team_id": "8",
+                "type": "yellowcard",
+                "fixture_id": 10324398,
+                "player_id": 1389,
+                "player_name": "S. Mane",
+                "related_player_id": null,
+                "related_player_name": null,
+                "minute": 82,
+                "extra_minute": null,
+                "reason": "Roughing",
+                "injuried": null,
+                "result": null,
+                "player": {
+                    "data": {
+                        "player_id": 1389,
+                        "team_id": 8,
+                        "country_id": 200,
+                        "position_id": 4,
+                        "common_name": "S. Mané",
+                        "fullname": "Sadio Mané",
+                        "firstname": "Sadio",
+                        "lastname": "Mané",
+                        "nationality": "Senegal",
+                        "birthdate": "10/04/1992",
+                        "birthcountry": "Senegal",
+                        "birthplace": "Sedhiou",
+                        "height": "175 cm",
+                        "weight": "69 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/13/1389.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980003,
+                "team_id": "3468",
+                "type": "goal",
+                "fixture_id": 10324398,
+                "player_id": 93948,
+                "player_name": "K. Benzema",
+                "related_player_id": null,
+                "related_player_name": null,
+                "minute": 51,
+                "extra_minute": null,
+                "reason": "Shot",
+                "injuried": null,
+                "result": "1-0",
+                "player": {
+                    "data": {
+                        "player_id": 93948,
+                        "team_id": 3468,
+                        "country_id": 17,
+                        "position_id": 4,
+                        "common_name": "K. Benzema",
+                        "fullname": "Karim Benzema",
+                        "firstname": "Karim",
+                        "lastname": "Benzema",
+                        "nationality": "France",
+                        "birthdate": "19/12/1987",
+                        "birthcountry": "France",
+                        "birthplace": "Lyon",
+                        "height": "185 cm",
+                        "weight": "81 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/28/93948.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980002,
+                "team_id": "3468",
+                "type": "substitution",
+                "fixture_id": 10324398,
+                "player_id": 186353,
+                "player_name": "Nacho",
+                "related_player_id": 31647,
+                "related_player_name": "D. Carvajal",
+                "minute": 37,
+                "extra_minute": null,
+                "reason": null,
+                "injuried": null,
+                "result": null,
+                "player": {
+                    "data": {
+                        "player_id": 186353,
+                        "team_id": 3468,
+                        "country_id": 32,
+                        "position_id": 2,
+                        "common_name": "Nacho",
+                        "fullname": "José Ignacio Fernández Iglesias",
+                        "firstname": "José Ignacio",
+                        "lastname": "Fernández Iglesias",
+                        "nationality": "Spain",
+                        "birthdate": "18/01/1990",
+                        "birthcountry": "Spain",
+                        "birthplace": "Madrid",
+                        "height": "180 cm",
+                        "weight": "76 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/17/186353.png"
+                    }
+                }
+            },
+            {
+                "id": 103243980010,
+                "team_id": "3468",
+                "type": "substitution",
+                "fixture_id": 10324398,
+                "player_id": 186668,
+                "player_name": "M. Asensio",
+                "related_player_id": 93948,
+                "related_player_name": "K. Benzema",
+                "minute": 89,
+                "extra_minute": null,
+                "reason": null,
+                "injuried": null,
+                "result": null,
+                "player": {
+                    "data": {
+                        "player_id": 186668,
+                        "team_id": 3468,
+                        "country_id": 32,
+                        "position_id": 3,
+                        "common_name": "Marco Asensio",
+                        "fullname": "Marco Asensio Willemsen",
+                        "firstname": "Marco",
+                        "lastname": "Asensio Willemsen",
+                        "nationality": "Spain",
+                        "birthdate": "21/01/1996",
+                        "birthcountry": "Spain",
+                        "birthplace": "Palma de Mallorca",
+                        "height": "182 cm",
+                        "weight": "76 kg",
+                        "image_path": "https://cdn.sportmonks.com/images/soccer/players/12/186668.png"
+                    }
+                }
+            }
+        ]
+    }
+}

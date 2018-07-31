@@ -37,7 +37,7 @@ export class MatchesDashboardComponent implements OnInit {
   public message: string;
   public messages = [];
   public alldaymatch_list = [];
-
+  public comp_id: any;
   public timezone: any;
   public todays_Matches_title: any;
   public localtimezone: any;
@@ -48,7 +48,7 @@ export class MatchesDashboardComponent implements OnInit {
   private subscription: Subscription;
   private timer: Observable<any>;
 
-  public flage_baseUrl: any;
+  // public flage_baseUrl: any;
 
   constructor(
     private matchesApiService: MatchesApiService,
@@ -60,17 +60,15 @@ export class MatchesDashboardComponent implements OnInit {
     private jsCustomeFun: JsCustomeFunScriptService
 
   ) {
-    this.flage_baseUrl = "/assets/img/TeamFlage/";
+    // this.flage_baseUrl = "/assets/img/TeamFlage/";
     this.localtimezone = this.jsCustomeFun.LocalTimeZone();
     this.firstDay_Month = this.jsCustomeFun.firstDay_Month();
     this.lastDay_Month = this.jsCustomeFun.lastDay_Month();
-
   }
 
 
   ngOnInit() {
-
-    console.log("flageurl url is", this.flage_baseUrl);
+    // console.log("flageurl url is", this.flage_baseUrl);
 
     this.match_ground_details = [];
 
@@ -114,9 +112,6 @@ export class MatchesDashboardComponent implements OnInit {
     }
 
     this.GetAllCompetitionMatchesByMonth(param);
-
-
-
 
   }
 
@@ -226,12 +221,15 @@ export class MatchesDashboardComponent implements OnInit {
 
     this.matchService.GetAllCompetitionMatchesByMonth(param).subscribe(record => {
 
-      var result = record['data'];
+      var result: any = record;
 
       if (result !== undefined) {
+
         for (var k = 0; k < result.length; k++) {
-          let myString = result[k].formatted_date;
-          let fulldate = this.jsCustomeFun.SpliteStrDateFormat(myString);
+
+          var time: any = result[k].time;
+          var starting_at: any = time.starting_at;
+          var fulldate: any = starting_at.date;
           //I have a simple case of pushing unique values into array.
           if (this.alldaymatch_list.indexOf(fulldate) == -1) {
             this.alldaymatch_list.push(fulldate);
@@ -242,7 +240,6 @@ export class MatchesDashboardComponent implements OnInit {
     });
 
     console.log("short List of Date by Month", this.alldaymatch_list);
-
   }
 
   GetMatchesByDate(paramDate) {
@@ -261,111 +258,200 @@ export class MatchesDashboardComponent implements OnInit {
 
     this.matchService.GetAllCompetitionMatchesByDate(param).subscribe(record => {
       console.log("record by selected Date", record);
-
-      var result = record['data'];
-
+      var result: any = record;
       var self = this;
-
       if (result !== undefined) {
-
         var array = result,
           groups = Object.create(null),
           grouped = [];
 
         array.forEach(function (item) {
+          var id: any = item['id'];
+          var comp_id = item['league_id'];
+          self.comp_id = item['league_id'];
 
-          let timezone = paramDate + " " + item.time;
-          let match_time = self.jsCustomeFun.ChangeTimeZone(timezone);
-          let live_status = self.jsCustomeFun.CompareTimeDate(match_time);
+          var stage: any = item['stage'];
+          var week: any = stage['data'].name;
 
-          var flag__loal = self.flage_baseUrl + item.localteam_id + ".png";
-          var flag_visit = self.flage_baseUrl + item.visitorteam_id + ".png";
+          //LocalTeam Data---------------------------------------------------------
+          var localteam_id: any = item['localteam_id'];
+          var localTeam_details: any = item['localTeam'].data;
+          var localteam_name: any = localTeam_details.name;
+          var flag__loal: any = localTeam_details.logo_path;
 
-          var selected1 = self.jsCustomeFun.SpliteStrDateFormat(item.formatted_date);
-          var date11 = new Date(selected1 + " " + item.time);
+          //visitorTeam Data--------------------------------------------------------
+          var visitorteam_id: any = item['visitorteam_id'];
+          var visitorTeam_details: any = item['visitorTeam'].data;
+          var visitorteam_name: any = visitorTeam_details.name;
+          var flag_visit: any = visitorTeam_details.logo_path;
 
-          // AGG (0-0)--------------------------------------------
-          var lats_score_local;
-          var lats_score_vist;
-          var vscore;
-          var lscore;
-          if (item.localteam_score == "" || item.localteam_score == null || item.localteam_score == undefined || item.visitorteam_score == "" || item.visitorteam_score == null || item.visitorteam_score == undefined) {
-            vscore = 0;
-            lscore = 0;
+          //time---------------------------------------------------------------------
+          var time: any = item['time'];
+          var starting_at: any = time.starting_at;
+          var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
+          let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
+          var status: any = time.status;
+          // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
+
+          var live_status: boolean = false;
+
+          if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+            live_status = true;
+            status = status;
+          }
+          else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
+            live_status = false;
+            status = status;
+          }
+          else if (status == "NS" || status == "") {
+            live_status = false;
+            status = moment(match_time).format('hh:mm a');
           }
           else {
-            vscore = item.visitorteam_score;
-            lscore = item.localteam_score;
+            live_status = false;
+            status = status;
           }
 
-          if (item.last_score !== "" && item.last_score !== null && item.last_score !== undefined) {
-            var ls = item.last_score;
-            let string1 = ls.split("-", 2);
+          //end time---------------------------------------------------------------------
+
+          //scores----------------------------------------------------------------------
+          var scores: any = item['scores'];
+          var ht_score: any = scores.ht_score;
+          var ft_score: any = scores.ft_score;
+          var et_score: any = scores.et_score;
+          var localteam_score: any = scores.localteam_score;
+          var visitorteam_score: any = scores.visitorteam_score;
+          var score_status_flage: boolean = true;
+          if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
+            live_status = false;
+            score_status_flage = false;
+          } else {
+            score_status_flage = true;
+          }
+
+          var penalty_visitor: any = scores.visitorteam_pen_score;
+          var penalty_local: any = scores.localteam_pen_score;
+
+          //Which team is high scores------------------------------------------
+          //*apply class for text-bold=>font-wight:bold if team run is highest
+
+          var ltScore_highest: boolean = false;
+          var vtScore_highest: boolean = false;
+
+          if (localteam_score >= visitorteam_score) {
+            ltScore_highest = true;
+          } else if (visitorteam_score >= localteam_score) {
+            vtScore_highest = true;
+          }
+          else {
+            ltScore_highest = false;
+            vtScore_highest = false;
+          }
+
+
+
+          //end scores------------------------------------------
+
+
+          // AGG (0-0)--------------------------------------------
+          var aggregate_id: any = item['aggregate_id'];
+          var lats_score_local;
+          var lats_score_vist;
+          var agg_localvist: boolean = false;
+          if (aggregate_id !== null) {
+            agg_localvist = true;
+            var aggregate_data = item['aggregate'].data;
+            var agg_result = aggregate_data.result;
+            var vscore;
+            var lscore;
+            if (localteam_score == "" || localteam_score == null || localteam_score == undefined || visitorteam_score == "" || visitorteam_score == null || visitorteam_score == undefined) {
+              vscore = 0;
+              lscore = 0;
+            }
+            else {
+              vscore = visitorteam_score;
+              lscore = localteam_score;
+            }
+            let string1 = agg_result.split("-", 2);
             lats_score_local = parseInt(string1[1]) + parseInt(lscore);
             lats_score_vist = parseInt(string1[0]) + parseInt(vscore);
           }
           // end AGG (0-0)-------------------------------------------
 
-          //PEN (0-0)------------------------------------------------
-          var penalty_localvist = false;
 
-          if (item.penalty_local !== "" && item.penalty_local !== null && item.penalty_local !== undefined && item.penalty_visitor !== "" && item.penalty_visitor !== null && item.penalty_visitor !== undefined) {
+          //PEN (0-0)------------------------------------------------
+          var penalty_localvist: boolean = false;
+          if (penalty_local !== "" && penalty_local !== null && penalty_local !== undefined && penalty_visitor !== "" && penalty_visitor !== null && penalty_visitor !== undefined) {
             penalty_localvist = true;
           }
           //end PEN (0-0)--------------------------------------------
 
-          var visitorteam_score;
-          var localteam_score;
-          if (item.visitorteam_score == '?') {
-            visitorteam_score = "";
-            live_status = false;
-          } else {
-            visitorteam_score = item.visitorteam_score;
+
+          //venue---------------------------------------------------------
+          var venue_id: any = item['venue_id'];
+          var venue_data;
+          var venue_name;
+          var venue_city;
+          if (venue_id !== null) {
+            venue_data = item['venue'].data;
+            venue_name = venue_data.name;
+            venue_city = venue_data.city;
           }
+          //end venue---------------------------------------------------------
 
-          if (item.localteam_score == '?') {
-            localteam_score = "";
-            live_status = false;
-                     } else {
-            localteam_score = item.localteam_score;
+          //season---------------------------------------------------------
+          var season_id: any = item['season_id'];
+          var season_data;
+          var season_name;
+          var season_city;
+          if (season_id !== null) {
+            season_data = item['season'].data;
+            season_name = season_data.name;
+            season_city = season_data.city;
           }
+          //end season---------------------------------------------------------
 
-          var competitions = item.competitions;
 
+          var competitions = item.league['data'];
           if (!groups[competitions.id]) {
             groups[competitions.id] = [];
             grouped.push({ competitions: competitions, group: groups[competitions.id] });
           }
+
           groups[competitions.id].push({
-            "comp_id": item.comp_id,
-            "et_score": item.et_score,
-            "formatted_date": item.formatted_date,
-            "ft_score": item.ft_score,
-            "ht_score": item.ht_score,
-            "localteam_id": item.localteam_id,
-            "localteam_name": item.localteam_name,
+            "id": id,
+            "comp_id": comp_id,
+            "et_score": et_score,
+            "formatted_date": match_time,
+            "ft_score": ft_score,
+            "ht_score": ht_score,
+            "localteam_id": localteam_id,
+            "localteam_name": localteam_name,
             "localteam_score": localteam_score,
             "localteam_image": flag__loal,
-            "penalty_local": item.penalty_local,
-            "penalty_visitor": item.penalty_visitor,
+            "penalty_local": penalty_local,
+            "penalty_visitor": penalty_visitor,
             "penalty_localvist": penalty_localvist,
-            "season": item.season,
-            "status": item.status,
+            "agg_localvist": agg_localvist,
+            "status": status,
             "time": match_time,
-            "venue": item.venue,
-            "venue_city": item.venue_city,
-            "venue_id": item.venue_id,
-            "visitorteam_id": item.visitorteam_id,
-            "visitorteam_name": item.visitorteam_name,
+            "visitorteam_id": visitorteam_id,
+            "visitorteam_name": visitorteam_name,
             "visitorteam_score": visitorteam_score,
             "visitorteam_image": flag_visit,
-            "week": item.week,
-            "_id": item._id,
-            "id": item.id,
-            "live_status": live_status,
-            "competitions": item.competitions,
+            "competitions": competitions,
             "lats_score_local": lats_score_local,
-            "lats_score_vist": lats_score_vist
+            "lats_score_vist": lats_score_vist,
+            "venue_id": venue_id,
+            "venue": venue_name,
+            "venue_city": venue_city,
+            "season": season_name,
+            "season_city": season_city,
+            "week": week,
+            "live_status": live_status,
+            "score_status_flage": score_status_flage,
+            "ltScore_highest": ltScore_highest,
+            "vtScore_highest": vtScore_highest
           });
         });
         console.log("grouped", grouped);
@@ -373,7 +459,6 @@ export class MatchesDashboardComponent implements OnInit {
       }
     })
   }
-
 
   CompetitionDetails(comp_id, comp_name, season) {
     console.log("going to CompetitionDetails page...", comp_id);
@@ -402,8 +487,4 @@ export class MatchesDashboardComponent implements OnInit {
       this.showloader = false;
     });
   }
-
-
-
-
 }
