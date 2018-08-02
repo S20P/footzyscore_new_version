@@ -15,7 +15,7 @@ export class MatchService {
 
   getStadiumAll_API: string = "/assets/data/json/FifaMatchStadiums.json";
 
-  GetPlayerById_API: string = this.baseurl + "MobileAPI/GetPlayerProfileById";
+  GetPlayerById_API: string = this.baseurl + "MobileAPI/GetPlayerDeatilsById";
   GetAllKnockout_API: string = this.baseurl + "MobileAPI/GetAllKnockout";
   StaticMatch_API: string = "/assets/data/json/FifaMatchSchedule.json";
 
@@ -27,7 +27,7 @@ export class MatchService {
   GetAllTopTeamByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetAllTopTeamByLeagueId";
   GetAllTopPlayerByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetAllTopPlayerByLeagueId";
 
-  GetSquadByTeamId_API: string = this._baseurl_local + "MobileAPI/GetSquadByTeamId";
+  GetTeamDeatilsById_API: string = this._baseurl_local + "MobileAPI/GetTeamDeatilsById";
   GetPreviousMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetPreviousMatchesTeamById";
   GetNextMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetNextMatchesTeamById";
   GetAllLeague_API: string = this._baseurl_local + "MobileAPI/GetAllLeague";
@@ -61,8 +61,8 @@ export class MatchService {
     return this.http.get(apiurl);
   }
 
-  GetPlayerById(player_id, comp_id, season) {
-    let apiurl = `${this.GetPlayerById_API + '?player_id=' + player_id + '&season=' + season + '&comp_id=' + comp_id}`;
+  GetPlayerDeatilsById(player_id) {
+    let apiurl = `${this.GetPlayerById_API + '?player_id=' + player_id}`;
     return this.http.get(apiurl);
   }
 
@@ -143,6 +143,8 @@ export class MatchService {
 
   //Teams------------
 
+
+
   GetAllTopTeamByLeagueId(league_id, season_id) {
     let apiurl = `${this.GetAllTopTeamByLeagueId_API + '?league_id=' + league_id + '&season_id=' + season_id}`;
     return this.http.get(apiurl);
@@ -152,8 +154,8 @@ export class MatchService {
     let apiurl = `${this.GetAllTopPlayerByLeagueId_API + '?league_id=' + league_id + '&season_id=' + season_id}`;
     return this.http.get(apiurl);
   }
-  GetSquadByTeamId(team_id) {
-    let apiurl = `${this.GetSquadByTeamId_API + '?team_id=' + team_id}`;
+  GetTeamDeatilsById(team_id) {
+    let apiurl = `${this.GetTeamDeatilsById_API + '?team_id=' + team_id}`;
     return this.http.get(apiurl);
   }
   GetPreviousMatchesTeamById(team_id) {

@@ -50,16 +50,16 @@ export class CompetitionAsideRightComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("-------------------aside-----------------");
+    //console.log("-------------------aside-----------------");
     var dateofday = Date();
     var currentdaydate = this.jsCustomeFun.ChangeDateFormat(dateofday);
     this.currentdaydate = currentdaydate;
-    console.log("Todays Date is ", this.currentdaydate);
+    //console.log("Todays Date is ", this.currentdaydate);
     this.GetAllCompetitions(this.currentdaydate);
 
 
     this.matchService.GetAllLeague().subscribe(data => {
-      console.log("GetAllCompetitions_list", data);
+      //console.log("GetAllCompetitions_list", data);
       var result = data['data'];
       if (result !== undefined) {
         for (let item of result) {
@@ -85,7 +85,7 @@ export class CompetitionAsideRightComponent implements OnInit {
       "localtimezone": this.localtimezone
     }
     this.matchService.GetAllCompetitionMatchesByDate(param).subscribe(record => {
-      console.log("record by selected Date", record);
+      //console.log("record by selected Date", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -95,15 +95,17 @@ export class CompetitionAsideRightComponent implements OnInit {
 
         array.forEach(function (item) {
 
-          // console.log("todays matches item", item);
+          // //console.log("todays matches item", item);
 
           var id: any = item['id'];
           var comp_id = item['league_id'];
 
 
           var stage: any = item['stage'];
-          var week: any = stage['data'].name;
-
+          var stage_data = stage['data'];
+          if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
+            var week: any = stage_data.name;
+          }
           //LocalTeam Data---------------------------------------------------------
           var localteam_id: any = item['localteam_id'];
           var localTeam_details: any = item['localTeam'].data;
@@ -122,9 +124,12 @@ export class CompetitionAsideRightComponent implements OnInit {
           var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
           let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
           var status: any = time.status;
+          var time_formatte = moment(new Date(match_time)).format('hh:mm a');
+
           // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
 
           var live_status: boolean = false;
+          var score_status_flage: boolean = true;
 
           if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
             live_status = true;
@@ -135,8 +140,9 @@ export class CompetitionAsideRightComponent implements OnInit {
             status = status;
           }
           else if (status == "NS" || status == "") {
+            score_status_flage = false;
             live_status = false;
-            status = moment(match_time).format('hh:mm a');
+            status = time_formatte;
           }
           else {
             live_status = false;
@@ -152,12 +158,16 @@ export class CompetitionAsideRightComponent implements OnInit {
           var et_score: any = scores.et_score;
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
-          var score_status_flage: boolean = true;
+
           if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
             live_status = false;
             score_status_flage = false;
-          } else {
+          }
+          if (localteam_score >= '0' || visitorteam_score >= '0') {
             score_status_flage = true;
+            if (status == time_formatte) {
+              score_status_flage = false;
+            }
           }
 
           var penalty_visitor: any = scores.visitorteam_pen_score;
@@ -196,22 +206,30 @@ export class CompetitionAsideRightComponent implements OnInit {
           var lats_score_vist;
           var agg_localvist: boolean = false;
           if (aggregate_id !== null) {
-            agg_localvist = true;
+
             var aggregate_data = item['aggregate'].data;
+            //   //console.log("aggregate_data", aggregate_data);
             var agg_result = aggregate_data.result;
-            var vscore;
-            var lscore;
-            if (localteam_score == "" || localteam_score == null || localteam_score == undefined || visitorteam_score == "" || visitorteam_score == null || visitorteam_score == undefined) {
-              vscore = 0;
-              lscore = 0;
+
+            if (agg_result !== "" || agg_result == null) {
+              var vscore;
+              var lscore;
+              agg_localvist = true;
+              if (localteam_score == "" || localteam_score == null || localteam_score == undefined || visitorteam_score == "" || visitorteam_score == null || visitorteam_score == undefined) {
+                vscore = 0;
+                lscore = 0;
+              }
+              else {
+                vscore = visitorteam_score;
+                lscore = localteam_score;
+              }
+              let string1 = agg_result.split("-", 2);
+              lats_score_local = parseInt(string1[1]) + parseInt(lscore);
+              lats_score_vist = parseInt(string1[0]) + parseInt(vscore);
+            } else {
+              agg_localvist = false;
             }
-            else {
-              vscore = visitorteam_score;
-              lscore = localteam_score;
-            }
-            let string1 = agg_result.split("-", 2);
-            lats_score_local = parseInt(string1[1]) + parseInt(lscore);
-            lats_score_vist = parseInt(string1[0]) + parseInt(vscore);
+
           }
           // end AGG (0-0)-------------------------------------------
 
@@ -291,11 +309,11 @@ export class CompetitionAsideRightComponent implements OnInit {
             });
           }
         });
-        console.log("grouped", grouped);
+        //console.log("grouped", grouped);
         this.match_ground_details = grouped;
       }
     })
-    console.log("All Tops Matches by week are", this.match_ground_details);
+    //console.log("All Tops Matches by week are", this.match_ground_details);
   }
 
 
@@ -304,10 +322,10 @@ export class CompetitionAsideRightComponent implements OnInit {
     let current_matchId;
     this.liveMatchesApiService.liveMatches().subscribe(data => {
 
-      console.log("Live-Matches-data", data);
+      //console.log("Live-Matches-data", data);
       var result = data['data'];
-      console.log("live data", data['data']['events']);
-      console.log("Matches is Live", data);
+      //console.log("live data", data['data']['events']);
+      //console.log("Matches is Live", data);
       if (result.events !== undefined) {
         var result_events = data['data'].events;
         current_matchId = result_events['id'];
@@ -315,13 +333,13 @@ export class CompetitionAsideRightComponent implements OnInit {
         var item = result_events;
 
         for (let j = 0; j < this.match_ground_details['length']; j++) {
-          console.log("**", this.match_ground_details[j]);
+          //console.log("**", this.match_ground_details[j]);
           var group = this.match_ground_details[j].group;
 
           for (let i = 0; i < group['length']; i++) {
             if (group[i].id == current_matchId) {
-              console.log("group[i].id", group[i].id);
-              console.log("current_matchId", current_matchId);
+              //console.log("group[i].id", group[i].id);
+              //console.log("current_matchId", current_matchId);
               var status_offon;
               status_offon = true;
               var visitorteam_score;

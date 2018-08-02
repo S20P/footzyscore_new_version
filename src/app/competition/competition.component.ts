@@ -76,7 +76,7 @@ export class CompetitionComponent implements OnInit {
   GetAllCompetitions_list() {
 
     this.matchService.GetAllLeague().subscribe(record => {
-      console.log("GetAllCompetitions_list", record);
+      //console.log("GetAllCompetitions_list", record);
       var result = record['data'];
       if (result !== undefined) {
         for (let item of result) {
@@ -92,7 +92,7 @@ export class CompetitionComponent implements OnInit {
     this.season_list = [];
 
     this.matchService.GetSeasonByLeagueId(this.comp_id).subscribe(record => {
-      console.log("season_list_by_league", record);
+      //console.log("season_list_by_league", record);
       var result = record['data'];
       if (result !== undefined) {
         for (let i = 0; i < result['length']; i++) {
@@ -108,7 +108,7 @@ export class CompetitionComponent implements OnInit {
             if (result[i].is_current_season == true) {
               this.position = i;
               this.season_id = result[i].id;
-              console.log("season_id", this.season_id);
+              //console.log("season_id", this.season_id);
               var season_name = result[i].name;
               this.season_group = { "season_id": this.season_id, "season_name": season_name }
             }
@@ -117,13 +117,13 @@ export class CompetitionComponent implements OnInit {
       }
     });
 
-    console.log("season_list", this.season_list);
+    //console.log("season_list", this.season_list);
 
   }
 
   onchangefillter(pos, season_id, season_name) {
-    console.log("filter is change", pos);
-    console.log("Selected season_id is ", season_id);
+    //console.log("filter is change", pos);
+    //console.log("Selected season_id is ", season_id);
     this.position = pos;
     this.season_id = season_id;
     this.season_group = { "season_id": season_id, "season_name": season_name }

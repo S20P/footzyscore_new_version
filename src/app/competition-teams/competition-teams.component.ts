@@ -57,7 +57,7 @@ export class CompetitionTeamsComponent implements OnInit {
     this.teams_collection = [];
     var self = this;
     this.matchService.GetAllTopTeamByLeagueId(this.comp_id, season_id).subscribe(data => {
-      console.log("GetAllTopTeamByCompId", data);
+      //console.log("GetAllTopTeamByCompId", data);
       var result = data['data'];
 
       if (result !== undefined) {
@@ -84,12 +84,12 @@ export class CompetitionTeamsComponent implements OnInit {
           }
         });
         this.teams_collection = grouped;
-        console.log("ggggg", grouped);
+        //console.log("ggggg", grouped);
       }
     });
-    console.log("All Tops Teams are", this.teams_collection);
+    //console.log("All Tops Teams are", this.teams_collection);
   }
-  teamdetails(team_id, team_name) {
-    this.router.navigate(['/team', team_id, { "team_name": team_name }]);
+  teamdetails(team_id) {
+    this.router.navigate(['/team', team_id]);
   }
 }

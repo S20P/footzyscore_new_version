@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 declare var $: any;
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
+import * as moment from 'moment-timezone';
+import "moment-timezone";
 
 @Component({
   selector: 'app-player-detail',
@@ -19,10 +21,6 @@ export class PlayerDetailComponent implements OnInit {
   private timer: Observable<any>;
   public player_id: any;
   public player_status: boolean;
-  public comp_id: any;
-  public season: any;
-  public player_baseUrl: any;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -30,7 +28,7 @@ export class PlayerDetailComponent implements OnInit {
     private jsCustomeFun: JsCustomeFunScriptService
 
   ) {
-    this.player_baseUrl = "https://s3.amazonaws.com/starapps/footzy/players/";
+
   }
 
   ngOnInit() {
@@ -39,53 +37,137 @@ export class PlayerDetailComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get("id"));
       this.player_id = id;
-      this.comp_id = parseInt(params.get("comp_id"));
-      this.season = params.get("season");
     });
-
-
     this.PlayerDetails();
   }
 
   PlayerDetails() {
     this.player_collection = [];
     let player_id = this.player_id;
-    this.matchService.GetPlayerById(player_id, this.comp_id, this.season).subscribe(data => {
-      console.log("Player_Details", data);
+    this.matchService.GetPlayerDeatilsById(player_id).subscribe(record => {
+      console.log("Player_Details", record);
+      var result: any = record['data'];
+      this.player_status = record['success'];
 
-      var result = data['data'];
-      this.player_status = data['success'];
-      var goals = data['goal'];
+      var goals = "-";
 
       if (result !== undefined) {
         for (let player of result) {
+          var player_image_path: any = player['image_path'];
+          var player_id: any = player['id'];
+          //age *Find age beetwen two dates-------------------
+          var age: any;
+          var birthdate: number = player['birthdate'];
 
-          var TeamPlayer_url = this.player_baseUrl + player['id'] + ".jpg";
+          var birthdate_formatte;
 
+          var a: any = moment(new Date());
+          var b: any = moment(new Date(birthdate));
+          var check_date: boolean = b.isValid();
+          if (check_date == true) {
+            age = a.diff(b, 'years');
+            birthdate_formatte = moment(new Date(birthdate)).format('MMM DD, YYYY');
+
+          } else {
+            age = "-";
+            birthdate_formatte = "-";
+
+          }
+          //end age------------------------------------------
+          var birthcountry: any = player['birthcountry'];
+          var birthplace = player['birthplace'];
+          var fullname: any = player['fullname'];
+          var common_name: any = player['common_name'];
+          var firstname: any = player['firstname'];
+          var lastname: any = player['lastname'];
+          var nationality: any = player['nationality'];
+          var team_id: any = player['team_id'];
+          var weight: any = player['weight'];
+          var height: any = player['height'];
+          var team_name;
+          var team: any = player['team'].data;
+
+          if (birthcountry == null) {
+            birthcountry = "-";
+          }
+          if (birthplace == null) {
+            birthplace = "-";
+          }
+          if (fullname == null) {
+            fullname = "-";
+          }
+          if (common_name == null) {
+            common_name = "-";
+          }
+          if (firstname == null) {
+            firstname = "-";
+          }
+          if (lastname == null) {
+            lastname = "-";
+          }
+          if (nationality == null) {
+            nationality = "-";
+          }
+          if (team_id == null) {
+            team_id = "-";
+          }
+          if (weight == null) {
+            weight = "-";
+          }
+          if (height == null) {
+            height = "-";
+          }
+          if (team_id == null) {
+            team_id = "-";
+          }
+
+
+
+
+          if (team !== undefined || team['length'] !== 0 || team !== null) {
+            team_name = team.name;
+          }
+          else {
+            team_name = "-";
+          }
+          var position_id = player.position_id;
+          var pos;
+          if (position_id !== null) {
+            var position = player['position'].data;
+            if (position !== undefined || position['length'] !== 0 || position !== null) {
+              pos = position.name;
+            }
+            else {
+              pos = "-";
+            }
+          }
+          else {
+            pos = "-";
+          }
 
           this.player_collection.push({
-            "id": player['id'],
-            "age": player['age'],
-            "birthcountry": player['birthcountry'],
-            "birthdate": player['birthdate'],
-            "birthplace": player['birthplace'],
-            "name": player['name'],
-            "common_name": player['common_name'],
-            "firstname": player['firstname'],
-            "lastname": player['lastname'],
-            "nationality": player['nationality'],
-            "team": player['team'],
-            "teamid": player['teamid'],
-            "weight": player['weight'],
-            "height": player['height'],
-            "position": player['position'],
-            "picture": TeamPlayer_url,
+            "id": player_id,
+            "age": age,
+            "birthcountry": birthcountry,
+            "birthdate": birthdate_formatte,
+            "birthplace": birthplace,
+            "name": fullname,
+            "common_name": common_name,
+            "firstname": firstname,
+            "lastname": lastname,
+            "nationality": nationality,
+            "team": team_name,
+            "teamid": team_id,
+            "weight": weight,
+            "height": height,
+            "position": pos,
+            "picture": player_image_path,
             "goals": goals
           });
         }
       }
     });
-    console.log("Player collection", this.player_collection)
+    //console.log("Player collection", this.player_collection)
 
   }
 

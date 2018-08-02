@@ -8,7 +8,8 @@ declare var $: any;
 import { DatePipe } from '@angular/common';
 import { MatchesApiService } from '../service/live_match/matches-api.service';
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
-
+import * as moment from 'moment-timezone';
+import "moment-timezone";
 @Component({
   selector: 'app-team-squad',
   templateUrl: './team-squad.component.html',
@@ -36,74 +37,92 @@ export class TeamSquadComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get("id"));
       this.team_id = id;
-      let team_name = params.get("team_name");
-      this.team_name = team_name;
     });
-
   }
 
 
   ngOnInit() {
-    this.team_flage = this.flage_baseUrl + this.team_id + ".png";
     this.SquadTeam = [];
     this.GetSquad();
+
   }
 
   GetSquad() {
     this.SquadTeam = [];
     var self = this;
-    this.matchService.GetSquadByTeamId(this.team_id).subscribe(data => {
-      console.log("Squad res", data);
-      var TeamSquad = data['data'];
-      if (TeamSquad !== undefined) {
+    this.matchService.GetTeamDeatilsById(this.team_id).subscribe(record => {
+      //console.log("Squad res", record);
 
-        var array = TeamSquad,
-          groups = Object.create(null),
-          grouped = [];
+      var result: any = record['data'];
+      if (result !== undefined) {
+        for (let data of result) {
+          this.team_name = data.name;
+          this.team_flage = data.logo_path;
+          var TeamSquad = data['squad'];
+          if (TeamSquad !== undefined) {
 
-        array.forEach(function (item) {
+            var array = TeamSquad.data,
+              groups = Object.create(null),
+              grouped = [];
+            array.forEach(function (item) {
 
-          if (!groups[item.position]) {
-            groups[item.position] = [];
+              console.log("item", item);
+              var position_id = item.position_id;
 
-            var position_name;
+              if (position_id !== null) {
 
-            if (item.position == "A") {
-              position_name = "Attacker";
-            }
-            if (item.position == "D") {
-              position_name = "Defender";
-            }
-            if (item.position == "F") {
-              position_name = "Forward";
-            }
-            if (item.position == "G") {
-              position_name = "Goalkeeper";
-            }
-            if (item.position == "M") {
-              position_name = "Midfielder";
-            }
-            grouped.push({ type: position_name, group: groups[item.position] });
+                if (!groups[position_id]) {
+                  groups[position_id] = [];
+                  var position = item['position'];
+                  var pos = position.data;
+                  console.log("pos", pos);
+                  if (pos !== undefined || pos['length'] !== 0 || pos !== null) {
+                    var position_name = pos.name;
+                    console.log("position_name", position_name);
+                    grouped.push({ type: position_name, group: groups[position_id] });
+                  }
+                }
+
+
+                var player = item['player'].data;
+                var fullname = player.fullname;
+
+                var birthdate: number = player.birthdate;
+
+
+                var a = moment(new Date());
+                var b = moment(new Date(birthdate));
+                var age;
+                var check_date = b.isValid();
+                if (check_date == true) {
+                  age = a.diff(b, 'years');
+                } else {
+                  age = "-";
+                }
+                console.log("age", age); //
+
+                console.log("full-name", fullname);
+                groups[position_id].push({
+                  "player_id": item['player_id'],
+                  "appearences": item['appearences'],
+                  "goals": item['goals'],
+                  "name": fullname,
+                  "number": item['number'],
+                  "age": age
+                });
+              }
+            });
+
+            this.SquadTeam = grouped;
+            console.log("Squad_group", grouped);
           }
-      
-          groups[item.position].push({
-            "id": item['id'],
-            "age": item['age'],
-            "appearences": item['appearences'],
-            "goals": item['goals'],
-            "name": item['name'],
-            "number": item['number'],
-            "position": item['position']           
-          });
-        });
-        this.SquadTeam = grouped;
-        console.log("Squad_group", grouped);
+        }
       }
     });
   }
 
   Playerdetails(player_id) {
-    this.router.navigate(['/player', player_id, { "comp_id": "", "season": "" }]);
+    this.router.navigate(['/player', player_id]);
   }
 
 

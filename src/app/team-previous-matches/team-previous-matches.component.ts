@@ -60,7 +60,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
 
     let team_id = this.team_id;
     this.matchService.GetPreviousMatchesTeamById(team_id).subscribe(record => {
-      console.log("record by selected Date", record);
+      //console.log("record by selected Date", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -70,14 +70,17 @@ export class TeamPreviousMatchesComponent implements OnInit {
 
         array.forEach(function (item) {
 
-          console.log("todays matches item", item);
+          //console.log("todays matches item", item);
 
           var id: any = item['id'];
           var comp_id = item['league_id'];
 
 
           var stage: any = item['stage'];
-          var week: any = stage['data'].name;
+          var stage_data = stage['data'];
+          if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
+            var week: any = stage_data.name;
+          }
 
           //LocalTeam Data---------------------------------------------------------
           var localteam_id: any = item['localteam_id'];
@@ -97,9 +100,10 @@ export class TeamPreviousMatchesComponent implements OnInit {
           var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
           let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
           var status: any = time.status;
-          // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
+          var time_formatte = moment(new Date(match_time)).format('hh:mm a');
 
           var live_status: boolean = false;
+          var score_status_flage: boolean = true;
 
           if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
             live_status = true;
@@ -111,7 +115,8 @@ export class TeamPreviousMatchesComponent implements OnInit {
           }
           else if (status == "NS" || status == "") {
             live_status = false;
-            status = moment(match_time).format('hh:mm a');
+            score_status_flage = false;
+            status = time_formatte;
           }
           else {
             live_status = false;
@@ -127,12 +132,15 @@ export class TeamPreviousMatchesComponent implements OnInit {
           var et_score: any = scores.et_score;
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
-          var score_status_flage: boolean = true;
           if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
             live_status = false;
             score_status_flage = false;
-          } else {
+          }
+          if (localteam_score >= '0' || visitorteam_score >= '0') {
             score_status_flage = true;
+            if (status == time_formatte) {
+              score_status_flage = false;
+            }
           }
 
           var penalty_visitor: any = scores.visitorteam_pen_score;
@@ -169,22 +177,30 @@ export class TeamPreviousMatchesComponent implements OnInit {
           var lats_score_vist;
           var agg_localvist: boolean = false;
           if (aggregate_id !== null) {
-            agg_localvist = true;
+
             var aggregate_data = item['aggregate'].data;
+            //   //console.log("aggregate_data", aggregate_data);
             var agg_result = aggregate_data.result;
-            var vscore;
-            var lscore;
-            if (localteam_score == "" || localteam_score == null || localteam_score == undefined || visitorteam_score == "" || visitorteam_score == null || visitorteam_score == undefined) {
-              vscore = 0;
-              lscore = 0;
+
+            if (agg_result !== "" || agg_result == null) {
+              var vscore;
+              var lscore;
+              agg_localvist = true;
+              if (localteam_score == "" || localteam_score == null || localteam_score == undefined || visitorteam_score == "" || visitorteam_score == null || visitorteam_score == undefined) {
+                vscore = 0;
+                lscore = 0;
+              }
+              else {
+                vscore = visitorteam_score;
+                lscore = localteam_score;
+              }
+              let string1 = agg_result.split("-", 2);
+              lats_score_local = parseInt(string1[1]) + parseInt(lscore);
+              lats_score_vist = parseInt(string1[0]) + parseInt(vscore);
+            } else {
+              agg_localvist = false;
             }
-            else {
-              vscore = visitorteam_score;
-              lscore = localteam_score;
-            }
-            let string1 = agg_result.split("-", 2);
-            lats_score_local = parseInt(string1[1]) + parseInt(lscore);
-            lats_score_vist = parseInt(string1[0]) + parseInt(vscore);
+
           }
           // end AGG (0-0)-------------------------------------------
 
@@ -299,7 +315,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
             "team_d": team_d,
           });
         });
-        console.log("grouped", grouped);
+        //console.log("grouped", grouped);
         this.PreviousMatchesTeam = grouped;
       }
     })
@@ -310,7 +326,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
     this.router.navigate(['/matches', id]);
   }
   CompetitionDetails(comp_id, comp_name, season) {
-    console.log("going to CompetitionDetails page...", comp_id);
+    //console.log("going to CompetitionDetails page...", comp_id);
     this.router.navigate(['/competition', comp_id, { "comp_name": comp_name, "season": season }]);
   }
 

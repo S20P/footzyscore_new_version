@@ -53,12 +53,12 @@ export class CompetitionGroupComponent implements OnInit {
   }
   @Input()
   set SelectedSeason(message) {
-    console.log("message", message);
+    //console.log("message", message);
     if (message !== undefined) {
       this.position = message.season_id;
       this.season = message.season_name;
       this.filterData(message.season_id);
-      console.log("perent dropdown select position", this.position);
+      //console.log("perent dropdown select position", this.position);
     }
   }
 
@@ -75,44 +75,43 @@ export class CompetitionGroupComponent implements OnInit {
     this.Group_collection = [];
 
     this.matchService.GetStandingBySeasonId(season_id).subscribe(record => {
-      console.log("GetCompetitionStandingById", record);
+      //console.log("GetCompetitionStandingById", record);
       var result = record['data'];
       if (result !== undefined) {
-        for (let standings_collect of result) {
-          var array = standings_collect['standings'].data;
 
-          if (array !== undefined) {
+        var array = result;
+        if (array !== undefined) {
+          var grouped = [];
+          var groups = Object.create(null);
+          array.forEach(function (item) {
+            //console.log("item", item);
 
-            var groups = Object.create(null),
-              grouped = [];
+            var item_group;
+            if (item.name == null) {
+              item_group = "Group"
+            }
+            else {
+              item_group = item.name;
+            }
 
-            array.forEach(function (item) {
+            if (!groups[item_group]) {
+              groups[item_group] = [];
+              grouped.push({ type: item_group, group: groups[item_group] });
+            }
 
-              var position = item.position;
-              var team_name = item.team_name;
-              var team_id = item.team_id;
-              var overall = item.overall;
+            var group_data = item['standings'].data;
+            for (let row of group_data) {
+              var position = row.position;
+              var team_name = row.team_name;
+              var team_id = row.team_id;
+              var overall = row.overall;
               var overall_gp = overall.games_played;
               var overall_w = overall.won;
               var overall_d = overall.draw;
               var overall_l = overall.lost;
-              var total = item.total;
+              var total = row.total;
               var gd = total.goal_difference;
-              var points = item.points;
-              var item_group: any;
-
-              if (item.group_name == null) {
-                item_group = "Group"
-              }
-              else {
-                item_group = item.group_name;
-              }
-
-              if (!groups[item_group]) {
-                groups[item_group] = [];
-                grouped.push({ type: item_group, group: groups[item_group] });
-              }
-
+              var points = row.points;
               groups[item_group].push({
                 "position": position,
                 "team_id": team_id,
@@ -124,21 +123,23 @@ export class CompetitionGroupComponent implements OnInit {
                 "gd": gd,
                 "points": points
               });
-            });
-            this.Group_collection = grouped;
-            console.log("Group_collection", grouped);
-          }
+            }
+
+          });
+          this.Group_collection = grouped;
+          //console.log("Group_collection", grouped);
         }
       }
+
     });
   }
-  teamdetails(team_id, team_name) {
-    this.router.navigate(['/team', team_id, { "team_name": team_name }]);
+  teamdetails(team_id) {
+    this.router.navigate(['/team', team_id]);
   }
 
 
   onchangefillter_group(pos) {
-    console.log("filter is change", pos);
+    //console.log("filter is change", pos);
     this.selectedpositionofGroup = pos;
   }
 

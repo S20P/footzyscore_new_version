@@ -22,7 +22,7 @@ export class TeamDetailComponent implements OnInit {
   public team_id: any;
   public team_name: any;
   public team_flage: any;
-  public flage_baseUrl: any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -33,12 +33,12 @@ export class TeamDetailComponent implements OnInit {
     private jsCustomeFun: JsCustomeFunScriptService
 
   ) {
-    this.flage_baseUrl = "/assets/img/TeamFlage/";
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get("id"));
       this.team_id = id;
-      let team_name = params.get("team_name");
-      this.team_name = team_name;
+      this.GetTeamDeatilsById(id);
+
     });
 
   }
@@ -46,7 +46,22 @@ export class TeamDetailComponent implements OnInit {
 
   ngOnInit() {
     this.setTimer();
-    this.team_flage = this.flage_baseUrl + this.team_id + ".png";
+    // this.team_flage = this.flage_baseUrl + this.team_id + ".png";
+  }
+
+  GetTeamDeatilsById(team_id) {
+    this.matchService.GetTeamDeatilsById(team_id).subscribe(record => {
+      //console.log("Teams_Details", record);
+      var result: any = record['data'];
+
+      var self = this;
+      if (result !== undefined) {
+        for (let data of result) {
+          this.team_name = data.name;
+          this.team_flage = data.logo_path;
+        }
+      }
+    });
   }
 
 

@@ -54,16 +54,14 @@ export class CompetitionMatchesComponent implements OnInit {
   }
 
   GetAllMatchesBySeasonId(season_id) {
-    console.log("sesion_id for mathes", season_id);
+    //console.log("sesion_id for mathes", season_id);
     var season_id = season_id;
     var list = [];
     this.match_ground_details = [];
     this.list_matches = [];
+
     this.matchService.GetAllMatchesBySeasonId(season_id).subscribe(record => {
-      console.log("GetAllMatchesByWeek1", record);
-    });
-    this.matchService.GetAllMatchesBySeasonId(season_id).subscribe(record => {
-      console.log("GetAllMatchesByWeek", record);
+      //console.log("GetAllMatchesByWeek", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -77,8 +75,11 @@ export class CompetitionMatchesComponent implements OnInit {
           var comp_id = data['league_id'];
 
           var stage: any = data['stage'];
-          var week: any = stage['data'].name;
+          var stage_data = stage['data'];
 
+          if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
+            var week: any = stage_data.name;
+          }
           //LocalTeam Data---------------------------------------------------------
           var localteam_id: any = data['localteam_id'];
           var localTeam_details: any = data['localTeam'].data;
@@ -96,12 +97,15 @@ export class CompetitionMatchesComponent implements OnInit {
           var starting_at: any = time.starting_at;
           var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
           var date: any = starting_at.date;
+          // let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
           let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
-          var status: any = time.status;
 
+          var status: any = time.status;
+          var time_formatte = moment(new Date(match_time)).format('hh:mm a');
           // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
 
           var live_status: boolean = false;
+          var score_status_flage: boolean = true;
 
           if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
             live_status = true;
@@ -113,7 +117,7 @@ export class CompetitionMatchesComponent implements OnInit {
           }
           else if (status == "NS" || status == "") {
             live_status = false;
-            status = moment(match_time).format('hh:mm a');
+            status = time_formatte;
           }
           else {
             live_status = false;
@@ -129,12 +133,16 @@ export class CompetitionMatchesComponent implements OnInit {
           var et_score: any = scores.et_score;
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
-          var score_status_flage: boolean = true;
+
           if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
             live_status = false;
             score_status_flage = false;
-          } else {
+          }
+          if (localteam_score >= '0' || visitorteam_score >= '0') {
             score_status_flage = true;
+            if (status == time_formatte) {
+              score_status_flage = false;
+            }
           }
 
           var penalty_visitor: any = scores.visitorteam_pen_score;
@@ -173,7 +181,7 @@ export class CompetitionMatchesComponent implements OnInit {
           if (aggregate_id !== null) {
 
             var aggregate_data = data['aggregate'].data;
-            //   console.log("aggregate_data", aggregate_data);
+            //   //console.log("aggregate_data", aggregate_data);
             var agg_result = aggregate_data.result;
 
             if (agg_result !== "" || agg_result == null) {
@@ -271,35 +279,34 @@ export class CompetitionMatchesComponent implements OnInit {
             r.push({ week: { week, match_time }, group: [obj] });
           }
           return r;
-        }, [])
-        //console.log(array);
+        }, []);
+        ////console.log(array);
         for (let p = 0; p < array.reverse()['length']; p++) {
-          console.log("item_week", array[p].week);
+          //console.log("item_week", array[p].week);
           var timezone = array[p].week.match_time;
-          let trans_date = self.jsCustomeFun.ChangeTimeZone(timezone);
-
-          console.log("trans_date", trans_date);
+          var trans_date = timezone;
+          //console.log("trans_date", trans_date);
 
           var date1 = new Date(trans_date);
           var date2 = new Date();
 
-          console.log("date1", date1);
-          console.log("date2", date2);
+          //console.log("date1", date1);
+          //console.log("date2", date2);
 
           var d1 = date1.getTime();
           var d2 = date2.getTime();
 
           if (d1 > d2) {
-            console.log("date-comapre is d1", d1);
-            console.log("date-comapre is d2", d2);
+            //console.log("date-comapre is d1", d1);
+            //console.log("date-comapre is d2", d2);
 
             var pos = p - 1;
-            this.selectedposition = pos;
-            console.log("pos", pos);
+            self.selectedposition = pos;
+            //console.log("pos", pos);
 
           }
           else {
-            this.selectedposition = 0;
+            self.selectedposition = 0;
           }
         }
 
@@ -308,8 +315,8 @@ export class CompetitionMatchesComponent implements OnInit {
       }
     });
 
-    console.log("All Tops Matches by week are", this.match_ground_details);
-    console.log("list dropdown", this.list_matches);
+    //console.log("All Tops Matches by week are", this.match_ground_details);
+    //console.log("list dropdown", this.list_matches);
   }
 
 
@@ -318,23 +325,23 @@ export class CompetitionMatchesComponent implements OnInit {
 
     let current_matchId;
     this.liveMatchesApiService.liveMatches().subscribe(data => {
-      console.log("Live-Matches-data", data);
+      //console.log("Live-Matches-data", data);
       var result = data['data'];
-      console.log("live data", data['data']['events']);
-      // console.log("Matches is Live", data);
+      //console.log("live data", data['data']['events']);
+      // //console.log("Matches is Live", data);
       if (result.events !== undefined) {
         var result_events = data['data'].events;
-        //   console.log("live_item-data", live_item);
+        //   //console.log("live_item-data", live_item);
         current_matchId = result_events['id'];
         var item = result_events;
         for (let j = 0; j < this.match_ground_details['length']; j++) {
-          console.log("**", this.match_ground_details[j]);
+          //console.log("**", this.match_ground_details[j]);
           var group = this.match_ground_details[j].group;
 
           for (let i = 0; i < group['length']; i++) {
             if (group[i].id == current_matchId) {
-              console.log("group[i].id", group[i].id);
-              console.log("current_matchId", current_matchId);
+              //console.log("group[i].id", group[i].id);
+              //console.log("current_matchId", current_matchId);
               var status_offon;
               status_offon = true;
 
@@ -366,7 +373,7 @@ export class CompetitionMatchesComponent implements OnInit {
       }
     });
 
-    console.log("match_ground_details", this.match_ground_details);
+    //console.log("match_ground_details", this.match_ground_details);
 
   }
   teamdetails(team_id) {
@@ -377,7 +384,7 @@ export class CompetitionMatchesComponent implements OnInit {
   }
 
   onchangefillter_matches(pos) {
-    console.log("filter is change", pos);
+    //console.log("filter is change", pos);
     this.selectedposition = pos;
   }
 

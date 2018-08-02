@@ -52,7 +52,7 @@ export class CompetitionPlayerComponent implements OnInit {
     var self = this;
     this.player_collection = [];
     this.matchService.GetAllTopPlayerByLeagueId(this.comp_id, season_id).subscribe(data => {
-      console.log("GetAllTopTeamByCompId", data);
+      //console.log("GetAllTopTeamByCompId", data);
       var result = data['data'];
 
       if (result !== undefined) {
@@ -86,13 +86,13 @@ export class CompetitionPlayerComponent implements OnInit {
         });
 
         this.player_collection = grouped;
-        console.log("player_group", grouped);
+        //console.log("player_group", grouped);
       }
     });
 
-    console.log("All Tops Player are", this.player_collection);
+    //console.log("All Tops Player are", this.player_collection);
   }
   Playerdetails(player_id) {
-    this.router.navigate(['/player', player_id, { "comp_id": this.comp_id, "season": this.season }]);
+    this.router.navigate(['/player', player_id]);
   }
 }

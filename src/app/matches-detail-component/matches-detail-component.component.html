@@ -16,7 +16,7 @@
             <div class="team-detail-header">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
-                        <div class="local-team c-pointer" (click)="teamdetails(match.localteam_id,match.localteam_name)">
+                        <div class="local-team c-pointer" (click)="teamdetails(match.localteam_id)">
                             <div class="local-team-flag">
                                 <img [src]="match.localteam_image" onError="this.src='assets/img/avt_flag.png'" />
                             </div>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                        <div class="visited-team c-pointer" (click)="teamdetails(match.visitorteam_id,match.visitorteam_name)">
+                        <div class="visited-team c-pointer" (click)="teamdetails(match.visitorteam_id)">
                             <div class="visited-team-flag">
                                 <img [src]="match.visitorteam_image" onError="this.src='assets/img/avt_flag.png'" />
                             </div>

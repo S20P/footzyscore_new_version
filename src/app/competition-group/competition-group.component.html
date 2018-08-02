@@ -50,7 +50,7 @@
                                             </tr>
                                         </thead>
                                         <tbody *ngFor="let item_details of item.group|orderBy_ace_desc:'position':ascending" class="theme-hover">
-                                            <tr (click)="teamdetails(item_details.team_id,item_details.team_name)">
+                                            <tr (click)="teamdetails(item_details.team_id)">
                                                 <td>{{item_details.position}}</td>
                                                 <td>{{item_details.team_name}}</td>
                                                 <td>{{item_details.overall_gp}}</td>
