@@ -75,7 +75,7 @@ export class MatchTeamsComponent implements OnInit {
 
           if (key.indexOf(com['id']) == -1) {
 
-            this.matchService.GetAllTopTeamByCompId(com['id'], com['season']).subscribe(data => {
+            this.matchService.GetAllTopTeamByLeagueId(com['id'], com['season']).subscribe(data => {
               console.log("GetAllTopTeamByCompId", data);
 
               var result = data['data'];
@@ -118,8 +118,8 @@ export class MatchTeamsComponent implements OnInit {
 
     console.log("?Teams--", this.teams_collection);
   }
-  teamdetails(team_id,team_name) {
-    this.router.navigate(['/team', team_id,{ "team_name": team_name }]);
+  teamdetails(team_id, team_name) {
+    this.router.navigate(['/team', team_id, { "team_name": team_name }]);
   }
 
   public setTimer() {

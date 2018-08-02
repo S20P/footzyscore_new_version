@@ -41,7 +41,7 @@
                             <h4>{{item.competitions.name}}
                                 <span class="more-link" (click)="CompetitionDetails(item.competitions.id,item.competitions.name,item.competitions.season)">  More
                                         <i class="fa right-icon">&#xf105;</i>
-                                   </span>
+                                </span>
                             </h4>
                         </div>
                         <div class="row">
@@ -103,17 +103,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-6 r-flag-team">
-                                                <div *ngIf="item_details.live_status;else offlineTeam2">
-                                                    <p [class.text-bold]="item_details.ltScore_highest">
-                                                        <span *ngIf="item_details.score_status_flage" class="score"> {{item_details.localteam_score}}
+
+                                                <p [class.text-bold]="item_details.ltScore_highest">
+                                                    <span *ngIf="item_details.score_status_flage" class="score"> {{item_details.localteam_score}}
                                                     </span> {{item_details.localteam_name}}
-                                                    </p>
-                                                    <p [class.text-bold]="item_details.vtScore_highest">
-                                                        <span *ngIf="item_details.score_status_flage" class="score">
+                                                </p>
+                                                <p [class.text-bold]="item_details.vtScore_highest">
+                                                    <span *ngIf="item_details.score_status_flage" class="score">
                                                                         {{item_details.visitorteam_score}} 
                                                                   </span>{{item_details.visitorteam_name}}
-                                                    </p>
-                                                </div>
+                                                </p>
+
                                                 <div *ngIf="item_details.agg_localvist || item_details.penalty_localvist" class="col-xs-12 agg_pen" id="agg_pen_responsve">
                                                     <ul>
                                                         <li *ngIf="item_details.agg_localvist">(AGG {{item_details.lats_score_local}}-{{item_details.lats_score_vist}})</li>

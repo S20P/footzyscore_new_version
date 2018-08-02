@@ -41,10 +41,10 @@ export class CompetitionComponent implements OnInit {
   public lastDay_Month: any;
   public comp_id: any;
   public competition_name: any;
-  public season: any;
-  public position: number = 0;
-
-  public Competition_list: any;
+  public season_id;
+  public position;
+  public season_group;
+  public season_list = [];
 
   previousUrl: string;
   constructor(
@@ -64,36 +64,69 @@ export class CompetitionComponent implements OnInit {
       this.comp_id = parseInt(params.get("id"));
       this.GetAllCompetitions_list();
     });
-
   }
 
   ngOnInit() {
-    this.Competition_list = [];
+    this.season_list = [];
     this.setTimer();
+    this.GetSeason_byleague();
   }
 
 
   GetAllCompetitions_list() {
 
-    this.Competition_list = [];
-    this.matchService.GetAllLeague().subscribe(data => {
-      console.log("GetAllCompetitions_list", data);
-      var result = data['data'];
+    this.matchService.GetAllLeague().subscribe(record => {
+      console.log("GetAllCompetitions_list", record);
+      var result = record['data'];
       if (result !== undefined) {
         for (let item of result) {
           if (item.id == this.comp_id) {
             this.competition_name = item.name;
-            this.Competition_list.push(item);
           }
         }
       }
     });
-    console.log("current selected compitation", this.Competition_list);
   }
 
-  onchangefillter(pos) {
+  GetSeason_byleague() {
+    this.season_list = [];
+
+    this.matchService.GetSeasonByLeagueId(this.comp_id).subscribe(record => {
+      console.log("season_list_by_league", record);
+      var result = record['data'];
+      if (result !== undefined) {
+        for (let i = 0; i < result['length']; i++) {
+
+          if (this.comp_id == result[i].league_id) {
+
+            this.season_list.push({
+              "id": result[i].id,
+              "name": result[i].name,
+              "is_current_season": result[i].is_current_season
+            });
+
+            if (result[i].is_current_season == true) {
+              this.position = i;
+              this.season_id = result[i].id;
+              console.log("season_id", this.season_id);
+              var season_name = result[i].name;
+              this.season_group = { "season_id": this.season_id, "season_name": season_name }
+            }
+          }
+        }
+      }
+    });
+
+    console.log("season_list", this.season_list);
+
+  }
+
+  onchangefillter(pos, season_id, season_name) {
     console.log("filter is change", pos);
+    console.log("Selected season_id is ", season_id);
     this.position = pos;
+    this.season_id = season_id;
+    this.season_group = { "season_id": season_id, "season_name": season_name }
   }
 
   public setTimer() {

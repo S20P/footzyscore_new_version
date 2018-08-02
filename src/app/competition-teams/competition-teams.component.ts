@@ -48,37 +48,15 @@ export class CompetitionTeamsComponent implements OnInit {
 
   }
 
-  filterData(i) {
-    console.log("position is", i);
-    this.matchService.GetAllLeague().subscribe(data => {
-      console.log("GetAllCompetitions_list", data);
-      var result = data['data'];
-      if (result !== undefined) {
-        for (let item of result) {
-          if (item.id == this.comp_id) {
-            this.competition_name = item.name;
-            for (let r = 0; r < item.availableSeason['length']; r++) {
-
-              if (r == i) {
-                this.season = item.availableSeason[i];
-                var com = {
-                  comp_id: this.comp_id,
-                  competition_name: this.competition_name,
-                  season: this.season
-                }
-                this.GetAllCompetitions(com);
-              }
-            }
-          }
-        }
-      }
-    });
+  filterData(season_id) {
+    this.GetAllTopTeamByLeagueId(season_id);
   }
-  GetAllCompetitions(com) {
-    var season = com.season;
+
+  GetAllTopTeamByLeagueId(season_id) {
+    var season_id = season_id;
     this.teams_collection = [];
     var self = this;
-    this.matchService.GetAllTopTeamByCompId(this.comp_id, season).subscribe(data => {
+    this.matchService.GetAllTopTeamByLeagueId(this.comp_id, season_id).subscribe(data => {
       console.log("GetAllTopTeamByCompId", data);
       var result = data['data'];
 
@@ -96,21 +74,19 @@ export class CompetitionTeamsComponent implements OnInit {
             grouped.push({ type: type, group: groups[type] });
           }
           for (let teams of detailsOfTeam) {
-            var Teamflag = self.flage_baseUrl + teams['teamid'] + ".png";
+            var Teamflag = self.flage_baseUrl + teams['team_id'] + ".png";
             groups[type].push({
-              "team_id": teams['teamid'],
-              "team_name": teams['teamname'],
+              "team_id": teams['team_id'],
+              "team_name": teams['team_name'],
               "count": teams['count'],
               "team_flag": Teamflag
             });
           }
         });
-
         this.teams_collection = grouped;
         console.log("ggggg", grouped);
       }
     });
-
     console.log("All Tops Teams are", this.teams_collection);
   }
   teamdetails(team_id, team_name) {

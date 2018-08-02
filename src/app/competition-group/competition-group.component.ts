@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 declare var $: any;
-import {PageScrollConfig} from 'ngx-page-scroll';
+import { PageScrollConfig } from 'ngx-page-scroll';
 
 
 import { OrderPipe } from 'ngx-order-pipe';
@@ -36,105 +36,100 @@ export class CompetitionGroupComponent implements OnInit {
     private jsCustomeFun: JsCustomeFunScriptService
   ) {
     this.selectedpositionofGroup = 0;
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.comp_id = parseInt(params.get("id"));
-    });
 
     PageScrollConfig.defaultScrollOffset = 80;
     PageScrollConfig.defaultEasingLogic = {
-        ease: (t: number, b: number, c: number, d: number): number => {
-            // easeInOutExpo easing
-            if (t === 0) return b;
-            if (t === d) return b + c;
-            if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-            return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-        }
+      ease: (t: number, b: number, c: number, d: number): number => {
+        // easeInOutExpo easing
+        if (t === 0) return b;
+        if (t === d) return b + c;
+        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+      }
     };
 
 
 
   }
   @Input()
-  set SelectedSeason(message: number) {
-    this.position = message;
-    this.filterData(message);
-    console.log("perent dropdown select position", this.position);
+  set SelectedSeason(message) {
+    console.log("message", message);
+    if (message !== undefined) {
+      this.position = message.season_id;
+      this.season = message.season_name;
+      this.filterData(message.season_id);
+      console.log("perent dropdown select position", this.position);
+    }
   }
 
   ngOnInit() {
-
   }
 
+  filterData(season_id) {
+    this.GetStandingBySeasonId(season_id);
+  }
 
-  filterData(i) {
-    console.log("position is", i);
-    this.matchService.GetAllLeague().subscribe(data => {
-      console.log("GetAllCompetitions_list", data);
-      var result = data['data'];
+  GetStandingBySeasonId(season_id) {
+
+    var season_id = season_id;
+    this.Group_collection = [];
+
+    this.matchService.GetStandingBySeasonId(season_id).subscribe(record => {
+      console.log("GetCompetitionStandingById", record);
+      var result = record['data'];
       if (result !== undefined) {
-        for (let item of result) {
-          if (item.id == this.comp_id) {
-            this.competition_name = item.name;
-            for (let r = 0; r < item.availableSeason['length']; r++) {
+        for (let standings_collect of result) {
+          var array = standings_collect['standings'].data;
 
-              if (r == i) {
-                this.season = item.availableSeason[i];
-                var com = {
-                  comp_id: this.comp_id,
-                  competition_name: this.competition_name,
-                  season: this.season
-                }
-                this.GetAllCompetitions(com);
+          if (array !== undefined) {
+
+            var groups = Object.create(null),
+              grouped = [];
+
+            array.forEach(function (item) {
+
+              var position = item.position;
+              var team_name = item.team_name;
+              var team_id = item.team_id;
+              var overall = item.overall;
+              var overall_gp = overall.games_played;
+              var overall_w = overall.won;
+              var overall_d = overall.draw;
+              var overall_l = overall.lost;
+              var total = item.total;
+              var gd = total.goal_difference;
+              var points = item.points;
+              var item_group: any;
+
+              if (item.group_name == null) {
+                item_group = "Group"
               }
-            }
+              else {
+                item_group = item.group_name;
+              }
+
+              if (!groups[item_group]) {
+                groups[item_group] = [];
+                grouped.push({ type: item_group, group: groups[item_group] });
+              }
+
+              groups[item_group].push({
+                "position": position,
+                "team_id": team_id,
+                "team_name": team_name,
+                "overall_gp": overall_gp,
+                "overall_w": overall_w,
+                "overall_d": overall_d,
+                "overall_l": overall_l,
+                "gd": gd,
+                "points": points
+              });
+            });
+            this.Group_collection = grouped;
+            console.log("Group_collection", grouped);
           }
         }
       }
-    });
-  }
-
-  GetAllCompetitions(com) {
-
-    console.log("com_", com);
-    var season = com.season;
-
-    this.Group_collection = [];
-
-    this.matchService.GetAllCompetitions_ById(this.comp_id, season).subscribe(data => {
-      console.log("GetCompetitionStandingById", data);
-
-      var result = data['data'];
-
-      if (result !== undefined) {
-
-        var array = result,
-          groups = Object.create(null),
-          grouped = [];
-
-        array.forEach(function (item) {
-
-          var item_group;
-          if (item.comp_group == null) {
-            item_group = "Group"
-          }
-          else {
-            item_group = item.comp_group;
-          }
-
-
-          if (!groups[item_group]) {
-            groups[item_group] = [];
-
-            grouped.push({ type: item_group, group: groups[item_group] });
-          }
-
-          groups[item_group].push(item);
-        });
-        this.Group_collection = grouped;
-        console.log("Group_collection", grouped);
-
-      }
-
     });
   }
   teamdetails(team_id, team_name) {
@@ -143,12 +138,8 @@ export class CompetitionGroupComponent implements OnInit {
 
 
   onchangefillter_group(pos) {
-
     console.log("filter is change", pos);
     this.selectedpositionofGroup = pos;
-
- 
   }
-
 
 }

@@ -41,61 +41,53 @@
                                 </li>
                             </ul>
                             <div class="col-md-3 col-sm-3 col-xs-3 dropselct-auto-bg">
-
-                                <div class="dropdown" *ngIf="Competition_list.length > 0">
+                                <div class="dropdown" *ngIf="season_list.length > 0">
                                     <button class="btn  dropdown-toggle" id="dropdown_btn" type="button" data-toggle="dropdown">
-                                           <span *ngFor="let item of Competition_list;let i = index">
-                                               <span *ngFor="let item_details of item.availableSeason;let j = index"> 
-                                            <span *ngIf="j==position" class="option_title"> {{item_details}} </span>
-                                        </span>
+                                           <span *ngFor="let item_details of season_list;let i = index">
+                                            <span *ngIf="i==position" class="option_title"> {{item_details.name}} </span>
                                         </span>
                                             <span class="caret"></span>
                                         </button>
-
-                                    <ul class="dropdown-menu select_dropdown" id="style_scroll" *ngFor="let item_main of Competition_list;let i = index">
-                                        <li (click)="onchangefillter(x)" [ngClass]="{'text_selected':x==position}" *ngFor="let item_title of item_main.availableSeason;let x=index">
-                                            {{item_title}}
+                                    <ul class="dropdown-menu select_dropdown" id="style_scroll">
+                                        <li (click)="onchangefillter(x,item_title.id,item_title.name)" [ngClass]="{'text_selected':x==position}" *ngFor="let item_title of season_list;let x=index">
+                                            {{item_title.name}}
                                         </li>
                                     </ul>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <!-- end tabs menu  -->
 
                     <div class="row">
-
                         <div class="col-sm-12 col-md-8 col-lg-8 top-tab-spacing remove_right_padding">
                             <!-- tabs body  -->
-
                             <div class="">
                                 <div class="tab-content">
 
                                     <!--******* Matches ***********-->
                                     <div class="tab-pane fade in active" id="tab2_Matches">
-                                        <app-competition-matches [SelectedSeason]="position"></app-competition-matches>
+                                        <app-competition-matches [SelectedSeason]="season_id"></app-competition-matches>
                                     </div>
                                     <!--******* end Matches ***********-->
 
 
                                     <!--******** Table Group ************-->
                                     <div class="tab-pane" id="tab1_table">
-                                        <app-competition-group [SelectedSeason]="position"></app-competition-group>
+                                        <app-competition-group [SelectedSeason]="season_group"></app-competition-group>
                                     </div>
                                     <!--******* end Table Group  ***********-->
 
 
                                     <!--******** Top players ************-->
                                     <div class="tab-pane" id="tab3_TopPlayers">
-                                        <app-competition-player [SelectedSeason]="position"></app-competition-player>
+                                        <app-competition-player [SelectedSeason]="season_id"></app-competition-player>
                                     </div>
                                     <!--******* end Top players ***********-->
 
                                     <!--******** Top teams ************-->
                                     <div class="tab-pane" id="tab4_TopTeams">
-                                        <app-competition-teams [SelectedSeason]="position"></app-competition-teams>
+                                        <app-competition-teams [SelectedSeason]="season_id"></app-competition-teams>
                                     </div>
                                     <!--******* end Top teams ***********-->
                                 </div>

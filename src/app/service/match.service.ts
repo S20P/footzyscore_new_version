@@ -5,16 +5,14 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class MatchService {
 
-  baseurl: string = "https://api.footzyscore.com/";
-
-  _baseurl_local: string = "https://api.footzyscore.com/";
-
+  baseurl: string = "https://api.footzyscore.com/v2/";
+  _baseurl_local: string = "https://api.footzyscore.com/v2/";
   Apiurl: string = this.baseurl + "MobileAPI/GetAllCompetitions";
 
-  //GetCompetitionStandingById_API: string = this.baseurl + "MobileAPI/GetCompetitionStandingById";
+
   GetMatchesByCompetitionById_API: string = this.baseurl + "MobileAPI/GetMatchesByCompetitionId";
-  GetMatchesByDate_API: string = this.baseurl + "MobileAPI/GetMatchesByDate";
-  GetCommentariesByMatchId_API: string = this.baseurl + "MobileAPI/GetCommentariesByMatchId";
+
+
   getStadiumAll_API: string = "/assets/data/json/FifaMatchStadiums.json";
 
   GetPlayerById_API: string = this.baseurl + "MobileAPI/GetPlayerProfileById";
@@ -22,22 +20,20 @@ export class MatchService {
   StaticMatch_API: string = "/assets/data/json/FifaMatchSchedule.json";
 
   //new
-  GetAllCompetitionMatchesByMonth_API: string = this._baseurl_local + "MobileAPI/GetAllCompetitionMatchesByMonth";
-  GetAllCompetitionMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetAllCompetitionMatchesByDate";
-  // GetMatchDeatilByMatchId_API: string = this._baseurl_local + "MobileAPI/GetMatchDeatilByMatchId";
-  GetCompetitionStandingById_API: string = this._baseurl_local + "MobileAPI/GetCompetitionStandingById";
-  GetAllTopTeamByCompId_API: string = this._baseurl_local + "MobileAPI/GetAllTopTeamByCompId";
-  GetAllTopPlayerByCompId_API: string = this._baseurl_local + "MobileAPI/GetAllTopPlayerByCompId";
-  // GetAllMatchesByWeek_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByWeek";
+  GetAllCompetitionMatchesByMonth_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByMonth";
+  GetAllCompetitionMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetMatchesByDate";
+  GetMatchDeatilByMatchId_API: string = this._baseurl_local + "MobileAPI/GetMatchDeatilByMatchId";
+  GetStandingBySeasonId_API: string = this._baseurl_local + "MobileAPI/GetStandingBySeasonId";
+  GetAllTopTeamByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetAllTopTeamByLeagueId";
+  GetAllTopPlayerByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetAllTopPlayerByLeagueId";
+
   GetSquadByTeamId_API: string = this._baseurl_local + "MobileAPI/GetSquadByTeamId";
   GetPreviousMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetPreviousMatchesTeamById";
   GetNextMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetNextMatchesTeamById";
   GetAllLeague_API: string = this._baseurl_local + "MobileAPI/GetAllLeague";
-  GetAllMatchesByWeek_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByCompId";
-
-
-  GetMatchDeatilByMatchId_API: string = "/assets/data/json/GetMatchDeatilByMatchId.json";
-
+  GetAllMatchesBySeasonId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesBySeasonId";
+  GetCommentariesByMatchId_API: string = this._baseurl_local + "MobileAPI/GetCommentariesByMatchId";
+  GetSeasonByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetSeasonByLeagueId";
 
   constructor(private http: HttpClient) {
   }
@@ -47,21 +43,10 @@ export class MatchService {
     return this.http.get(url);
   }
 
-  // GetAllCompetitions_ById(comp_id) {
-  //   // console.log("comp_id is",comp_id);
-  //   let apiurl = `${this.GetCompetitionStandingById_API + '?comp_id=' + comp_id}`;
-  //   return this.http.get(apiurl);
-  // }
 
   GetMatchesByCompetition_ById(comp_id) {
     //console.log("comp_id is",comp_id);
     let apiurl = `${this.GetMatchesByCompetitionById_API + '?comp_id=' + comp_id}`;
-    return this.http.get(apiurl);
-  }
-
-
-  GetMatchesByDate(date) {
-    let apiurl = `${this.GetMatchesByDate_API + '?date=' + date}`;
     return this.http.get(apiurl);
   }
 
@@ -142,32 +127,31 @@ export class MatchService {
     return this.http.get(apiurl);
   }
 
-  GetAllCompetitions_ById(comp_id, season) {
+  GetStandingBySeasonId(season_id) {
     // console.log("comp_id is",comp_id);
-    let apiurl = `${this.GetCompetitionStandingById_API + '?season=' + season + '&comp_id=' + comp_id}`;
+    let apiurl = `${this.GetStandingBySeasonId_API + '?season_id=' + season_id}`;
     return this.http.get(apiurl);
   }
 
 
-  GetAllTopPlayerByCompId(comp_id, season) {
+
+  GetAllMatchesBySeasonId(season_id) {
     // console.log("comp_id is",comp_id);
-    let apiurl = `${this.GetAllTopPlayerByCompId_API + '?season=' + season + '&comp_id=' + comp_id}`;
-    return this.http.get(apiurl);
-  }
-  GetAllMatchesByWeek(comp_id, season) {
-    // console.log("comp_id is",comp_id);
-    let apiurl = `${this.GetAllMatchesByWeek_API + '?season=' + season + '&comp_id=' + comp_id}`;
+    let apiurl = `${this.GetAllMatchesBySeasonId_API + '?season_id=' + season_id}`;
     return this.http.get(apiurl);
   }
 
   //Teams------------
 
-  GetAllTopTeamByCompId(comp_id, season) {
-    // console.log("comp_id is",comp_id);
-    let apiurl = `${this.GetAllTopTeamByCompId_API + '?season=' + season + '&comp_id=' + comp_id}`;
+  GetAllTopTeamByLeagueId(league_id, season_id) {
+    let apiurl = `${this.GetAllTopTeamByLeagueId_API + '?league_id=' + league_id + '&season_id=' + season_id}`;
     return this.http.get(apiurl);
   }
-
+  GetAllTopPlayerByLeagueId(league_id, season_id) {
+    // console.log("comp_id is",comp_id);
+    let apiurl = `${this.GetAllTopPlayerByLeagueId_API + '?league_id=' + league_id + '&season_id=' + season_id}`;
+    return this.http.get(apiurl);
+  }
   GetSquadByTeamId(team_id) {
     let apiurl = `${this.GetSquadByTeamId_API + '?team_id=' + team_id}`;
     return this.http.get(apiurl);
@@ -183,6 +167,11 @@ export class MatchService {
 
   GetAllLeague() {
     let apiurl = `${this.GetAllLeague_API}`;
+    return this.http.get(apiurl);
+  }
+
+  GetSeasonByLeagueId(league_id) {
+    let apiurl = `${this.GetSeasonByLeagueId_API + '?league_id=' + league_id}`;
     return this.http.get(apiurl);
   }
 

@@ -30,7 +30,7 @@ export class CompetitionPlayerComponent implements OnInit {
     private orderPipe: OrderPipe,
     private jsCustomeFun: JsCustomeFunScriptService
   ) {
-    
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.comp_id = parseInt(params.get("id"));
     });
@@ -43,38 +43,15 @@ export class CompetitionPlayerComponent implements OnInit {
   ngOnInit() {
 
   }
-  filterData(i) {
-    console.log("position is", i);
-    this.matchService.GetAllLeague().subscribe(data => {
-      console.log("GetAllCompetitions_list", data);
-      var result = data['data'];
-      if (result !== undefined) {
-        for (let item of result) {
-          if (item.id == this.comp_id) {
-            this.competition_name = item.name;
-            for (let r = 0; r < item.availableSeason['length']; r++) {
-
-              if (r == i) {
-                this.season = item.availableSeason[i];
-                var com = {
-                  comp_id: this.comp_id,
-                  competition_name: this.competition_name,
-                  season: this.season
-                }
-                this.GetAllCompetitions(com);
-              }
-            }
-          }
-        }
-      }
-    });
+  filterData(season_id) {
+    this.GetAllTopPlayerByLeagueId(season_id);
   }
-  GetAllCompetitions(com) {
-    var season = com.season;
-    this.season = season;
+  GetAllTopPlayerByLeagueId(season_id) {
+    var season_id = season_id;
+
     var self = this;
     this.player_collection = [];
-    this.matchService.GetAllTopPlayerByCompId(this.comp_id, season).subscribe(data => {
+    this.matchService.GetAllTopPlayerByLeagueId(this.comp_id, season_id).subscribe(data => {
       console.log("GetAllTopTeamByCompId", data);
       var result = data['data'];
 
@@ -93,16 +70,16 @@ export class CompetitionPlayerComponent implements OnInit {
           }
           for (let teams of detailsOfTeam) {
 
-              // If you want use Player image use it.
-              //public player_baseUrl: any;
-             // this.player_baseUrl = "https://s3.amazonaws.com/starapps/footzy/players/";
-             // var flag = self.player_baseUrl + teams['player_id'] + ".jpg";
+            // If you want use Player image use it.
+            //public player_baseUrl: any;
+            // this.player_baseUrl = "https://s3.amazonaws.com/starapps/footzy/players/";
+            // var flag = self.player_baseUrl + teams['player_id'] + ".jpg";
             // "player_flag": flag
-           // <img [src]="item_details.player_flag" onError="this.src='assets/img/avt_player.png'" /> 
+            // <img [src]="item_details.player_flag" onError="this.src='assets/img/avt_player.png'" /> 
 
             groups[type].push({
               "player_id": teams['player_id'],
-              "player_name": teams['player'],
+              "player_name": teams['player_name'],
               "count": teams['count'],
             });
           }

@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 declare var jQuery: any;
 declare var $: any;
-
+import * as moment from 'moment-timezone';
+import "moment-timezone";
 import { DatePipe } from '@angular/common';
 import { MatchesApiService } from '../service/live_match/matches-api.service';
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
@@ -61,11 +62,9 @@ export class TeamNextMatchesComponent implements OnInit {
     for (let i = 0; i < this.NextMatchesTeam['length']; i++) {
       this.NextMatchesTeam.splice(i, 1);
     }
-
     this.matchService.GetNextMatchesTeamById(this.team_id).subscribe(record => {
-      console.log("NextMatches res", record);
-
-      var result: any = record;
+      console.log("record by selected Date", record);
+      var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
         var array = result,
@@ -73,8 +72,12 @@ export class TeamNextMatchesComponent implements OnInit {
           grouped = [];
 
         array.forEach(function (item) {
+
+          console.log("todays matches item", item);
+
           var id: any = item['id'];
           var comp_id = item['league_id'];
+        
 
           var stage: any = item['stage'];
           var week: any = stage['data'].name;
@@ -95,32 +98,73 @@ export class TeamNextMatchesComponent implements OnInit {
           var time: any = item['time'];
           var starting_at: any = time.starting_at;
           var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
-          let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
+          let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
           var status: any = time.status;
-          var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
+          // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
+
+          var live_status: boolean = false;
+
+          if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+            live_status = true;
+            status = status;
+          }
+          else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
+            live_status = false;
+            status = status;
+          }
+          else if (status == "NS" || status == "") {
+            live_status = false;
+            status = moment(match_time).format('hh:mm a');
+          }
+          else {
+            live_status = false;
+            status = status;
+          }
+
           //end time---------------------------------------------------------------------
 
-          //scores-------------------------------------------------------------------
+          //scores----------------------------------------------------------------------
           var scores: any = item['scores'];
           var ht_score: any = scores.ht_score;
           var ft_score: any = scores.ft_score;
           var et_score: any = scores.et_score;
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
-          if (localteam_score == '?') {
-            localteam_score = "";
+          var score_status_flage: boolean = true;
+          if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
             live_status = false;
+            score_status_flage = false;
           } else {
-            localteam_score = localteam_score;
+            score_status_flage = true;
           }
-          if (visitorteam_score == '?') {
-            visitorteam_score = "";
-            live_status = false;
-          } else {
-            visitorteam_score = visitorteam_score;
-          }
+
           var penalty_visitor: any = scores.visitorteam_pen_score;
           var penalty_local: any = scores.localteam_pen_score;
+
+          //Which team is high scores------------------------------------------
+          //*apply class for text-bold=>font-wight:bold if team run is highest
+
+          var ltScore_highest: boolean = false;
+          var vtScore_highest: boolean = false;
+
+          if (localteam_score == 0) {
+            ltScore_highest = false;
+          }
+          else if (visitorteam_score == 0) {
+            vtScore_highest = false;
+          }
+          else if (localteam_score >= visitorteam_score) {
+            ltScore_highest = true;
+          } else if (visitorteam_score >= localteam_score) {
+            vtScore_highest = true;
+          }
+          else {
+            ltScore_highest = false;
+            vtScore_highest = false;
+          }
+
+
+
           //end scores------------------------------------------
 
 
@@ -128,7 +172,9 @@ export class TeamNextMatchesComponent implements OnInit {
           var aggregate_id: any = item['aggregate_id'];
           var lats_score_local;
           var lats_score_vist;
+          var agg_localvist: boolean = false;
           if (aggregate_id !== null) {
+            agg_localvist = true;
             var aggregate_data = item['aggregate'].data;
             var agg_result = aggregate_data.result;
             var vscore;
@@ -149,9 +195,16 @@ export class TeamNextMatchesComponent implements OnInit {
 
 
           //PEN (0-0)------------------------------------------------
-          var penalty_localvist = false;
-          if (penalty_local !== "" && penalty_local !== null && penalty_local !== undefined && penalty_visitor !== "" && penalty_visitor !== null && penalty_visitor !== undefined) {
+          var penalty_localvist: boolean = false;
+          if (penalty_local == '0' && penalty_visitor == '0') {
+            penalty_localvist = false;
+          }
+          else if (penalty_local !== "" && penalty_local !== null && penalty_local !== undefined && penalty_visitor !== "" && penalty_visitor !== null && penalty_visitor !== undefined) {
             penalty_localvist = true;
+          }
+          else {
+            penalty_localvist = false;
+
           }
           //end PEN (0-0)--------------------------------------------
 
@@ -170,15 +223,8 @@ export class TeamNextMatchesComponent implements OnInit {
 
           //season---------------------------------------------------------
           var season_id: any = item['season_id'];
-          var season_data;
-          var season_name;
-          var season_city;
-          if (season_id !== null) {
-            season_data = item['season'].data;
-            season_name = season_data.name;
-            season_city = season_data.city;
-          }
           //end season---------------------------------------------------------
+
 
           var competitions = item.league['data'];
           if (!groups[competitions.id]) {
@@ -200,6 +246,7 @@ export class TeamNextMatchesComponent implements OnInit {
             "penalty_local": penalty_local,
             "penalty_visitor": penalty_visitor,
             "penalty_localvist": penalty_localvist,
+            "agg_localvist": agg_localvist,
             "status": status,
             "time": match_time,
             "visitorteam_id": visitorteam_id,
@@ -212,15 +259,18 @@ export class TeamNextMatchesComponent implements OnInit {
             "venue_id": venue_id,
             "venue": venue_name,
             "venue_city": venue_city,
-            "season": season_name,
-            "season_city": season_city,
             "week": week,
-            "live_status": live_status
+            "live_status": live_status,
+            "score_status_flage": score_status_flage,
+            "ltScore_highest": ltScore_highest,
+            "vtScore_highest": vtScore_highest
           });
         });
+        console.log("grouped", grouped);
         this.NextMatchesTeam = grouped;
       }
     })
+    
   }
 
   GetMatchesByCompetition_ById_live() {

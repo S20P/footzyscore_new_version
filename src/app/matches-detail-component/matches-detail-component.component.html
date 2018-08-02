@@ -28,33 +28,8 @@
                         <div class="team-status">
                             <p>{{match.time| date: 'dd MMM yyyy'}}</p>
                             <div class="border"></div>
-                            <!-- Live -->
-                            <div *ngIf="match.status!=='FT' && match.status!=='Pen.'&& match.status!=='AET' && match.status!=='Postp.' && match.status!=='';else offlineTime1">
-                                <div *ngIf="match.live_status;else offlineTime1">
-                                    <h2 class="teamscore theme-color" *ngIf="match.visitorteam_score !==''&& match.visitorteam_score !==''">{{match.localteam_score}} - {{match.visitorteam_score}}</h2>
-                                    <div *ngIf=" match.status=='' ;else status1">
-                                        <h2 class="uptime theme-color">{{match.time|date:'hh:mm a'}}</h2>
-                                    </div>
-                                    <ng-template #status1>
-                                        <h2 *ngIf="match.status!==''" class="status-txt theme-color">{{match.status}}</h2>
-                                        <h2 *ngIf="match.status==''" class="status-txt theme-color">-</h2>
-                                    </ng-template>
-
-                                </div>
-                            </div>
-                            <!-- end live -->
-
-                            <!-- offline  -->
-                            <ng-template #offlineTime1>
-                                <div *ngIf="match.status!=='FT' && match.status!=='Pen.' && match.status!=='AET' && match.status!=='Postp.';else time1">
-                                    <h2 class="uptime">{{match.time|date:'hh:mm a'}}</h2>
-                                </div>
-                                <ng-template #time1>
-                                    <h2 class="teamscore" *ngIf="match.status==='FT' || match.status==='Pen.' || match.status==='AET' || match.status==='Postp.' && match.visitorteam_score !=='' && match.localteam_score !==''">{{match.localteam_score}} - {{match.visitorteam_score}}</h2>
-                                    <h2 *ngIf="match.status!==''" class="status-txt">{{match.status}}</h2>
-                                </ng-template>
-                            </ng-template>
-                            <!-- end offline -->
+                            <h2 class="teamscore" [class.theme-color]="match.live_status" *ngIf="match.score_status_flage">{{match.localteam_score}} - {{match.visitorteam_score}}</h2>
+                            <h2 class="status-txt" [class.theme-color]="match.live_status">{{match.status}}</h2>
                         </div>
                         <div class="venue_name">
                             <p>{{match.venue}}</p>
@@ -174,7 +149,7 @@
                                                                                                                     <img src="assets/img/ic_event_substitution.png">
                                                                                                                 </div>
                                                                                                                 <div class="goal_img">
-                                                                                                                    <div class="event-time">
+                                                                                                                    <div class="event-time" *ngIf="events.ic_event_goal || events.ic_event_penalty || events.ic_event_own_goal">
                                                                                                                         <p class="small">{{events.result}}</p>
                                                                                                                     </div>
                                                                                                                     <div *ngIf="events.ic_event_goal">
@@ -221,7 +196,7 @@
                                                                                                                 <div *ngIf="events.ic_event_substitution">
                                                                                                                     <img src="assets/img/ic_event_substitution.png">
                                                                                                                 </div>
-                                                                                                                <div class="goal_img">
+                                                                                                                <div class="goal_img" *ngIf="events.ic_event_goal || events.ic_event_penalty || events.ic_event_own_goal">
                                                                                                                     <div class="event-time">
                                                                                                                         <p class="small">{{events.result}}</p>
                                                                                                                     </div>
