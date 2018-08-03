@@ -104,8 +104,15 @@
             </div>
         </div>
 
-        <div *ngIf="PreviousMatchesTeam.length <=0 " class="card">
+        <!-- <div *ngIf="PreviousMatchesTeam.length <=0 " class="card">
             <p class="text-left not_avilable_content">No matches Found</p>
+        </div> -->
+
+        <div *ngIf="PreviousMatchesTeam.length <= 0" class="card">
+            <div class="list-line row match-list">
+                <p class="col-md-12 text-left">Not matches Found</p>
+            </div>
         </div>
+
     </div>
 </div>

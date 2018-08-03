@@ -46,6 +46,7 @@ td:first-child {
     box-shadow: 0px 0px 0px #00000038;
     margin-right: 12px;
     border-radius: unset;
+    margin-bottom: 10px;
 }
 
 td.first {

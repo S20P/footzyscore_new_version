@@ -44,14 +44,13 @@ export class TeamSquadComponent implements OnInit {
   ngOnInit() {
     this.SquadTeam = [];
     this.GetSquad();
-
   }
 
   GetSquad() {
     this.SquadTeam = [];
     var self = this;
     this.matchService.GetTeamDeatilsById(this.team_id).subscribe(record => {
-      //console.log("Squad res", record);
+      console.log("Squad res", record);
 
       var result: any = record['data'];
       if (result !== undefined) {
@@ -83,21 +82,20 @@ export class TeamSquadComponent implements OnInit {
                   }
                 }
 
-
                 var player = item['player'].data;
                 var fullname = player.fullname;
+                var birthdate: any = player.birthdate;
 
-                var birthdate: number = player.birthdate;
-
-
-                var a = moment(new Date());
-                var b = moment(new Date(birthdate));
-                var age;
-                var check_date = b.isValid();
-                if (check_date == true) {
-                  age = a.diff(b, 'years');
-                } else {
+                console.log("birthdate", birthdate);
+                if (birthdate == null) {
+                  birthdate = "-";
                   age = "-";
+                } else {
+                  var a = moment(new Date());
+                  var b = moment(birthdate, 'DD/MM/YYYY', true).format();
+                  console.log("b", b);
+                  var age;
+                  age = a.diff(b, 'years');
                 }
                 console.log("age", age); //
 

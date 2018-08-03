@@ -49,7 +49,7 @@ export class CompetitionsListComponent implements OnInit {
   GetAllCompetitions_list() {
     this.Competition_list = [];
     this.matchService.GetAllLeague().subscribe(data => {
-      //console.log("GetAllCompetitions_list", data);
+      console.log("GetAllCompetitions_list", data);
       var result = data['data'];
       if (result !== undefined) {
         for (let item of result) {
@@ -57,11 +57,11 @@ export class CompetitionsListComponent implements OnInit {
         }
       }
     });
-    //console.log("ALL Competition_list***", this.Competition_list);
+    console.log("ALL Competition_list***", this.Competition_list);
   }
 
   CompetitionDetails(comp_id) {
-    //console.log("going to CompetitionDetails page...", comp_id);
+    console.log("going to CompetitionDetails page...", comp_id);
     this.router.navigate(['/competition', comp_id]);
   }
 

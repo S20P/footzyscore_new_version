@@ -53,12 +53,12 @@ export class CompetitionGroupComponent implements OnInit {
   }
   @Input()
   set SelectedSeason(message) {
-    //console.log("message", message);
+    console.log("message", message);
     if (message !== undefined) {
       this.position = message.season_id;
       this.season = message.season_name;
       this.filterData(message.season_id);
-      //console.log("perent dropdown select position", this.position);
+      console.log("perent dropdown select position", this.position);
     }
   }
 
@@ -75,7 +75,7 @@ export class CompetitionGroupComponent implements OnInit {
     this.Group_collection = [];
 
     this.matchService.GetStandingBySeasonId(season_id).subscribe(record => {
-      //console.log("GetCompetitionStandingById", record);
+      console.log("GetCompetitionStandingById", record);
       var result = record['data'];
       if (result !== undefined) {
 
@@ -84,7 +84,7 @@ export class CompetitionGroupComponent implements OnInit {
           var grouped = [];
           var groups = Object.create(null);
           array.forEach(function (item) {
-            //console.log("item", item);
+            console.log("item", item);
 
             var item_group;
             if (item.name == null) {
@@ -127,7 +127,7 @@ export class CompetitionGroupComponent implements OnInit {
 
           });
           this.Group_collection = grouped;
-          //console.log("Group_collection", grouped);
+          console.log("Group_collection", grouped);
         }
       }
 
@@ -139,7 +139,7 @@ export class CompetitionGroupComponent implements OnInit {
 
 
   onchangefillter_group(pos) {
-    //console.log("filter is change", pos);
+    console.log("filter is change", pos);
     this.selectedpositionofGroup = pos;
   }
 

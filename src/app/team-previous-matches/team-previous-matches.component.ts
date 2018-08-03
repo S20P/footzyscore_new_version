@@ -60,7 +60,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
 
     let team_id = this.team_id;
     this.matchService.GetPreviousMatchesTeamById(team_id).subscribe(record => {
-      //console.log("record by selected Date", record);
+      console.log("record by selected Date", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -70,7 +70,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
 
         array.forEach(function (item) {
 
-          //console.log("todays matches item", item);
+          console.log("todays matches item", item);
 
           var id: any = item['id'];
           var comp_id = item['league_id'];
@@ -179,7 +179,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
           if (aggregate_id !== null) {
 
             var aggregate_data = item['aggregate'].data;
-            //   //console.log("aggregate_data", aggregate_data);
+            //   console.log("aggregate_data", aggregate_data);
             var agg_result = aggregate_data.result;
 
             if (agg_result !== "" || agg_result == null) {
@@ -315,7 +315,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
             "team_d": team_d,
           });
         });
-        //console.log("grouped", grouped);
+        console.log("grouped", grouped);
         this.PreviousMatchesTeam = grouped;
       }
     })
@@ -326,7 +326,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
     this.router.navigate(['/matches', id]);
   }
   CompetitionDetails(comp_id, comp_name, season) {
-    //console.log("going to CompetitionDetails page...", comp_id);
+    console.log("going to CompetitionDetails page...", comp_id);
     this.router.navigate(['/competition', comp_id, { "comp_name": comp_name, "season": season }]);
   }
 

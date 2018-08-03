@@ -6,19 +6,20 @@ import { Observable } from 'rxjs/Observable';
 export class MatchesApiService {
   socket: any;
   SocketPath: any;
-  
+
 
   constructor() {
 
     this.SocketPath = 'https://api.footzyscore.com';
+    //this.SocketPath = 'https://1eb00e12.ngrok.io'; //local socket url it for testing;
+
+
     this.socket = '';
 
     this.socket = io.connect(this.SocketPath, {
       secure: true
     });
-
     console.log("socket", this.socket);
-
   }
 
   public getMessages = () => {

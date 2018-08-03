@@ -49,7 +49,7 @@ export class MatchGroupComponent implements OnInit {
     this.lastDay_Month = this.jsCustomeFun.lastDay_Month();
     this.route.paramMap.subscribe((params: ParamMap) => {
       var comp_id = parseInt(params.get("id"));
-      //console.log("comp_id___using _g", comp_id);
+      console.log("comp_id___using _g", comp_id);
     });
   }
 
@@ -90,42 +90,42 @@ export class MatchGroupComponent implements OnInit {
           if (key.indexOf(com['id']) == -1) {
 
             this.matchService.GetStandingBySeasonId(com['id']).subscribe(data => {
-              //console.log("GetCompetitionStandingById", data);
+              console.log("GetCompetitionStandingById", data);
 
               var result = data['data'];
 
               if (result !== undefined) {
                 for (let group of result) {
                   if (group['comp_group'] == "Group A") {
-                    ////console.log("GroupA_data",group);
+                    console.log("GroupA_data",group);
                     this.GroupA_collection.push(group);
                   }
                   if (group['comp_group'] == "Group B") {
-                    ////console.log("GroupB_data",group);
+                    console.log("GroupB_data",group);
                     this.GroupB_collection.push(group);
                   }
                   if (group['comp_group'] == "Group C") {
-                    ////console.log("GroupC_data",group);
+                    console.log("GroupC_data",group);
                     this.GroupC_collection.push(group);
                   }
                   if (group['comp_group'] == "Group D") {
-                    ////console.log("GroupD_data",group);
+                    console.log("GroupD_data",group);
                     this.GroupD_collection.push(group);
                   }
                   if (group['comp_group'] == "Group E") {
-                    ////console.log("GroupE_data",group);
+                    console.log("GroupE_data",group);
                     this.GroupE_collection.push(group);
                   }
                   if (group['comp_group'] == "Group F") {
-                    ////console.log("GroupF_data",group);
+                    console.log("GroupF_data",group);
                     this.GroupF_collection.push(group);
                   }
                   if (group['comp_group'] == "Group G") {
-                    ////console.log("GroupG_data",group);
+                    console.log("GroupG_data",group);
                     this.GroupG_collection.push(group);
                   }
                   if (group['comp_group'] == "Group H") {
-                    ////console.log("GroupH_data",group);
+                    console.log("GroupH_data",group);
                     this.GroupH_collection.push(group);
                   }
                 }

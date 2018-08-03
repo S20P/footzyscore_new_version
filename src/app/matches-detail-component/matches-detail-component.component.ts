@@ -94,362 +94,431 @@ export class MatchesDetailComponentComponent implements OnInit {
 
 
     GetMatchesByCompetition_ById_live() {
-        // this.match_detailcollection =[];
         let current_matchId;
+        this.liveMatchesApiService.liveMatches().subscribe(record => {
 
-        this.liveMatchesApiService.liveMatches().subscribe(data => {
-
-            //console.log("Live-Matches-data", data);
-
-            var result = data['data'];
-
-            //console.log("live data", data['data']['events']);
-
-            //console.log("Matches is Live", data);
+            var result = record['data'];
+            var result_events = result.events;
             if (result.events !== undefined) {
-
-                this.live_matches = true;
-                var result_events = data['data'].events;
-                //console.log("date is ", result_events.formatted_date);
-
                 current_matchId = result_events['id'];
-
+                var item = result_events;
                 for (let i = 0; i < this.match_detailcollection['length']; i++) {
                     if (this.match_detailcollection[i].id == current_matchId) {
+                        this.localteam_player_lineup = [];
+                        this.visitorteam_player_lineup = [];
+                        this.localteam_player_subs = [];
+                        this.visitorteam_player_subs = [];
+                        this.match_stats_collection = [];
+                        var localTeam_details1: any = item['localTeam'];
+                        var visitorTeam_details1: any = item['visitorTeam'];
+                        console.log("localTeam_details1", localTeam_details1);
+                        var localTeam_details = localTeam_details1.data;
+                        var visitorTeam_details = visitorTeam_details1.data;
 
-                        var status_offon;
-                        status_offon = true;
+                        console.log("localTeam_details", localTeam_details);
+                        var localteam_id: any = localTeam_details['id'];
+                        var visitorteam_id: any = visitorTeam_details['id'];
+                        //time---------------------------------------------------------------------
+                        var time: any = item['time'];
+                        var starting_at: any = time.starting_at;
+                        var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
+                        let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
+                        var status: any = time.status;
+                        var time_formatte = moment(new Date(match_time)).format('hh:mm a');
+                        var live_status: boolean = false;
+                        if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+                            live_status = true;
+                            status = status;
+                        }
+                        else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
+                            live_status = false;
+                            status = status;
+                        }
+                        else if (status == "NS" || status == "") {
+                            live_status = false;
+                            status = time_formatte;
+                        }
+                        else {
+                            live_status = false;
+                            status = status;
+                        }
+                        //end time---------------------------------------------------------------------
+                        //scores----------------------------------------------------------------------
+                        var scores: any = item['scores'];
 
-                        var visitorteam_score;
-                        var localteam_score;
-                        if (result_events.visitorteam_score == '?') {
-                            visitorteam_score = "";
-                            status_offon = false;
-                        } else {
-                            visitorteam_score = result_events.visitorteam_score;
-                            status_offon = true;
+                        var localteam_score: any = scores.localteam_score;
+                        var visitorteam_score: any = scores.visitorteam_score;
+                        var score_status_flage: boolean = true;
+                        if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
+                            live_status = false;
+                            score_status_flage = false;
+                        }
+                        if (localteam_score >= '0' || visitorteam_score >= '0') {
+                            score_status_flage = true;
+                            if (status == time_formatte) {
+                                score_status_flage = false;
+                            }
                         }
 
-                        if (result_events.localteam_score == '?') {
-                            localteam_score = "";
-                            status_offon = false;
-                        } else {
-                            localteam_score = result_events.localteam_score;
-                            status_offon = true;
-                        }
+                        //end scores------------------------------------------
 
-                        this.match_detailcollection[i]['status'] = result_events.status;
+                        console.log("live data");
+                        console.log("item", item);
+                        console.log("start======================================================");
+                        console.log("current_matchId", current_matchId);
+                        console.log("status", status);
+                        console.log("live_status", live_status);
+                        console.log("localteam_score", localteam_score);
+                        console.log("visitorteam_score", visitorteam_score);
+                        console.log("score_status_flage", score_status_flage);
+                        console.log("start Date ", date_time);
+
+                        console.log("end======================================================");
+
+                        this.match_detailcollection[i]['id'] = item.id;
+                        this.match_detailcollection[i]['status'] = status;
+                        this.match_detailcollection[i]['live_status'] = live_status;
                         this.match_detailcollection[i]['localteam_score'] = localteam_score;
                         this.match_detailcollection[i]['visitorteam_score'] = visitorteam_score;
-                        this.match_detailcollection[i]['id'] = result_events.id;
-                        this.match_detailcollection[i]['live_status'] = status_offon;
+                        this.match_detailcollection[i]['score_status_flage'] = score_status_flage;
 
-                        let events_data = result_events['events'];
-                        for (var e = 0; e < events_data['length']; e++) {
+                        //  console.log("start live events======================================================");
 
-                            let result_pipe_l = events_data[e].result.replace(']', '');
-                            let result_pipe = result_pipe_l.replace('[', '');
+                        var events_data: any = item['events'].data;
 
-                            let ic_event_penalty_scored = false;
-                            let ic_event_own_goal = false;
-                            let ic_event_goal = false;
-                            var type = events_data[e].type;
-
-                            if (type == "goal") {
-
-                                let player = events_data[e].player;
-                                if (player.includes("(pen.)")) {
-                                    ic_event_penalty_scored = true;
+                        if (events_data !== undefined || events_data['length'] !== 0 || events_data !== null) {
+                            for (var e = 0; e < events_data['length']; e++) {
+                                var team;
+                                if (events_data[e].team_id == localteam_id) {
+                                    team = "localteam";
                                 }
-                                else if (player.includes("(o.g.)")) {
-                                    ic_event_own_goal = true;
+                                if (events_data[e].team_id == visitorteam_id) {
+                                    team = "visitorteam";
                                 }
-                                else {
+
+                                var event_result: any;
+                                if (events_data[e].result !== null) {
+                                    event_result = events_data[e].result
+                                }
+
+                                let ic_event_penalty = false;
+                                let ic_event_own_goal = false;
+                                let ic_event_goal = false;
+                                let ic_event_yellow_card = false;
+                                let ic_event_substitution = false;
+                                let ic_event_yellowred = false;
+                                let ic_event_missed_penalty = false;
+                                let ic_event_pen_shootout_goal = false;
+                                let ic_event_pen_shootout_miss = false;
+                                let ic_event_redcard = false;
+
+                                var type: any = events_data[e].type;
+
+                                if (type == "goal") {
                                     ic_event_goal = true;
                                 }
+                                if (type == "penalty") {
+                                    ic_event_penalty = true;
+                                }
+                                if (type == "missed_penalty") {
+                                    ic_event_missed_penalty = true;
+                                }
+                                if (type == "own-goal") {
+                                    ic_event_own_goal = true;
+                                }
+                                if (type == "substitution") {
+                                    ic_event_substitution = true;
+                                }
+                                if (type == "yellowcard") {
+                                    ic_event_yellow_card = true;
+                                }
+                                if (type == "yellowred") {
+                                    ic_event_yellowred = true;
+                                }
+                                if (type == "redcard") {
+                                    ic_event_redcard = true;
+                                }
+                                if (type == "pen_shootout_goal") {
+                                    ic_event_pen_shootout_goal = true;
+                                }
+                                if (type == "pen_shootout_miss") {
+                                    ic_event_pen_shootout_miss = true;
+                                }
+                                this.events_collection[e]['id'] = events_data[e].id;
+                                this.events_collection[e]['type'] = events_data[e].type;
+                                this.events_collection[e]['minute'] = events_data[e].minute;
+                                this.events_collection[e]['extra_min'] = events_data[e].extra_min;
+                                this.events_collection[e]['team'] = team;
+                                this.events_collection[e]['assist'] = events_data[e].related_player_name;
+                                this.events_collection[e]['assist_id'] = events_data[e].related_player_id;
+                                this.events_collection[e]['player'] = events_data[e].player_name;
+                                this.events_collection[e]['player_id'] = events_data[e].player_id;
+                                this.events_collection[e]['result'] = event_result;
+                                this.events_collection[e]["ic_event_goal"] = ic_event_goal,
+                                    this.events_collection[e]["ic_event_penalty"] = ic_event_penalty,
+                                    this.events_collection[e]["ic_event_missed_penalty"] = ic_event_missed_penalty,
+                                    this.events_collection[e]["ic_event_own_goal"] = ic_event_own_goal,
+                                    this.events_collection[e]["ic_event_substitution"] = ic_event_substitution,
+                                    this.events_collection[e]["ic_event_yellow_card"] = ic_event_yellow_card,
+                                    this.events_collection[e]["ic_event_yellowred"] = ic_event_yellowred,
+                                    this.events_collection[e]["ic_event_redcard"] = ic_event_redcard,
+                                    this.events_collection[e]["ic_event_pen_shootout_goal"] = ic_event_pen_shootout_goal,
+                                    this.events_collection[e]["ic_event_pen_shootout_miss"] = ic_event_pen_shootout_miss
+
 
                             }
-
-                            this.events_collection[e]['id'] = events_data[e].id;
-                            this.events_collection[e]['type'] = events_data[e].type;
-                            this.events_collection[e]['minute'] = events_data[e].minute;
-                            this.events_collection[e]['extra_min'] = events_data[e].extra_min;
-                            this.events_collection[e]['team'] = events_data[e].team;
-                            this.events_collection[e]['assist'] = events_data[e].assist;
-                            this.events_collection[e]['assist_id'] = events_data[e].assist_id;
-                            this.events_collection[e]['player'] = events_data[e].player;
-                            this.events_collection[e]['player_id'] = events_data[e].player_id;
-                            this.events_collection[e]['result'] = events_data[e].result;
-                            this.events_collection[e]['ic_event_penalty_scored'] = events_data[e].ic_event_penalty_scored;
-                            this.events_collection[e]['ic_event_own_goal'] = events_data[e].ic_event_own_goal;
-                            this.events_collection[e]['ic_event_goal'] = events_data[e].ic_event_goal;
-
-
                         }
+                        //console.log("end live events======================================================");
+
+
+
+
+                        //match_stats---------------------------------------------------------------
+
+                        let match_stats = item['stats'].data;
+                        var match_stats_lt = [];
+                        var match_stats_vt = [];
+                        if (match_stats !== undefined || match_stats['length'] !== 0 || match_stats !== null) {
+                            for (var st = 0; st < match_stats['length']; st++) {
+
+                                var corners: any = match_stats[st].corners;
+                                var offsides: any = match_stats[st].offsides;
+                                var fouls: any = match_stats[st].fouls;
+                                var possessiontime: any = match_stats[st].possessiontime;
+                                var redcards: any = match_stats[st].redcards;
+                                var saves: any = match_stats[st].saves;
+                                var yellowcards: any = match_stats[st].yellowcards;
+
+                                var shots = match_stats[st].shots;
+                                var ongoal: any = shots.ongoal;
+                                var total: any = shots.total;
+
+                                if (corners == null) {
+                                    corners = 0;
+                                }
+                                if (fouls == null) {
+                                    fouls = 0;
+                                }
+                                if (offsides == null) {
+                                    offsides = 0;
+                                }
+                                if (possessiontime == null) {
+                                    possessiontime = 0;
+                                }
+                                if (redcards == null) {
+                                    redcards = 0;
+                                } if (saves == null) {
+                                    saves = 0;
+                                }
+                                if (ongoal == null) {
+                                    ongoal = 0;
+                                }
+                                if (total == null) {
+                                    total = 0;
+                                }
+                                if (yellowcards == null) {
+                                    yellowcards = 0;
+                                }
+
+                                if (match_stats[st].team_id == localteam_id) {
+                                    match_stats_lt.push({
+                                        "lt_corners": corners,
+                                        "lt_fouls": fouls,
+                                        "lt_offsides": offsides,
+                                        "lt_possesiontime": possessiontime,
+                                        "lt_redcards": redcards,
+                                        "lt_saves": saves,
+                                        "lt_shots_ongoal": ongoal,
+                                        "lt_shots_total": total,
+                                        "lt_yellowcards": yellowcards,
+                                    });
+                                }
+                                if (match_stats[st].team_id == visitorteam_id) {
+                                    match_stats_vt.push({
+                                        "vt_corners": corners,
+                                        "vt_fouls": fouls,
+                                        "vt_offsides": offsides,
+                                        "vt_possesiontime": possessiontime,
+                                        "vt_redcards": redcards,
+                                        "vt_saves": saves,
+                                        "vt_shots_ongoal": ongoal,
+                                        "vt_shots_total": total,
+                                        "vt_yellowcards": yellowcards
+                                    });
+                                }
+                            }
+
+                            console.log("l-status", match_stats_lt);
+                            console.log("v-status", match_stats_vt);
+                            if (match_stats_vt['length'] > 0 || match_stats_vt['length'] > 0) {
+                                this.match_stats_collection.push(Object.assign(match_stats_lt[0], match_stats_vt[0]));
+                            }
+                        }
+                        //end match_stats----------------------------------------------------------
+
+                        // lineup------------------------------------------------------------------
+                        let lineup = item['lineup'].data;
+                        if (lineup !== undefined || lineup['length'] !== 0 || lineup !== null) {
+
+                            for (var lp = 0; lp < lineup['length']; lp++) {
+                                // localteam_lineup-------------------------------------------------------------
+                                if (lineup[lp].team_id == localteam_id) {
+                                    this.localteam_player_lineup.push({
+                                        "id": lineup[lp].player_id,
+                                        "name": lineup[lp].player_name,
+                                        "number": lineup[lp].number,
+                                        "pos": lineup[lp].position,
+                                    });
+                                }
+                                //end localteam_lineup--------------------------------------------------------
+
+                                //visitorteam_lineup-----------------------------------------------------------
+                                if (lineup[lp].team_id == visitorteam_id) {
+                                    this.visitorteam_player_lineup.push({
+                                        "id": lineup[lp].player_id,
+                                        "name": lineup[lp].player_name,
+                                        "number": lineup[lp].number,
+                                        "pos": lineup[lp].position,
+                                    });
+                                }
+                                //end visitorteam_lineup---------------------------------------------------------
+                            }
+                        }
+                        //Substitutes(bench)-------------------------------------------------------------
+
+                        let Substitutes = item['bench'].data;
+                        if (Substitutes !== undefined || Substitutes['length'] !== 0 || Substitutes !== null) {
+
+                            for (var lp = 0; lp < Substitutes['length']; lp++) {
+                                // localteam_lineup------------------------------------------------------------------------------------
+                                if (Substitutes[lp].team_id == localteam_id) {
+                                    this.localteam_player_subs.push({
+                                        "id": Substitutes[lp].player_id,
+                                        "name": Substitutes[lp].player_name,
+                                        "number": Substitutes[lp].number,
+                                        "pos": Substitutes[lp].position,
+                                    });
+                                }
+                                //end localteam_Substitutes--------------------------------------------
+
+                                //visitorteam_Substitutes----------------------------------------------
+                                if (Substitutes[lp].team_id == visitorteam_id) {
+                                    this.visitorteam_player_subs.push({
+                                        "id": Substitutes[lp].player_id,
+                                        "name": Substitutes[lp].player_name,
+                                        "number": Substitutes[lp].number,
+                                        "pos": Substitutes[lp].position,
+                                    });
+                                }
+                                //end visitorteam_Substitutes---------------------------------------------
+                            }
+                        }
+                        //end Substitutes(bench)-----------------------------------------------------
                     }
                 }
             }
         });
     }
 
-
-
     GetCommentariesByMatchId_live() {
-
-        this.liveMatchesApiService.liveMatches().subscribe(data => {
-
-            //console.log("Live-Matches-data", data);
-
-            var result = data['data'];
-
-            //console.log("Matches is Live comments", data);
+        this.liveMatchesApiService.liveMatches().subscribe(record => {
+            console.log("record", record);
+            var result = record['data'];
+            console.log("Matches is Live comments", result);
             if (result.commentaries !== undefined) {
-
-                var result_comments = data['data'].commentaries;
-
-                if (this.id == result_comments['match_id']) {
-                    this.localteam_player_lineup = [];
-                    this.visitorteam_player_lineup = [];
-                    this.localteam_player_subs = [];
-                    this.visitorteam_player_subs = [];
-                    this.match_stats_collection = [];
+                var result_comments = result.commentaries;
+                if (this.id == result_comments['fixture_id']) {
                     this.Commentary_collection = [];
-
-                    let lineup = result_comments['lineup'];
-                    let subs = result_comments['subs'];
-                    let comments = result_comments['comments'];
-                    //    localteam_lineup------------------------------------------------------------------------------------
-                    let localteam_lineup = lineup['localteam'];
-
-                    for (var lt = 0; lt < localteam_lineup['length']; lt++) {
-
-                        // var localteamLinePlayer_url = this.player_baseUrl + localteam_lineup[lt].id + ".jpg";
-
-
-
-                        this.localteam_player_lineup.push({
-                            "id": localteam_lineup[lt].id,
-                            "name": localteam_lineup[lt].name,
-                            "number": localteam_lineup[lt].number,
-                            "pos": localteam_lineup[lt].pos,
-                            // "picture": localteamLinePlayer_url,
-                        });
-                    }
-                    //   end localteam_lineup-----------------------------------------------------------------------------------
-
-
-                    //    localteam_subs----------------------------------------------------------------------------------------
-
-                    let localteam_subs = subs['localteam'];
-
-                    for (var lts = 0; lts < localteam_subs['length']; lts++) {
-                        //var localteamSubsPayer_url = this.player_baseUrl + localteam_subs[lts].id + ".jpg";
-                        // "picture": localteamSubsPayer_url,
-
-
-                        this.localteam_player_subs.push({
-                            "id": localteam_subs[lts].id,
-                            "name": localteam_subs[lts].name,
-                            "number": localteam_subs[lts].number,
-                            "pos": localteam_subs[lts].pos,
-
-
-
-                        });
-                    }
-                    //  end  localteam_subs------------------------------------------------------------------------------------
-
-
-
-                    //    visitorteam_lineup------------------------------------------------------------------------------------
-
-                    let visitorteam_lineup = lineup['visitorteam'];
-
-                    for (var vt = 0; vt < visitorteam_lineup['length']; vt++) {
-
-                        //var visitorteamLinePlayer_url = this.player_baseUrl + visitorteam_lineup[vt].id + ".jpg";
-                        //"picture": visitorteamLinePlayer_url,
-
-                        this.visitorteam_player_lineup.push({
-
-                            "id": visitorteam_lineup[vt].id,
-                            "name": visitorteam_lineup[vt].name,
-                            "number": visitorteam_lineup[vt].number,
-                            "pos": visitorteam_lineup[vt].pos,
-
-                        });
-                    }
-                    //  end visitorteam_lineup--------------------------------------------------------------------------------
-
-                    //    visitorteam_subs------------------------------------------------------------------------------------
-
-                    let visitorteam_subs = subs['visitorteam'];
-
-                    for (var vts = 0; vts < visitorteam_subs['length']; vts++) {
-
-                        // var visitorteamSubsPayer_url = this.player_baseUrl + visitorteam_subs[vts].id + ".jpg";
-                        //"picture": visitorteamSubsPayer_url,
-
-
-                        this.visitorteam_player_subs.push({
-                            "id": visitorteam_subs[vts].id,
-                            "name": visitorteam_subs[vts].name,
-                            "number": visitorteam_subs[vts].number,
-                            "pos": visitorteam_subs[vts].pos,
-                        });
-                    }
-                    //  end visitorteam_subs------------------------------------------------------------------------------------
-
-
-
-
-                    //  comments---------------------------------------------------------------------------------------
-
-                    for (var c = 0; c < comments['length']; c++) {
-
-
-                        let GoalType = false;
-                        let isAssist = false;
-                        let isSubstitution = false;
-                        let downSubstitution = false;
-                        let yellowcard = false;
-                        let redcard = false;
-
-                        let UpName = "";
-                        let DownName = "";
-                        let comment_icon = "";
-
-                        let comment = comments[c].comment;
-                        let important = comments[c].important;
-                        let isgoal = comments[c].isgoal;
-                        let minute = comments[c].minute
-
-                        if (important == '1' && isgoal == '1') {
-
-                            GoalType = true;
-                            comment_icon = "assets/img/ic_goal.png";
-
-                            let Substring1 = comment.split(".", 2);
-                            let Substring2 = Substring1[1].split("-", 2);
-                            UpName = Substring2[0];
-
-                            //check 'Assist' is or not in given comment 
-                            if (comment.includes("Assist")) {
-                                isAssist = true;
-                                let SubstringAssist = comment.split("Assist -", 2);
-                                let assistName = SubstringAssist[1].split("with", 2);
-                                DownName = assistName[0];
+                    //  comments-----------------------------------------------------------------
+                    let comments = result_comments['comments'].data;
+                    if (comments !== undefined || comments['length'] !== 0 || comments !== null) {
+                        for (var c = 0; c < comments['length']; c++) {
+                            let GoalType = false;
+                            let isAssist = false;
+                            let isSubstitution = false;
+                            let downSubstitution = false;
+                            let yellowcard = false;
+                            let redcard = false;
+                            let UpName = "";
+                            let DownName = "";
+                            let comment_icon = "";
+                            let comment = comments[c].comment;
+                            let important = comments[c].important;
+                            let goal = comments[c].goal;
+                            let minute = comments[c].minute;
+                            if (important == 'false' && goal == 'false') {
+                                GoalType = true;
+                                comment_icon = "assets/img/ic_event_goal.png";
+                                let Substring1 = comment.split(".", 2);
+                                let Substring2 = Substring1[1].split("-", 2);
+                                UpName = Substring2[0];
+                                //check 'Assist' is or not in given comment 
+                                if (comment.includes("Assist")) {
+                                    isAssist = true;
+                                    let SubstringAssist = comment.split("Assist -", 2);
+                                    let assistName = SubstringAssist[1].split("with", 2);
+                                    DownName = assistName[0];
+                                }
                             }
+                            else {
+                                //check 'Substitution' is or not in given comment
+                                if (comment.includes("Substitution")) {
+
+                                    isSubstitution = true;
+                                    comment_icon = "assets/img/ic_event_substitution.png";
+
+                                    console.log("Substitution is found.");
+
+                                    let String1 = comment.split(".", 2);
+                                    let String2 = String1[1].split("for", 2);
+                                    let String3 = String2[1].split("-", 2);
+
+                                    UpName = String2[0];
+                                    DownName = String3[0];
+
+                                }
+                                if (comment.includes("yellow card")) {
+
+                                    yellowcard = true;
+                                    comment_icon = "assets/img/ic_event_yellow_card.png";
+
+                                    let String1_yc = comment.split("-", 2);
+
+                                    UpName = String1_yc[0];
+                                    DownName = "yellow card";
+
+                                }
+                                if (comment.includes("red card")) {
+
+                                    redcard = true;
+                                    comment_icon = "assets/img/ic_event_redcard.png";
+
+                                    let String1_rc = comment.split("-", 2);
+
+                                    UpName = String1_rc[0];
+                                    DownName = "red card";
+                                }
+                            }
+
+                            this.Commentary_collection.push({
+                                "GoalType": GoalType,
+                                "isAssist": isAssist,
+                                "isSubstitution": isSubstitution,
+                                "downSubstitution": downSubstitution,
+                                "yellowcard": yellowcard,
+                                "redcard": redcard,
+                                "upName": UpName,
+                                "downName": DownName,
+                                "comment": comment,
+                                "minute": minute,
+                                "icon": comment_icon
+                            });
                         }
-                        else {
-                            //check 'Substitution' is or not in given comment
-                            if (comment.includes("Substitution")) {
-
-                                isSubstitution = true;
-                                comment_icon = "assets/img/ic_sub_on_off_both2.png";
-
-
-                                //console.log("Substitution is found.");
-
-                                let String1 = comment.split(".", 2);
-                                let String2 = String1[1].split("for", 2);
-                                let String3 = String2[1].split("-", 2);
-
-                                UpName = String2[0];
-                                DownName = String3[0];
-
-                            }
-                            if (comment.includes("yellow card")) {
-
-                                yellowcard = true;
-                                comment_icon = "assets/img/ic_yellow_card.png";
-
-                                let String1_yc = comment.split("-", 2);
-
-                                UpName = String1_yc[0];
-                                DownName = "yellow card";
-
-                            }
-                            if (comment.includes("red card")) {
-
-                                redcard = true;
-                                comment_icon = "assets/img/ic_red_card.png";
-
-                                let String1_rc = comment.split("-", 2);
-
-                                UpName = String1_rc[0];
-                                DownName = "red card";
-
-                            }
-
-
-
-                        }
-
-
-                        this.Commentary_collection.push({
-                            "GoalType": GoalType,
-                            "isAssist": isAssist,
-                            "isSubstitution": isSubstitution,
-                            "downSubstitution": downSubstitution,
-                            "yellowcard": yellowcard,
-                            "redcard": redcard,
-                            "upName": UpName,
-                            "downName": DownName,
-                            "comment": comment,
-                            "minute": minute,
-                            "icon": comment_icon
-                        });
-
-
-
-
                     }
-
-                    //  end comments------------------------------------------------------------------------------------
-
-
-                    //    match_stats------------------------------------------------------------------------------------
-
-                    let match_stats = result_comments['match_stats'];
-
-                    let localteam_match_stats = match_stats['localteam'];
-                    let visitorteam_match_stats = match_stats['visitorteam'];
-
-                    //   lt for localteam && vt for visitorteam
-
-                    for (var st = 0; st < localteam_match_stats['length']; st++) {
-                        this.match_stats_collection.push({
-                            "lt_corners": localteam_match_stats[st].corners,
-                            "lt_fouls": localteam_match_stats[st].fouls,
-                            "lt_offsides": localteam_match_stats[st].offsides,
-                            "lt_possesiontime": localteam_match_stats[st].possesiontime,
-                            "lt_redcards": localteam_match_stats[st].redcards,
-                            "lt_saves": localteam_match_stats[st].saves,
-                            "lt_shots_ongoal": localteam_match_stats[st].shots_ongoal,
-                            "lt_shots_total": localteam_match_stats[st].shots_total,
-                            "lt_yellowcards": localteam_match_stats[st].yellowcards,
-                            "vt_corners": visitorteam_match_stats[st].corners,
-                            "vt_fouls": visitorteam_match_stats[st].fouls,
-                            "vt_offsides": visitorteam_match_stats[st].offsides,
-                            "vt_possesiontime": visitorteam_match_stats[st].possesiontime,
-                            "vt_redcards": visitorteam_match_stats[st].redcards,
-                            "vt_saves": visitorteam_match_stats[st].saves,
-                            "vt_shots_ongoal": visitorteam_match_stats[st].shots_ongoal,
-                            "vt_shots_total": visitorteam_match_stats[st].shots_total,
-                            "vt_yellowcards": visitorteam_match_stats[st].yellowcards
-                        });
-
-                    }
-                    //  end  match_stats------------------------------------------------------------------------------------
+                    // end comments------------------------------------------------------------
                 }
-
             }
-
-
         });
-
-
     }
 
 
@@ -465,7 +534,7 @@ export class MatchesDetailComponentComponent implements OnInit {
         this.match_stats_collection = [];
         this.Commentary_collection = [];
         this.matchService.GetMatchDeatilByMatchId(match_id).subscribe(data => {
-            //console.log("GetMatchDeatilByMatchId", data);
+            console.log("GetMatchDeatilByMatchId", data);
             // var result = data['data'];
 
             var res: any = data['data'];
@@ -603,12 +672,11 @@ export class MatchesDetailComponentComponent implements OnInit {
 
                     });
 
-                //console.log("NEW ARRAY ------", this.match_detailcollection);
+                console.log("NEW ARRAY ------", this.match_detailcollection);
 
                 //  match_Events-------------------------------------------------------------
 
                 var events_data: any = result['events'].data;
-
 
                 if (events_data !== undefined || events_data['length'] !== 0 || events_data !== null) {
                     for (var e = 0; e < events_data['length']; e++) {
@@ -716,7 +784,32 @@ export class MatchesDetailComponentComponent implements OnInit {
                             var ongoal: any = shots.ongoal;
                             var total: any = shots.total;
 
-
+                            if (corners == null) {
+                                corners = 0;
+                            }
+                            if (fouls == null) {
+                                fouls = 0;
+                            }
+                            if (offsides == null) {
+                                offsides = 0;
+                            }
+                            if (possessiontime == null) {
+                                possessiontime = 0;
+                            }
+                            if (redcards == null) {
+                                redcards = 0;
+                            } if (saves == null) {
+                                saves = 0;
+                            }
+                            if (ongoal == null) {
+                                ongoal = 0;
+                            }
+                            if (total == null) {
+                                total = 0;
+                            }
+                            if (yellowcards == null) {
+                                yellowcards = 0;
+                            }
 
                             if (match_stats[st].team_id == localteam_id) {
                                 match_stats_lt.push({
@@ -864,7 +957,7 @@ export class MatchesDetailComponentComponent implements OnInit {
                                             isSubstitution = true;
                                             comment_icon = "assets/img/ic_event_substitution.png";
 
-                                            //console.log("Substitution is found.");
+                                            console.log("Substitution is found.");
 
                                             let String1 = comment.split(".", 2);
                                             let String2 = String1[1].split("for", 2);

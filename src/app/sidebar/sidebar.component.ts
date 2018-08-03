@@ -69,39 +69,144 @@ export class SidebarComponent implements OnInit {
 
 
   GetMatchesByCompetition_ById_live() {
+
     let current_matchId;
-    this.liveMatchesApiService.liveMatches().subscribe(data => {
+    this.liveMatchesApiService.liveMatches().subscribe(record => {
+      // console.log("Live-Matches-data", data);
+      var result = record['data'];
+      console.log("live data", result['events']);
+      var result_events = result.events;
+      if (result_events !== undefined) {
 
-      //console.log("Live-Matches-data", data);
-      var result = data['data'];
-      //console.log("live data", data['data']['events']);
-      //console.log("Matches is Live", data);
-      if (result.events !== undefined) {
-        var result_events = data['data'].events;
         current_matchId = result_events['id'];
-        //   this.live_rcord.push(result_events);
         var item = result_events;
-
         for (let j = 0; j < this.match_ground_details['length']; j++) {
-          //console.log("**", this.match_ground_details[j]);
+          console.log("**", this.match_ground_details[j]);
           var group = this.match_ground_details[j].group;
 
           for (let i = 0; i < group['length']; i++) {
             if (group[i].id == current_matchId) {
-              //console.log("group[i].id", group[i].id);
-              //console.log("current_matchId", current_matchId);
-              var status_offon;
-              status_offon = true;
-              group[i]['status'] = item.status;
-              group[i]['localteam_score'] = item.localteam_score;
-              group[i]['visitorteam_score'] = item.visitorteam_score;
+
+
+              //time---------------------------------------------------------------------
+              var time: any = item['time'];
+              var starting_at: any = time.starting_at;
+              var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
+              let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
+              var status: any = time.status;
+              var time_formatte = moment(new Date(match_time)).format('hh:mm a');
+              var live_status: boolean = false;
+              if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+                live_status = true;
+                status = status;
+              }
+              else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
+                live_status = false;
+                status = status;
+              }
+              else if (status == "NS" || status == "") {
+                live_status = false;
+                status = time_formatte;
+              }
+              else {
+                live_status = false;
+                status = status;
+              }
+              //end time---------------------------------------------------------------------
+              //scores----------------------------------------------------------------------
+              var scores: any = item['scores'];
+
+              var localteam_score: any = scores.localteam_score;
+              var visitorteam_score: any = scores.visitorteam_score;
+              var score_status_flage: boolean = true;
+              if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
+                live_status = false;
+                score_status_flage = false;
+              }
+              if (localteam_score >= '0' || visitorteam_score >= '0') {
+                score_status_flage = true;
+                if (status == time_formatte) {
+                  score_status_flage = false;
+                }
+              }
+
+              var penalty_visitor: any = scores.visitorteam_pen_score;
+              var penalty_local: any = scores.localteam_pen_score;
+
+              //Which team is high scores------------------------------------------
+              //*apply class for text-bold=>font-wight:bold if team run is highest
+
+              var ltScore_highest: boolean = false;
+              var vtScore_highest: boolean = false;
+
+              if (localteam_score == 0) {
+                ltScore_highest = false;
+              }
+              if (visitorteam_score == 0) {
+                vtScore_highest = false;
+              }
+              if (localteam_score >= visitorteam_score) {
+                ltScore_highest = true;
+              }
+              if (visitorteam_score >= localteam_score) {
+                vtScore_highest = true;
+              }
+
+              //end scores------------------------------------------
+
+
+
+              //PEN (0-0)------------------------------------------------
+              var penalty_localvist: boolean = false;
+              if (penalty_local == '0' && penalty_visitor == '0') {
+                penalty_localvist = false;
+              }
+              else if (penalty_local !== "" && penalty_local !== null && penalty_local !== undefined && penalty_visitor !== "" && penalty_visitor !== null && penalty_visitor !== undefined) {
+                penalty_localvist = true;
+              }
+              else {
+                penalty_localvist = false;
+              }
+              //end PEN (0-0)--------------------------------------------
+              console.log("live data");
+              console.log("group[i].id", group[i].id);
+              console.log("item", item);
+              console.log("start======================================================");
+              console.log("current_matchId", current_matchId);
+              console.log("status", status);
+              console.log("live_status", live_status);
+              console.log("localteam_score", localteam_score);
+              console.log("visitorteam_score", visitorteam_score);
+              console.log("score_status_flage", score_status_flage);
+              console.log("ltScore_highest", ltScore_highest);
+              console.log("vtScore_highest", vtScore_highest);
+              console.log("penalty_local", penalty_local);
+              console.log("penalty_visitor", penalty_visitor);
+              console.log("start Date ", date_time);
+
+              console.log("end======================================================");
+
               group[i]['id'] = item.id;
-              group[i]['live_status'] = status_offon;
+              group[i]['status'] = status;
+              group[i]['live_status'] = live_status;
+              group[i]['localteam_score'] = localteam_score;
+              group[i]['visitorteam_score'] = visitorteam_score;
+              group[i]['score_status_flage'] = score_status_flage;
+              group[i]['ltScore_highest'] = ltScore_highest;
+              group[i]['vtScore_highest'] = vtScore_highest;
+              //.pen
+              group[i]['penalty_local'] = penalty_local;
+              group[i]['penalty_visitor'] = penalty_visitor;
+              group[i]['penalty_localvist'] = penalty_localvist;
+
             }
           }
         }
       }
     });
+
+    console.log("match_ground_details", this.match_ground_details);
+
   }
 
 

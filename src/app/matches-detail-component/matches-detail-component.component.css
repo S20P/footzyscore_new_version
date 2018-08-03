@@ -268,7 +268,7 @@ img.lineup_title_img {
         margin-top: 15px;
     }
     #timeline .timeline-movement .timeline-item {
-        padding: 10px 0px;
+        padding: 0px 0px;
     }
 }
 
@@ -551,7 +551,7 @@ img.lineup_title_img {
 }
 
 #timeline .timeline-movement .timeline-item {
-    padding: 10px 5px;
+    padding: 0px 5px;
 }
 
 #timeline .timeline-movement .timeline-item .timeline-panel {

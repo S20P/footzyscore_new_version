@@ -13,7 +13,7 @@
                     </thead>
                 </table>
                 <div *ngIf="this.player_collection.length > 0">
-                    <div *ngFor="let item of player_collection|orderBy:'type';let i = index">
+                    <div *ngFor="let item of player_collection;let i = index">
                         <div class="team_player">
                             <h4>{{item.type}}</h4>
                         </div>

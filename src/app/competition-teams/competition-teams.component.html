@@ -13,7 +13,7 @@
                     </thead>
                 </table>
                 <div *ngIf="this.teams_collection.length > 0">
-                    <div *ngFor="let item of teams_collection|orderBy:'type';let i = index">
+                    <div *ngFor="let item of teams_collection;let i = index">
                         <div class="team_player">
                             <h4>{{item.type}}</h4>
                         </div>
@@ -35,6 +35,5 @@
                 <p class="col-md-12 text-left">No Teams Found</p>
             </div>
         </div>
-
     </div>
 </div>

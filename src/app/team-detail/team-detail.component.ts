@@ -51,7 +51,7 @@ export class TeamDetailComponent implements OnInit {
 
   GetTeamDeatilsById(team_id) {
     this.matchService.GetTeamDeatilsById(team_id).subscribe(record => {
-      //console.log("Teams_Details", record);
+      console.log("Teams_Details", record);
       var result: any = record['data'];
 
       var self = this;

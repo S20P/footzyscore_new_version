@@ -57,22 +57,23 @@ export class PlayerDetailComponent implements OnInit {
           var player_id: any = player['id'];
           //age *Find age beetwen two dates-------------------
           var age: any;
-          var birthdate: number = player['birthdate'];
+          var birthdate: any = player['birthdate'];
 
           var birthdate_formatte;
 
-          var a: any = moment(new Date());
-          var b: any = moment(new Date(birthdate));
-          var check_date: boolean = b.isValid();
-          if (check_date == true) {
-            age = a.diff(b, 'years');
-            birthdate_formatte = moment(new Date(birthdate)).format('MMM DD, YYYY');
-
-          } else {
+          if (birthdate == null) {
+            birthdate = "-";
             age = "-";
             birthdate_formatte = "-";
-
+          } else {
+            var a = moment(new Date());
+            var b = moment(birthdate, 'DD/MM/YYYY', true).format();
+            console.log("b", b);
+            birthdate_formatte = moment(birthdate, 'DD/MM/YYYY', true).format('MMM DD, YYYY');
+            var age;
+            age = a.diff(b, 'years');
           }
+
           //end age------------------------------------------
           var birthcountry: any = player['birthcountry'];
           var birthplace = player['birthplace'];
@@ -167,7 +168,7 @@ export class PlayerDetailComponent implements OnInit {
         }
       }
     });
-    //console.log("Player collection", this.player_collection)
+    console.log("Player collection", this.player_collection)
 
   }
 

@@ -48,11 +48,11 @@ export class CompetitionPlayerComponent implements OnInit {
   }
   GetAllTopPlayerByLeagueId(season_id) {
     var season_id = season_id;
-
+    console.log("season_id", season_id);
     var self = this;
     this.player_collection = [];
     this.matchService.GetAllTopPlayerByLeagueId(this.comp_id, season_id).subscribe(data => {
-      //console.log("GetAllTopTeamByCompId", data);
+      console.log("GetAllTopTeamByCompId", data);
       var result = data['data'];
 
       if (result !== undefined) {
@@ -62,6 +62,30 @@ export class CompetitionPlayerComponent implements OnInit {
           grouped = [];
         array.forEach(function (item) {
           var type = item.type;
+          if (type == "goal") {
+            type = "Goal";
+          }
+          else if (type == "yellowcard") {
+            type = "Yellowcard";
+          }
+          else if (type == "redcard") {
+            type = "Redcard";
+          }
+          else if (type == "yellowred") {
+            type = "Yellowred";
+          }
+          else if (type == "missed_penalty") {
+            type = "Penalty missed";
+          }
+          else if (type == "substitution") {
+            type = "Substitution";
+          }
+          else if (type == "own-goal") {
+            type = "Own goal";
+          }
+          else {
+            type = item.type;
+          }
           var detailsOfTeam = item.data;
 
           if (!groups[type]) {
@@ -84,13 +108,25 @@ export class CompetitionPlayerComponent implements OnInit {
             });
           }
         });
+        var orderedKeys = ["Goal", "Yellowcard", "Redcard", "Yellowred", "Penalty missed", "Substitution", "Own goal"]; //Array of preordered keys
+        var sortedArrayOfMaps = [];
+        orderedKeys.map(function (key) {
+          for (let row of grouped) {
+            if (key == row.type) {
+              console.log("key", key);
+              console.log("match-key is", row.type);
+              sortedArrayOfMaps.push({ type: key, group: row.group });
+            }
+          }
+        });
+        console.log("sortedArrayOfMaps_player", sortedArrayOfMaps);
+        this.player_collection = sortedArrayOfMaps;
 
-        this.player_collection = grouped;
-        //console.log("player_group", grouped);
+        console.log("player_group", grouped);
       }
     });
 
-    //console.log("All Tops Player are", this.player_collection);
+    console.log("All Tops Player are", this.player_collection);
   }
   Playerdetails(player_id) {
     this.router.navigate(['/player', player_id]);
