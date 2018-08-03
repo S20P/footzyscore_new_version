@@ -432,6 +432,7 @@ export class MatchesDetailComponentComponent implements OnInit {
                     //  comments-----------------------------------------------------------------
                     let comments = result_comments['comments'].data;
                     if (comments !== undefined || comments['length'] !== 0 || comments !== null) {
+
                         for (var c = 0; c < comments['length']; c++) {
                             let GoalType = false;
                             let isAssist = false;
@@ -439,30 +440,54 @@ export class MatchesDetailComponentComponent implements OnInit {
                             let downSubstitution = false;
                             let yellowcard = false;
                             let redcard = false;
+
                             let UpName = "";
                             let DownName = "";
                             let comment_icon = "";
+
                             let comment = comments[c].comment;
                             let important = comments[c].important;
                             let goal = comments[c].goal;
-                            let minute = comments[c].minute;
+                            let minute = comments[c].minute
+
                             if (important == 'false' && goal == 'false') {
+
                                 GoalType = true;
                                 comment_icon = "assets/img/ic_event_goal.png";
+
                                 let Substring1 = comment.split(".", 2);
-                                let Substring2 = Substring1[1].split("-", 2);
-                                UpName = Substring2[0];
+                                if (Substring1) {
+                                    let Substring2 = Substring1[1].split("-", 2);
+                                    if (Substring2) {
+                                        UpName = Substring2[0];
+                                    } else {
+                                        UpName = "";
+                                    }
+                                }
+                                else {
+                                    UpName = "";
+                                }
+
+
                                 //check 'Assist' is or not in given comment 
                                 if (comment.includes("Assist")) {
                                     isAssist = true;
                                     let SubstringAssist = comment.split("Assist -", 2);
-                                    let assistName = SubstringAssist[1].split("with", 2);
-                                    DownName = assistName[0];
+                                    if (SubstringAssist) {
+                                        let assistName = SubstringAssist[1].split("with", 2);
+                                        DownName = assistName[0];
+                                    } else {
+                                        DownName = "";
+                                    }
+
+
                                 }
                             }
                             else {
                                 //check 'Substitution' is or not in given comment
                                 if (comment.includes("Substitution")) {
+
+                                    console.log("comment---in---sub", comment);
 
                                     isSubstitution = true;
                                     comment_icon = "assets/img/ic_event_substitution.png";
@@ -470,11 +495,24 @@ export class MatchesDetailComponentComponent implements OnInit {
                                     console.log("Substitution is found.");
 
                                     let String1 = comment.split(".", 2);
-                                    let String2 = String1[1].split("for", 2);
-                                    let String3 = String2[1].split("-", 2);
+                                    console.log("String1", String1);
+                                    if (String1[1]) {
+                                        let String2 = String1[1].split("for", 2);
+                                        UpName = String2[0];
+                                        console.log("String2", String2);
+                                        if (String2[1]) {
+                                            let String3 = String2[1].split("-", 2);
+                                            console.log("String3", String3);
+                                            DownName = String3[0];
+                                        }
+                                        else {
+                                            DownName = "";
+                                        }
 
-                                    UpName = String2[0];
-                                    DownName = String3[0];
+                                    } else {
+                                        UpName = "";
+                                        DownName = "";
+                                    }
 
                                 }
                                 if (comment.includes("yellow card")) {
@@ -483,9 +521,13 @@ export class MatchesDetailComponentComponent implements OnInit {
                                     comment_icon = "assets/img/ic_event_yellow_card.png";
 
                                     let String1_yc = comment.split("-", 2);
-
-                                    UpName = String1_yc[0];
-                                    DownName = "yellow card";
+                                    if (String1_yc) {
+                                        UpName = String1_yc[0];
+                                        DownName = "yellow card";
+                                    } else {
+                                        UpName = "";
+                                        DownName = "";
+                                    }
 
                                 }
                                 if (comment.includes("red card")) {
@@ -494,9 +536,13 @@ export class MatchesDetailComponentComponent implements OnInit {
                                     comment_icon = "assets/img/ic_event_redcard.png";
 
                                     let String1_rc = comment.split("-", 2);
-
-                                    UpName = String1_rc[0];
-                                    DownName = "red card";
+                                    if (String1_rc) {
+                                        UpName = String1_rc[0];
+                                        DownName = "red card";
+                                    } else {
+                                        UpName = "";
+                                        DownName = "";
+                                    }
                                 }
                             }
 
@@ -939,20 +985,38 @@ export class MatchesDetailComponentComponent implements OnInit {
                                         comment_icon = "assets/img/ic_event_goal.png";
 
                                         let Substring1 = comment.split(".", 2);
-                                        let Substring2 = Substring1[1].split("-", 2);
-                                        UpName = Substring2[0];
+                                        if (Substring1) {
+                                            let Substring2 = Substring1[1].split("-", 2);
+                                            if (Substring2) {
+                                                UpName = Substring2[0];
+                                            } else {
+                                                UpName = "";
+                                            }
+                                        }
+                                        else {
+                                            UpName = "";
+                                        }
+
 
                                         //check 'Assist' is or not in given comment 
                                         if (comment.includes("Assist")) {
                                             isAssist = true;
                                             let SubstringAssist = comment.split("Assist -", 2);
-                                            let assistName = SubstringAssist[1].split("with", 2);
-                                            DownName = assistName[0];
+                                            if (SubstringAssist) {
+                                                let assistName = SubstringAssist[1].split("with", 2);
+                                                DownName = assistName[0];
+                                            } else {
+                                                DownName = "";
+                                            }
+
+
                                         }
                                     }
                                     else {
                                         //check 'Substitution' is or not in given comment
                                         if (comment.includes("Substitution")) {
+
+                                            console.log("comment---in---sub", comment);
 
                                             isSubstitution = true;
                                             comment_icon = "assets/img/ic_event_substitution.png";
@@ -960,11 +1024,24 @@ export class MatchesDetailComponentComponent implements OnInit {
                                             console.log("Substitution is found.");
 
                                             let String1 = comment.split(".", 2);
-                                            let String2 = String1[1].split("for", 2);
-                                            let String3 = String2[1].split("-", 2);
+                                            console.log("String1", String1);
+                                            if (String1[1]) {
+                                                let String2 = String1[1].split("for", 2);
+                                                UpName = String2[0];
+                                                console.log("String2", String2);
+                                                if (String2[1]) {
+                                                    let String3 = String2[1].split("-", 2);
+                                                    console.log("String3", String3);
+                                                    DownName = String3[0];
+                                                }
+                                                else {
+                                                    DownName = "";
+                                                }
 
-                                            UpName = String2[0];
-                                            DownName = String3[0];
+                                            } else {
+                                                UpName = "";
+                                                DownName = "";
+                                            }
 
                                         }
                                         if (comment.includes("yellow card")) {
@@ -973,9 +1050,13 @@ export class MatchesDetailComponentComponent implements OnInit {
                                             comment_icon = "assets/img/ic_event_yellow_card.png";
 
                                             let String1_yc = comment.split("-", 2);
-
-                                            UpName = String1_yc[0];
-                                            DownName = "yellow card";
+                                            if (String1_yc) {
+                                                UpName = String1_yc[0];
+                                                DownName = "yellow card";
+                                            } else {
+                                                UpName = "";
+                                                DownName = "";
+                                            }
 
                                         }
                                         if (comment.includes("red card")) {
@@ -984,9 +1065,13 @@ export class MatchesDetailComponentComponent implements OnInit {
                                             comment_icon = "assets/img/ic_event_redcard.png";
 
                                             let String1_rc = comment.split("-", 2);
-
-                                            UpName = String1_rc[0];
-                                            DownName = "red card";
+                                            if (String1_rc) {
+                                                UpName = String1_rc[0];
+                                                DownName = "red card";
+                                            } else {
+                                                UpName = "";
+                                                DownName = "";
+                                            }
                                         }
                                     }
 
