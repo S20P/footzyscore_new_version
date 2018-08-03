@@ -86,7 +86,22 @@ export class PlayerDetailComponent implements OnInit {
           var weight: any = player['weight'];
           var height: any = player['height'];
           var team_name;
-          var team: any = player['team'].data;
+
+          var team_details: any = player['team'];
+
+          if (team_details) {
+            var team: any = player['team'].data;
+            if (team !== undefined || team['length'] !== 0 || team !== null) {
+              team_name = team.name;
+            }
+            else {
+              team_name = "-";
+            }
+          } else {
+            team_name = "-";
+          }
+
+
 
           if (birthcountry == null) {
             birthcountry = "-";
@@ -125,12 +140,7 @@ export class PlayerDetailComponent implements OnInit {
 
 
 
-          if (team !== undefined || team['length'] !== 0 || team !== null) {
-            team_name = team.name;
-          }
-          else {
-            team_name = "-";
-          }
+
           var position_id = player.position_id;
           var pos;
           if (position_id !== null) {
