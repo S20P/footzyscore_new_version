@@ -233,17 +233,21 @@ export class MatchesDashboardComponent implements OnInit {
               var ltScore_highest: boolean = false;
               var vtScore_highest: boolean = false;
 
-              if (localteam_score == 0) {
+              if (localteam_score <= 0) {
                 ltScore_highest = false;
               }
-              if (visitorteam_score == 0) {
+              if (visitorteam_score <= 0) {
                 vtScore_highest = false;
               }
-              if (localteam_score >= visitorteam_score) {
-                ltScore_highest = true;
+              if (localteam_score > 0) {
+                if (localteam_score >= visitorteam_score) {
+                  ltScore_highest = true;
+                }
               }
-              if (visitorteam_score >= localteam_score) {
-                vtScore_highest = true;
+              if (visitorteam_score > 0) {
+                if (visitorteam_score >= localteam_score) {
+                  vtScore_highest = true;
+                }
               }
 
               //end scores------------------------------------------
@@ -438,18 +442,39 @@ export class MatchesDashboardComponent implements OnInit {
           var ltScore_highest: boolean = false;
           var vtScore_highest: boolean = false;
 
-          if (localteam_score == 0) {
+          // if (localteam_score == 0) {
+          //   ltScore_highest = false;
+          // }
+          // if (visitorteam_score == 0) {
+          //   vtScore_highest = false;
+          // }
+          // if (localteam_score >= visitorteam_score) {
+          //   ltScore_highest = true;
+          // }
+          // if (visitorteam_score >= localteam_score) {
+          //   vtScore_highest = true;
+          // }
+
+        //check score is high/low
+          if (localteam_score <= 0) {
             ltScore_highest = false;
           }
-          if (visitorteam_score == 0) {
+          if (visitorteam_score <= 0) {
             vtScore_highest = false;
           }
-          if (localteam_score >= visitorteam_score) {
-            ltScore_highest = true;
+          if (localteam_score > 0) {
+            if (localteam_score >= visitorteam_score) {
+              ltScore_highest = true;
+            }
           }
-          if (visitorteam_score >= localteam_score) {
-            vtScore_highest = true;
+          if (visitorteam_score > 0) {
+            if (visitorteam_score >= localteam_score) {
+              vtScore_highest = true;
+            }
           }
+
+
+
           //end scores------------------------------------------
 
 
