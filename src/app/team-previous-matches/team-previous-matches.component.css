@@ -33,3 +33,12 @@
                 .matches-list-sec {
                     margin-bottom: 15px;
                 }
+                
+                .status_offon {
+                    border: none;
+                    border-radius: 0px;
+                    height: 16px;
+                    width: auto;
+                    line-height: 10px;
+                    font-size: 11px;
+                }

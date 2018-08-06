@@ -71,123 +71,29 @@ export class CompetitionMatchesComponent implements OnInit {
           for (let i = 0; i < group['length']; i++) {
             if (group[i].id == current_matchId) {
 
+              var collection: any = this.jsCustomeFun.HandleDataofAPI(item);
 
+              var id: any = collection['id'];
               //time---------------------------------------------------------------------
-              var time: any = item['time'];
-              var starting_at: any = time.starting_at;
-              var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
-              let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
-              var status: any = time.status;
-              var time_formatte = moment(new Date(match_time)).format('hh:mm a');
-              let live_minuts: any = time.minute;
+              var live_status: any = collection["live_status"];
+              var status: any = collection["status"];
 
-              var live_status: boolean = false;
-              if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
-                live_status = true;
-                status = live_minuts;
-              }
-              else if (status == "HT" || status == "BREAK") {
-                live_status = true;
-                status = status;
-                console.log("App status is live", live_status);
-              }
-              else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
-                live_status = false;
-                status = status;
-              }
-              else if (status == "NS" || status == "") {
-                live_status = false;
-                status = time_formatte;
-              }
-              else {
-                live_status = false;
-                status = status;
-              }
-              //end time---------------------------------------------------------------------
               //scores----------------------------------------------------------------------
-              var scores: any = item['scores'];
-
-              var localteam_score: any = scores.localteam_score;
-              var visitorteam_score: any = scores.visitorteam_score;
-              var score_status_flage: boolean = true;
-              if (localteam_score == '?' || localteam_score == "" || visitorteam_score == '?' || visitorteam_score == "") {
-                // live_status = false;
-                score_status_flage = false;
-              }
-              if (localteam_score >= 0 || visitorteam_score >= 0) {
-                score_status_flage = true;
-                if (status == time_formatte) {
-                  score_status_flage = false;
-                }
-              }
-              if (localteam_score == null || visitorteam_score == null) {
-                localteam_score = 0;
-                visitorteam_score = 0;
-                score_status_flage = true;
-              }
-              var penalty_visitor: any = scores.visitorteam_pen_score;
-              var penalty_local: any = scores.localteam_pen_score;
-
+              var localteam_score: any = collection["localteam_score"];
+              var visitorteam_score: any = collection["visitorteam_score"];
+              var score_status_flage: any = collection["score_status_flage"];
+              var penalty_visitor: any = collection["penalty_visitor"];
+              var penalty_local: any = collection["penalty_local"];
               //Which team is high scores------------------------------------------
               //*apply class for text-bold=>font-wight:bold if team run is highest
-
-              var ltScore_highest: boolean = false;
-              var vtScore_highest: boolean = false;
-
-              //check score is high/low
-              if (localteam_score <= 0) {
-                ltScore_highest = false;
-              }
-              if (visitorteam_score <= 0) {
-                vtScore_highest = false;
-              }
-              if (localteam_score > 0) {
-                if (localteam_score >= visitorteam_score) {
-                  ltScore_highest = true;
-                }
-              }
-              if (visitorteam_score > 0) {
-                if (visitorteam_score >= localteam_score) {
-                  vtScore_highest = true;
-                }
-              }
-
-
+              var ltScore_highest: any = collection["ltScore_highest"];
+              var vtScore_highest: any = collection["vtScore_highest"];
               //end scores------------------------------------------
-
-
-
               //PEN (0-0)------------------------------------------------
-              var penalty_localvist: boolean = false;
-              if (penalty_local == '0' && penalty_visitor == '0') {
-                penalty_localvist = false;
-              }
-              else if (penalty_local !== "" && penalty_local !== null && penalty_local !== undefined && penalty_visitor !== "" && penalty_visitor !== null && penalty_visitor !== undefined) {
-                penalty_localvist = true;
-              }
-              else {
-                penalty_localvist = false;
-              }
+              var penalty_localvist: any = collection["penalty_localvist"];
               //end PEN (0-0)--------------------------------------------
-              console.log("live data");
-              console.log("group[i].id", group[i].id);
-              console.log("item", item);
-              console.log("start======================================================");
-              console.log("current_matchId", current_matchId);
-              console.log("status", status);
-              console.log("live_status", live_status);
-              console.log("localteam_score", localteam_score);
-              console.log("visitorteam_score", visitorteam_score);
-              console.log("score_status_flage", score_status_flage);
-              console.log("ltScore_highest", ltScore_highest);
-              console.log("vtScore_highest", vtScore_highest);
-              console.log("penalty_local", penalty_local);
-              console.log("penalty_visitor", penalty_visitor);
-              console.log("start Date ", date_time);
 
-              console.log("end======================================================");
-
-              group[i]['id'] = item.id;
+              group[i]['id'] = id;
               group[i]['status'] = status;
               group[i]['live_status'] = live_status;
               group[i]['localteam_score'] = localteam_score;
@@ -227,221 +133,96 @@ export class CompetitionMatchesComponent implements OnInit {
           var data = arr[index];
           var last = r[r.length - 1];
 
-          var id: any = data['id'];
-          var comp_id = data['league_id'];
+          var collection: any = self.jsCustomeFun.HandleDataofAPI(data);
 
-          var stage: any = data['stage'];
-          var stage_data = stage['data'];
+          var id: any = collection['id'];
+          var league_id = collection['league_id'];
+          var week: any = collection['week'];
 
-          if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
-            var week: any = stage_data.name;
-          }
           //LocalTeam Data---------------------------------------------------------
-          var localteam_id: any = data['localteam_id'];
-          var localTeam_details: any = data['localTeam'].data;
-          var localteam_name: any = localTeam_details.name;
-          var flag__loal: any = localTeam_details.logo_path;
+          var localteam_id: any = collection['localteam_id'];
+          var localteam_name: any = collection['localteam_name'];
+          var localteam_image: any = collection['localteam_image'];
 
           //visitorTeam Data--------------------------------------------------------
-          var visitorteam_id: any = data['visitorteam_id'];
-          var visitorTeam_details: any = data['visitorTeam'].data;
-          var visitorteam_name: any = visitorTeam_details.name;
-          var flag_visit: any = visitorTeam_details.logo_path;
+          var visitorteam_id: any = collection['visitorteam_id'];
+          var visitorteam_name: any = collection['visitorteam_name'];
+          var visitorteam_image: any = collection['visitorteam_image'];
 
           //time---------------------------------------------------------------------
-          var time: any = data['time'];
-          var starting_at: any = time.starting_at;
-          var date_time: any = starting_at.date_time; //YYYY-MM-DD H:MM:SS
-          var date: any = starting_at.date;
-          // let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
-          console.log("date_time", date_time);
-          let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
-          console.log("match_time", match_time);
-
-          var status: any = time.status;
-          var time_formatte = moment(new Date(match_time)).format('hh:mm a');
-          // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
-          let live_minuts: any = time.minute;
-
-          var live_status: boolean = false;
-          var score_status_flage: boolean = true;
-
-          if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
-            live_status = true;
-            status = live_minuts;
-          }
-          else if (status == "HT" || status == "BREAK") {
-            live_status = true;
-            status = status;
-            console.log("App status is live", live_status);
-          }
-          else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
-            live_status = false;
-            status = status;
-          }
-          else if (status == "NS" || status == "") {
-            live_status = false;
-            status = time_formatte;
-          }
-          else {
-            live_status = false;
-            status = status;
-          }
-
+          var live_status: any = collection["live_status"];
+          var status: any = collection["status"];
+          var match_time: any = collection["match_time"];
           //end time---------------------------------------------------------------------
 
           //scores----------------------------------------------------------------------
-          var scores: any = data['scores'];
-          var ht_score: any = scores.ht_score;
-          var ft_score: any = scores.ft_score;
-          var et_score: any = scores.et_score;
-          var localteam_score: any = scores.localteam_score;
-          var visitorteam_score: any = scores.visitorteam_score;
-
-          if (localteam_score == '?' || localteam_score == "" || visitorteam_score == '?' || visitorteam_score == "") {
-            score_status_flage = false;
-          }
-          if (localteam_score >= 0 || visitorteam_score >= 0) {
-            score_status_flage = true;
-            if (status == time_formatte) {
-              score_status_flage = false;
-            }
-          }
-          if (localteam_score == null || visitorteam_score == null) {
-            localteam_score = 0;
-            visitorteam_score = 0;
-            score_status_flage = true;
-          }
-
-          var penalty_visitor: any = scores.visitorteam_pen_score;
-          var penalty_local: any = scores.localteam_pen_score;
-
+          var localteam_score: any = collection["localteam_score"];
+          var visitorteam_score: any = collection["visitorteam_score"];
+          var score_status_flage: any = collection["score_status_flage"];
+          var penalty_visitor: any = collection["penalty_visitor"];
+          var penalty_local: any = collection["penalty_local"];
           //Which team is high scores------------------------------------------
           //*apply class for text-bold=>font-wight:bold if team run is highest
-
-          var ltScore_highest: boolean = false;
-          var vtScore_highest: boolean = false;
-
-          //check score is high/low
-          if (localteam_score <= 0) {
-            ltScore_highest = false;
-          }
-          if (visitorteam_score <= 0) {
-            vtScore_highest = false;
-          }
-          if (localteam_score > 0) {
-            if (localteam_score >= visitorteam_score) {
-              ltScore_highest = true;
-            }
-          }
-          if (visitorteam_score > 0) {
-            if (visitorteam_score >= localteam_score) {
-              vtScore_highest = true;
-            }
-          }
-
-
+          var ltScore_highest: any = collection["ltScore_highest"];
+          var vtScore_highest: any = collection["vtScore_highest"];
           //end scores------------------------------------------
 
-
           // AGG (0-0)--------------------------------------------
-          var aggregate_id: any = data['aggregate_id'];
-          var lats_score_local;
-          var lats_score_vist;
-          var agg_localvist: boolean = false;
-          if (aggregate_id !== null) {
-
-            var aggregate_data = data['aggregate'].data;
-            //   console.log("aggregate_data", aggregate_data);
-            var agg_result = aggregate_data.result;
-
-            if (agg_result !== "" || agg_result == null) {
-              var vscore;
-              var lscore;
-              agg_localvist = true;
-              if (localteam_score == "" || localteam_score == null || localteam_score == undefined || visitorteam_score == "" || visitorteam_score == null || visitorteam_score == undefined) {
-                vscore = 0;
-                lscore = 0;
-              }
-              else {
-                vscore = visitorteam_score;
-                lscore = localteam_score;
-              }
-              let string1 = agg_result.split("-", 2);
-              lats_score_local = parseInt(string1[1]) + parseInt(lscore);
-              lats_score_vist = parseInt(string1[0]) + parseInt(vscore);
-            } else {
-              agg_localvist = false;
-            }
-
-          }
+          var lats_score_local: any = collection["lats_score_local"];
+          var lats_score_vist: any = collection["lats_score_vist"];
+          var agg_localvist: any = collection['agg_localvist'];
           // end AGG (0-0)-------------------------------------------
 
-
           //PEN (0-0)------------------------------------------------
-          var penalty_localvist: boolean = false;
-          if (penalty_local == '0' && penalty_visitor == '0') {
-            penalty_localvist = false;
-          }
-          else if (penalty_local !== "" && penalty_local !== null && penalty_local !== undefined && penalty_visitor !== "" && penalty_visitor !== null && penalty_visitor !== undefined) {
-            penalty_localvist = true;
-          }
-          else {
-            penalty_localvist = false;
-
-          }
+          var penalty_localvist: any = collection["penalty_localvist"];
           //end PEN (0-0)--------------------------------------------
 
-
           //venue---------------------------------------------------------
-          var venue_id: any = data['venue_id'];
-          var venue_data;
-          var venue_name;
-          var venue_city;
-          if (venue_id !== null) {
-            venue_data = data['venue'].data;
-            venue_name = venue_data.name;
-            venue_city = venue_data.city;
-          }
+          var venue_id: any = collection['venue_id'];
+          var venue_name: any = collection["venue"];
+          var venue_city: any = collection["venue_city"];
           //end venue---------------------------------------------------------
 
           //season---------------------------------------------------------
-          var season_id: any = data['season_id'];
+          var season_id: any = collection['season_id'];
+          var season_name = collection['season_name'];
           //end season---------------------------------------------------------
+          var competitions = collection['competitions'];
+
+          //self gloab variable----------------
+          // self.comp_id = league_id;
+          // self.season = season_name;
+          //end self gloab variable----------------
 
           var obj = {
             "id": id,
-            "comp_id": comp_id,
-            "et_score": et_score,
-            "formatted_date": match_time,
-            "date": date,
-            "ft_score": ft_score,
-            "ht_score": ht_score,
+            "comp_id": league_id,
+            "week": week,
+            "venue_id": venue_id,
+            "venue": venue_name,
+            "venue_city": venue_city,
             "localteam_id": localteam_id,
             "localteam_name": localteam_name,
+            "localteam_image": localteam_image,
             "localteam_score": localteam_score,
-            "localteam_image": flag__loal,
+            "ltScore_highest": ltScore_highest,
+            "lats_score_local": lats_score_local,
             "penalty_local": penalty_local,
+            "visitorteam_id": visitorteam_id,
+            "visitorteam_name": visitorteam_name,
+            "visitorteam_image": visitorteam_image,
+            "visitorteam_score": visitorteam_score,
+            "vtScore_highest": vtScore_highest,
+            "lats_score_vist": lats_score_vist,
             "penalty_visitor": penalty_visitor,
             "penalty_localvist": penalty_localvist,
             "agg_localvist": agg_localvist,
             "status": status,
             "time": match_time,
-            "visitorteam_id": visitorteam_id,
-            "visitorteam_name": visitorteam_name,
-            "visitorteam_score": visitorteam_score,
-            "visitorteam_image": flag_visit,
-            "lats_score_local": lats_score_local,
-            "lats_score_vist": lats_score_vist,
-            "venue_id": venue_id,
-            "venue": venue_name,
-            "venue_city": venue_city,
-            "week": week,
+            "formatted_date": match_time,
+            "competitions": competitions,
             "live_status": live_status,
-            "score_status_flage": score_status_flage,
-            "ltScore_highest": ltScore_highest,
-            "vtScore_highest": vtScore_highest
-
+            "score_status_flage": score_status_flage
           };
 
           if (last && last.week.week === week) {

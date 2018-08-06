@@ -51,3 +51,7 @@ p.rigth_arrow {
     margin-bottom: 10px;
     margin-top: -5px;
 }
+
+.no-r-padd {
+    padding-right: 0px;
+}

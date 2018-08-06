@@ -42,14 +42,16 @@
 
                                     <!--end Score & Group of Team -->
                                     <div class="col-sm-1 col-xs-1 circle-team">
-                                        <div *ngIf="item_details.live_status">
+                                        <div *ngIf="item_details.live_status ;else offico">
                                             <div class="live_badge">
                                                 <span class="status_offon">LIVE</span>
                                             </div>
                                         </div>
-                                        <span *ngIf="item_details.team_w" class="team_w">W</span>
-                                        <span *ngIf="item_details.team_l" class="team_l">L</span>
-                                        <span *ngIf="item_details.team_d" class="team_d">D</span>
+                                        <ng-template #offico>
+                                            <span *ngIf="item_details.team_w" class="team_w">W</span>
+                                            <span *ngIf="item_details.team_l" class="team_l">L</span>
+                                            <span *ngIf="item_details.team_d" class="team_d">D</span>
+                                        </ng-template>
                                     </div>
                                     <div *ngIf="item_details.agg_localvist || item_details.penalty_localvist" class="col-xs-12 agg_pen">
                                         <ul>
@@ -87,12 +89,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-1 col-sm-1 col-xs-1 circle-team">
-                                        <div *ngIf="item_details.live_status" class="live_badge">
+                                        <div *ngIf="item_details.live_status;else offico" class="live_badge">
                                             <span class="status_offon">LIVE</span>
                                         </div>
-                                        <span *ngIf="item_details.team_w" class="team_w">W</span>
-                                        <span *ngIf="item_details.team_l" class="team_l">L</span>
-                                        <span *ngIf="item_details.team_d" class="team_d">D</span>
+                                        <ng-template #offico>
+                                            <span *ngIf="item_details.team_w" class="team_w">W</span>
+                                            <span *ngIf="item_details.team_l" class="team_l">L</span>
+                                            <span *ngIf="item_details.team_d" class="team_d">D</span>
+                                        </ng-template>
+
                                     </div>
                                 </div>
                                 <!-- Show Responshive end-->
