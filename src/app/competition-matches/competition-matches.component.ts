@@ -79,10 +79,17 @@ export class CompetitionMatchesComponent implements OnInit {
               let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
               var status: any = time.status;
               var time_formatte = moment(new Date(match_time)).format('hh:mm a');
+              let live_minuts: any = time.minute;
+
               var live_status: boolean = false;
-              if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+              if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
+                live_status = true;
+                status = live_minuts;
+              }
+              else if (status == "HT" || status == "BREAK") {
                 live_status = true;
                 status = status;
+                console.log("App status is live", live_status);
               }
               else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
                 live_status = false;
@@ -103,17 +110,21 @@ export class CompetitionMatchesComponent implements OnInit {
               var localteam_score: any = scores.localteam_score;
               var visitorteam_score: any = scores.visitorteam_score;
               var score_status_flage: boolean = true;
-              if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
-                live_status = false;
+              if (localteam_score == '?' || localteam_score == "" || visitorteam_score == '?' || visitorteam_score == "") {
+                // live_status = false;
                 score_status_flage = false;
               }
-              if (localteam_score >= '0' || visitorteam_score >= '0') {
+              if (localteam_score >= 0 || visitorteam_score >= 0) {
                 score_status_flage = true;
                 if (status == time_formatte) {
                   score_status_flage = false;
                 }
               }
-
+              if (localteam_score == null || visitorteam_score == null) {
+                localteam_score = 0;
+                visitorteam_score = 0;
+                score_status_flage = true;
+              }
               var penalty_visitor: any = scores.visitorteam_pen_score;
               var penalty_local: any = scores.localteam_pen_score;
 
@@ -250,13 +261,19 @@ export class CompetitionMatchesComponent implements OnInit {
           var status: any = time.status;
           var time_formatte = moment(new Date(match_time)).format('hh:mm a');
           // var live_status: any = this.jsCustomeFun.CompareTimeDate(match_time);
+          let live_minuts: any = time.minute;
 
           var live_status: boolean = false;
           var score_status_flage: boolean = true;
 
-          if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+          if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
+            live_status = true;
+            status = live_minuts;
+          }
+          else if (status == "HT" || status == "BREAK") {
             live_status = true;
             status = status;
+            console.log("App status is live", live_status);
           }
           else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
             live_status = false;
@@ -281,15 +298,19 @@ export class CompetitionMatchesComponent implements OnInit {
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
 
-          if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
-            live_status = false;
+          if (localteam_score == '?' || localteam_score == "" || visitorteam_score == '?' || visitorteam_score == "") {
             score_status_flage = false;
           }
-          if (localteam_score >= '0' || visitorteam_score >= '0') {
+          if (localteam_score >= 0 || visitorteam_score >= 0) {
             score_status_flage = true;
             if (status == time_formatte) {
               score_status_flage = false;
             }
+          }
+          if (localteam_score == null || visitorteam_score == null) {
+            localteam_score = 0;
+            visitorteam_score = 0;
+            score_status_flage = true;
           }
 
           var penalty_visitor: any = scores.visitorteam_pen_score;

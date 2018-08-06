@@ -1589,7 +1589,7 @@ span.upertxt.dashed {
 }
 
 .theme-color {
-    color: var(--theme-bg-color);
+    color: var(--theme-bg-color) !important;
 }
 
 .sidebar-nomatche {

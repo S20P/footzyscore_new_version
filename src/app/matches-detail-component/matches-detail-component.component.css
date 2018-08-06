@@ -28,7 +28,7 @@
     border: 1px solid var(--theme-bg-color);
     width: 10%;
     margin: auto;
-    margin-top: 7px;
+    margin-top: 5px;
     margin-bottom: 10px;
 }
 
@@ -487,7 +487,7 @@ img.lineup_title_img {
     font-size: 1.2em;
     text-align: center;
     position: absolute;
-    top: 25px;
+    top: 18px;
     left: 50%;
     margin-left: -5px;
     background-color: var(--theme-bg-color);

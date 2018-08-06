@@ -101,13 +101,19 @@ export class TeamPreviousMatchesComponent implements OnInit {
           let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
           var status: any = time.status;
           var time_formatte = moment(new Date(match_time)).format('hh:mm a');
+          let live_minuts: any = time.minute;
 
           var live_status: boolean = false;
           var score_status_flage: boolean = true;
 
-          if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+          if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
+            live_status = true;
+            status = live_minuts;
+          }
+          else if (status == "HT" || status == "BREAK") {
             live_status = true;
             status = status;
+            console.log("App status is live", live_status);
           }
           else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
             live_status = false;
@@ -133,14 +139,19 @@ export class TeamPreviousMatchesComponent implements OnInit {
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
           if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
-            live_status = false;
+            // live_status = false;
             score_status_flage = false;
           }
-          if (localteam_score >= '0' || visitorteam_score >= '0') {
+          if (localteam_score >= 0 || visitorteam_score >= 0) {
             score_status_flage = true;
             if (status == time_formatte) {
               score_status_flage = false;
             }
+          }
+          if (localteam_score == null || visitorteam_score == null) {
+            localteam_score = 0;
+            visitorteam_score = 0;
+            score_status_flage = true;
           }
 
           var penalty_visitor: any = scores.visitorteam_pen_score;

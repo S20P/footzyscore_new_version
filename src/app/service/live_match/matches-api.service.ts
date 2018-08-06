@@ -11,9 +11,7 @@ export class MatchesApiService {
   constructor() {
 
     this.SocketPath = 'https://api.footzyscore.com';
-    //this.SocketPath = 'https://1eb00e12.ngrok.io'; //local socket url it for testing;
-
-
+    // this.SocketPath = "https://6bef51bd.ngrok.io/"    //local socket url it for testing;
     this.socket = '';
 
     this.socket = io.connect(this.SocketPath, {

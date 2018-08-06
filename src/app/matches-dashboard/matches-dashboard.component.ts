@@ -181,7 +181,6 @@ export class MatchesDashboardComponent implements OnInit {
           for (let i = 0; i < group['length']; i++) {
             if (group[i].id == current_matchId) {
 
-
               //time---------------------------------------------------------------------
               var time: any = item['time'];
               var starting_at: any = time.starting_at;
@@ -189,21 +188,39 @@ export class MatchesDashboardComponent implements OnInit {
               let match_time: any = this.jsCustomeFun.ChangeTimeZone(date_time);
               var status: any = time.status;
               var time_formatte = moment(new Date(match_time)).format('hh:mm a');
+              let live_minuts: any = time.minute;
+              console.log("status is ", status);
               var live_status: boolean = false;
-              if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+
+
+
+              if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
+                live_status = true;
+                status = live_minuts;
+                console.log("App status is live", live_status);
+
+              }
+              else if (status == "HT" || status == "BREAK") {
                 live_status = true;
                 status = status;
+                console.log("App status is live", live_status);
               }
               else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
                 live_status = false;
                 status = status;
+                console.log("App status is live1", live_status);
+
               }
               else if (status == "NS" || status == "") {
                 live_status = false;
                 status = time_formatte;
+                console.log("App status is live2", live_status);
+
               }
               else {
                 live_status = false;
+                console.log("App status is live3", live_status);
+
                 status = status;
               }
               //end time---------------------------------------------------------------------
@@ -212,18 +229,27 @@ export class MatchesDashboardComponent implements OnInit {
 
               var localteam_score: any = scores.localteam_score;
               var visitorteam_score: any = scores.visitorteam_score;
+
+              console.log("localteam_score", localteam_score);
+              console.log("visitorteam_score", visitorteam_score);
+
               var score_status_flage: boolean = true;
-              if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
-                live_status = false;
+              if (localteam_score == '?' || localteam_score == "" || visitorteam_score == '?' || visitorteam_score == "") {
                 score_status_flage = false;
               }
-              if (localteam_score >= '0' || visitorteam_score >= '0') {
+
+              if (localteam_score >= 0 || visitorteam_score >= 0) {
                 score_status_flage = true;
                 if (status == time_formatte) {
                   score_status_flage = false;
                 }
               }
 
+              if (localteam_score == null || visitorteam_score == null) {
+                localteam_score = 0;
+                visitorteam_score = 0;
+                score_status_flage = true;
+              }
               var penalty_visitor: any = scores.visitorteam_pen_score;
               var penalty_local: any = scores.localteam_pen_score;
 
@@ -252,8 +278,6 @@ export class MatchesDashboardComponent implements OnInit {
 
               //end scores------------------------------------------
 
-
-
               //PEN (0-0)------------------------------------------------
               var penalty_localvist: boolean = false;
               if (penalty_local == '0' && penalty_visitor == '0') {
@@ -265,6 +289,7 @@ export class MatchesDashboardComponent implements OnInit {
               else {
                 penalty_localvist = false;
               }
+
               //end PEN (0-0)--------------------------------------------
               console.log("live data");
               console.log("group[i].id", group[i].id);
@@ -349,7 +374,7 @@ export class MatchesDashboardComponent implements OnInit {
     }
 
     this.matchService.GetAllCompetitionMatchesByDate(param).subscribe(record => {
-      console.log("record by selected Date", record);
+      // console.log("record by selected Date", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -359,12 +384,15 @@ export class MatchesDashboardComponent implements OnInit {
 
         array.forEach(function (item) {
 
-          console.log("todays matches item", item);
+          // console.log("todays matches item", item);
+
+          var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
+
+          console.log("Dynamic collecgtion objecct", collection);
 
           var id: any = item['id'];
           var comp_id = item['league_id'];
           self.comp_id = item['league_id'];
-
           var stage: any = item['stage'];
           var stage_data = stage['data'];
 
@@ -391,13 +419,17 @@ export class MatchesDashboardComponent implements OnInit {
           let match_time: any = self.jsCustomeFun.ChangeTimeZone(date_time);
           var status: any = time.status;
           var time_formatte = moment(new Date(match_time)).format('hh:mm a');
-
-
+          let live_minuts: any = time.minute;
           var live_status: boolean = false;
 
-          if (status == "LIVE" || status == "PEN_LIVE" || status == "HT" || status == "BREAK") {
+          if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
+            live_status = true;
+            status = live_minuts;
+          }
+          else if (status == "HT" || status == "BREAK") {
             live_status = true;
             status = status;
+            console.log("App status is live", live_status);
           }
           else if (status == "FT" || status == "AET" || status == "POSTP" || status == "FT_PEN") {
             live_status = false;
@@ -422,15 +454,19 @@ export class MatchesDashboardComponent implements OnInit {
           var localteam_score: any = scores.localteam_score;
           var visitorteam_score: any = scores.visitorteam_score;
           var score_status_flage: boolean = true;
-          if (localteam_score == '?' || localteam_score == "" || localteam_score == null || visitorteam_score == '?' || visitorteam_score == "" || visitorteam_score == null) {
-            live_status = false;
+          if (localteam_score == '?' || localteam_score == "" || visitorteam_score == '?' || visitorteam_score == "") {
             score_status_flage = false;
           }
-          if (localteam_score >= '0' || visitorteam_score >= '0') {
+          if (localteam_score >= 0 || visitorteam_score >= 0) {
             score_status_flage = true;
             if (status == time_formatte) {
               score_status_flage = false;
             }
+          }
+          if (localteam_score == null || visitorteam_score == null) {
+            localteam_score = 0;
+            visitorteam_score = 0;
+            score_status_flage = true;
           }
 
           var penalty_visitor: any = scores.visitorteam_pen_score;
@@ -442,20 +478,7 @@ export class MatchesDashboardComponent implements OnInit {
           var ltScore_highest: boolean = false;
           var vtScore_highest: boolean = false;
 
-          // if (localteam_score == 0) {
-          //   ltScore_highest = false;
-          // }
-          // if (visitorteam_score == 0) {
-          //   vtScore_highest = false;
-          // }
-          // if (localteam_score >= visitorteam_score) {
-          //   ltScore_highest = true;
-          // }
-          // if (visitorteam_score >= localteam_score) {
-          //   vtScore_highest = true;
-          // }
-
-        //check score is high/low
+          //check score is high/low
           if (localteam_score <= 0) {
             ltScore_highest = false;
           }
@@ -472,9 +495,6 @@ export class MatchesDashboardComponent implements OnInit {
               vtScore_highest = true;
             }
           }
-
-
-
           //end scores------------------------------------------
 
 
@@ -542,7 +562,6 @@ export class MatchesDashboardComponent implements OnInit {
           //season---------------------------------------------------------
           var season_id: any = item['season_id'];
           //end season---------------------------------------------------------
-
           var competitions = item.league['data'];
 
           if (!groups[competitions.id]) {
