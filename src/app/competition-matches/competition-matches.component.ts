@@ -233,7 +233,7 @@ export class CompetitionMatchesComponent implements OnInit {
           return r;
         }, []);
         //console.log(array);
-        for (let p = 0; p < array['length']; p++) {
+        for (let p = 0; p < array.reverse()['length']; p++) {
           console.log("item_week", array[p].week);
           var timezone = array[p].week.match_time;
           var trans_date = timezone;
@@ -253,7 +253,7 @@ export class CompetitionMatchesComponent implements OnInit {
             console.log("date-comapre is d2", d2);
 
             var pos = p - 1;
-            self.selectedposition = 0;
+            self.selectedposition = pos;
             console.log("pos", pos);
 
           }
