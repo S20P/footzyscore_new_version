@@ -16,6 +16,7 @@ import "moment-timezone";
 })
 export class PlayerDetailComponent implements OnInit {
   public player_collection = [];
+  public playerStats_collection = [];
   public showloader: boolean = false;
   private subscription: Subscription;
   private timer: Observable<any>;
@@ -43,14 +44,14 @@ export class PlayerDetailComponent implements OnInit {
 
   PlayerDetails() {
     this.player_collection = [];
+    this.playerStats_collection = [];
+
     let player_id = this.player_id;
     this.matchService.GetPlayerDeatilsById(player_id).subscribe(record => {
       console.log("Player_Details", record);
       var result: any = record['data'];
       this.player_status = record['success'];
-
       var goals = "-";
-
       if (result !== undefined) {
         for (let player of result) {
           var player_image_path: any = player['image_path'];
@@ -101,8 +102,6 @@ export class PlayerDetailComponent implements OnInit {
             team_name = "-";
           }
 
-
-
           if (birthcountry == null) {
             birthcountry = "-";
           }
@@ -136,10 +135,6 @@ export class PlayerDetailComponent implements OnInit {
           if (team_id == null) {
             team_id = "-";
           }
-
-
-
-
 
           var position_id = player.position_id;
           var pos;
@@ -175,10 +170,86 @@ export class PlayerDetailComponent implements OnInit {
             "picture": player_image_path,
             "goals": goals
           });
+
+          // <!--******** Domestic League ************-->
+
+          //player stats---
+          var stats: any = player["stats"];
+          if (stats) {
+
+            var stats_record: any = stats['data'];
+            if (stats_record !== undefined || stats_record['length'] !== 0 || stats_record !== null) {
+
+              for (let row of stats_record) {
+
+                var status_yellowcards: any = row["yellowcards"];
+                var status_redcards: any = row["redcards"];
+                var status_goals: any = row["goals"];
+                var status_appearences: any = row["appearences"];
+
+                //Team---
+                var StatsTeam: any = row["team"];
+                var status_TeamName: any;
+                var status_TeamId: any;
+                var status_Teamlogo_path: any;
+                if (StatsTeam) {
+                  var StatsTeam_record: any = StatsTeam['data'];
+                  if (StatsTeam_record !== undefined || StatsTeam_record['length'] !== 0 || StatsTeam_record !== null) {
+                    status_TeamName = StatsTeam_record.name;
+                    status_TeamId = StatsTeam_record.id;
+                    status_Teamlogo_path = StatsTeam_record.logo_path;
+                  }
+                }
+                // end Team---
+
+                //League---
+                var StatsLeague: any = row["league"];
+                var status_LeagueName: any = "";
+                var status_LeagueId: any = "";
+                if (StatsLeague) {
+                  var StatsLeague_record: any = StatsLeague['data'];
+                  if (StatsLeague_record !== undefined || StatsLeague_record['length'] !== 0 || StatsLeague_record !== null) {
+                    status_LeagueName = StatsLeague_record.name;
+                    status_LeagueId = StatsLeague_record.id;
+                  }
+                }
+                // end League---
+
+                //Season---
+                var StatsSeason: any = row["season"];
+                var status_SeasonName: any = "";
+                var status_SeasonId: any = "";
+                if (StatsSeason) {
+                  var StatsSeason_record: any = StatsSeason['data'];
+                  if (StatsSeason_record !== undefined || StatsSeason_record['length'] !== 0 || StatsSeason_record !== null) {
+                    status_SeasonName = StatsSeason_record.name;
+                    status_SeasonId = StatsSeason_record.id;
+
+                    this.playerStats_collection.push({
+                      "season_name": status_SeasonName,
+                      "team_name": status_TeamName,
+                      "team_id": status_TeamId,
+                      "team_flag": status_Teamlogo_path,
+                      "league_name": status_LeagueName,
+                      "yellowcards": status_yellowcards,
+                      "redcards": status_redcards,
+                      "goals": status_goals,
+                      "appearences": status_appearences
+                    })
+                  }
+                }
+                // end Season---
+              }
+            }
+          }
+          //-----end stats
+          // <!--******* end Domestic League ***********-->
+
         }
+
       }
     });
-    console.log("Player collection", this.player_collection)
+    console.log("Player collection", this.player_collection);
 
   }
 

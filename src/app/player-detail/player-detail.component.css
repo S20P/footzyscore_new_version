@@ -53,8 +53,119 @@
     font-weight: bold;
 }
 
+
+/* Domestic League table css */
+
+td.status_head_image_name img {
+    width: 30px;
+    margin: 0px 15px;
+    margin-top: -5px;
+}
+
+td.status_head_image img {
+    width: 30px;
+    margin-left: -7px;
+    margin-top: -5px;
+    /* margin-top: -5px; */
+}
+
+.table-header td {
+    padding: 15px 0px 10px 0px !important;
+}
+
+
+/* new up */
+
+.grouptable thead {
+    background: var(--theme-bg-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+table.table.grouptable {
+    /* background: #fff; */
+    margin-bottom: 15px;
+}
+
+table.table.grouptable tbody tr td {
+    font-size: var(--theme-body-font1);
+    /* font-weight: bold; */
+    padding: 15px 0px 15px 0px;
+}
+
+.table.grouptable tr td.no,
+.table.grouptable tr td.pos {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+td:first-child {
+    padding-left: 20px !important;
+}
+
+td.first {
+    width: 10%;
+}
+
+.table-panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.status_head_image {
+    width: 5%;
+}
+
+.status_head_image_name {
+    width: 40%;
+}
+
+.status_Apps {
+    width: 5%;
+}
+
+.status_Goals {
+    width: 5%;
+}
+
 @media (max-width: 480px) {
+    table.table.grouptable tr td {
+        font-size: var(--theme-body-font-sm)!important;
+    }
     .player_img img {
         width: 60px !important;
     }
+    td.status_head_image img {
+        width: 25px;
+    }
+    td.status_head_image_name img {
+        width: 25px;
+    }
+}
+
+@media (max-width: 367px) {
+    table.table.grouptable tr td {
+        font-size: var(--theme-body-font-sm)!important;
+    }
+    .text-left {
+        width: 100%;
+    }
+    .player_img img {
+        width: 25px;
+    }
+    td.status_head_image img {
+        width: 20px;
+        margin-top: 0px;
+    }
+    td.status_head_image_name img {
+        width: 20px;
+    }
+}
+
+.player_img img {
+    margin-bottom: 0px !important;
 }

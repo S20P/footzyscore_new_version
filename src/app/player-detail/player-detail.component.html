@@ -6,13 +6,12 @@
         <div></div>
     </div>
 </div>
-
 <div class="container">
     <div class="match-detail-section">
-        <div *ngFor="let player of player_collection;let i=index">
-            <!-- team-detail-header -->
-            <div *ngIf="player_collection.length > 0;else noplayer">
+        <div *ngIf="player_collection.length > 0;else noplayer">
 
+            <div *ngFor="let player of player_collection;let i=index">
+                <!-- team-detail-header -->
                 <div class="team-detail-header">
                     <div class="row">
                         <div class="col-md-12">
@@ -26,131 +25,204 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- team-detail-header end -->
+            <!-- match-name -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel with-nav-tabs panel-default">
+                        <!-- tabs menu  -->
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab1default" data-toggle="tab">Player Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#tab2default" data-toggle="tab">Domestic League</a>
+                                </li>
 
-                <div class="row player_sec">
-                    <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
-                        <div class="card">
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>
-                                        <span>Full Name:</span>
-                                    </p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.name}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Country: </p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.nationality}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Club:</p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.team}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Position:</p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.position}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Age:</p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.age}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Height:</p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.height}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>
-                                        <span>Weight:</span>
-                                    </p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.weight}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Birthdate:</p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.birthdate}}</p>
-                                </div>
-                            </div>
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Birth Place:</p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.birthplace}}</p>
-                                </div>
-                            </div>
+                                <!-- <li>
+                                <a href="#tab3default" data-toggle="tab">Commentry</a>
+                            </li> -->
+                            </ul>
+                        </div>
+                        <!-- end tabs menu  -->
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8 col-lg-8 remove_right_padding">
+                                <!-- tabs body  -->
+                                <div class="tab-content">
+                                    <!--******* Player Profile ***********-->
+                                    <div class="tab-pane fade in active" id="tab1default">
 
-                            <div class="playerlist">
-                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
-                                    <p>Goals: </p>
+                                        <div *ngFor="let player of player_collection;let i=index">
+                                            <!-- team-detail-header -->
+                                            <div *ngIf="player_collection.length > 0;else noplayer">
+                                                <div class="row player_sec">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="card">
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>
+                                                                        <span>Full Name:</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.name}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Country: </p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.nationality}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Club:</p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.team}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Position:</p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.position}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Age:</p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.age}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Height:</p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.height}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>
+                                                                        <span>Weight:</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.weight}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Birthdate:</p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.birthdate}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Birth Place:</p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.birthplace}}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="playerlist">
+                                                                <div class="col-md-2 col-sm-2 col-xs-4 player-leftcontent">
+                                                                    <p>Goals: </p>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
+                                                                    <p>{{player.goals}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ng-template #noplayer>
+                                                <div class="list-line row match-list">
+                                                    <p>Not found Player details</p>
+                                                </div>
+                                            </ng-template>
+
+
+                                        </div>
+                                    </div>
+                                    <!--*******end Player Profile ***********-->
+                                    <!--******** Domestic League ************-->
+                                    <div class="tab-pane" id="tab2default">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="group1" *ngIf="playerStats_collection.length > 0">
+                                                    <div *ngFor="let paire of playerStats_collection|groupBy:'team_name'| orderBy: 'season_name': 'desc';let j=index">
+                                                        <div class="groupp-list-navbar">
+                                                            <div *ngIf="this.playerStats_collection.length > 0">
+
+                                                                <table class="table grouptable">
+                                                                    <thead *ngFor="let item_details of paire.value;let i = index">
+                                                                        <tr class="table-header" *ngIf="i==0">
+                                                                            <td class="status_head_image_name"> <img [src]="item_details.team_flag" onError="this.src='assets/img/avt_flag.png'" />{{item_details.team_name}}</td>
+                                                                            <td class="status_head_image"> <img src="assets/img/ic_event_yellow_card.png" /></td>
+                                                                            <td class="status_head_image"> <img src="assets/img/ic_event_redcard.png" /></td>
+                                                                            <td class="status_Apps"> Apps </td>
+                                                                            <td class="status_Goals"> Goals </td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="table-panel" *ngFor="let item_details of paire.value| orderBy: 'season_name': 'desc' ;let b = index">
+                                                                        <tr class="theme-hover">
+                                                                            <td class="status_head_image_name">{{item_details.season_name}} - {{item_details.league_name}}</td>
+                                                                            <td class="status_head_image">{{item_details.yellowcards}}</td>
+                                                                            <td class="status_head_image">{{item_details.redcards}}</td>
+                                                                            <td class="status_Apps">{{item_details.appearences}}</td>
+                                                                            <td class="status_Goals">{{item_details.goals}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="playerStats_collection.length <= 0" class="card">
+                                                    <div class="list-line row match-list">
+                                                        <p class="col-md-12 text-left">No Domestic League Found</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!--******* end Domestic League ***********-->
+                                    </div>
                                 </div>
-                                <div class="col-md-10 col-sm-10 col-xs-8 player-content">
-                                    <p>{{player.goals}}</p>
-                                </div>
+                                <!--end tabs body  -->
                             </div>
+                            <!--side bar  -->
+                            <div class="col-md-4 col-sm-12 col-lg-4 remove_left_padding sidebar_page">
+                                <app-sidebar></app-sidebar>
+                            </div>
+                            <!--end side bar  -->
                         </div>
                     </div>
-
-
-                    <!-- sidebar -->
-                    <div class="col-sm-12 col-md-4 col-lg-4 remove_left_padding">
-                        <app-sidebar></app-sidebar>
-                    </div>
-                    <!-- sidebar end -->
-
-                </div>
-
-                <ng-template #noplayer>
-                    <div class="list-line row match-list">
-                        <p>Not found Player details</p>
-                    </div>
-                </ng-template>
-
-
-            </div>
-        </div>
-
-
-        <!-- <div *ngIf="player_status==false">
-            <div class="card row">
-                <div class="card-body">
-                    <div class="col-md-12 NoUserInfo">
-                        <p>Not found Player details</p>
-                    </div>
                 </div>
             </div>
-        </div> -->
-        <div *ngIf="player_status==false" class="card">
-            <div class="list-line row match-list">
-                <p class="col-md-12 text-left">Not found Player details</p>
-            </div>
         </div>
+        <ng-template #noplayer>
+            <div class="card">
+                <div class="list-line row match-list">
+                    <p class="col-md-12 text-left">Not found Player details</p>
+                </div>
+            </div>
+        </ng-template>
     </div>
 </div>
+<!--container -->

@@ -702,7 +702,7 @@ i.fa.fa-circle {
 }
 
 .header_logo IMG {
-    width: 180px;
+    width: 90px;
 }
 
 .live_badge {
@@ -867,7 +867,7 @@ ul.nav.nav-tabs {
     } */
     ul.nav.navbar-nav {
         float: right;
-        margin-right: -10px;
+        margin-right: 0px;
     }
 }
 
@@ -893,8 +893,8 @@ ul.nav.nav-tabs {
         margin-bottom: -15px;
     }
     .header_logo IMG {
-        width: 140px;
-        padding: 5px 0px;
+        width: 50px;
+        padding: 2px 0px;
     }
     .match-detail-section {
         padding: 40px 0px;
@@ -955,7 +955,7 @@ ul.nav.nav-tabs {
         padding-right: 7.5px;
     }
     .match-page-section {
-        padding: 40px;
+        padding: 40px 0px;
     }
 }
 
@@ -1014,7 +1014,7 @@ ul.nav.nav-tabs {
         background-color: transparent;
     }
     .header_logo IMG {
-        width: 140px;
+        width: 50px;
         padding: 0px 5px;
     }
     .status_offon {
@@ -1082,7 +1082,10 @@ ul.nav.nav-tabs {
         margin-bottom: 5px;
     }
     .header_logo IMG {
-        width: 150px;
+        width: 50px;
+    }
+    .navbar-default .navbar-brand {
+        margin-left: 10px !important;
     }
 }
 
@@ -1101,7 +1104,7 @@ ul.nav.nav-tabs {
         width: 45%!important;
     }
     .header_logo IMG {
-        width: 150px;
+        width: 50px;
     }
     .status_offon {
         font-size: 10px;
@@ -1128,8 +1131,8 @@ ul.nav.nav-tabs {
         margin: 0px;
     }
     .header_logo IMG {
-        width: 150px;
-        padding: 5px 0px;
+        width: 50px;
+        padding: 0px 0px;
     }
     .more-link {
         font-size: var(--theme-body-font-sm)!important;
@@ -1159,6 +1162,9 @@ ul.nav.nav-tabs {
         width: 2.2em;
         height: 2.2em;
         line-height: 2.2em;
+    }
+    .navbar-default .navbar-brand {
+        margin-left: 10px !important;
     }
 }
 
@@ -1211,10 +1217,10 @@ ul.nav.nav-tabs {
         width: 60%!important;
     }
     .header_logo {
-        margin: 8px;
+        margin: 0px;
     }
     .header_logo IMG {
-        width: 100px;
+        width: 50px;
     }
     .status_offon {
         font-size: 9px;
@@ -1235,7 +1241,7 @@ ul.nav.nav-tabs {
         width: 70%!important;
     }
     .header_logo {
-        margin: 8px;
+        margin: 0px;
     }
 }
 
@@ -1273,7 +1279,7 @@ ul.nav.nav-tabs {
         width: 70%!important;
     }
     .header_logo {
-        margin: 5px;
+        margin: 0px;
     }
 }
 

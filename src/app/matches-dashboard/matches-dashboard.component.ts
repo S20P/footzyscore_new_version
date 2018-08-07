@@ -25,7 +25,6 @@ import "moment-timezone";
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
 import { concat } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-matches-dashboard',
   templateUrl: './matches-dashboard.component.html',
@@ -68,7 +67,6 @@ export class MatchesDashboardComponent implements OnInit {
 
 
   ngOnInit() {
-
     var dm = moment("2014 04 25", "YYYY MM DD");
     console.log("date_momt", dm);
     // console.log("flageurl url is", this.flage_baseUrl);
@@ -159,8 +157,6 @@ export class MatchesDashboardComponent implements OnInit {
     });
 
   }
-
-
 
   GetMatchesByCompetition_ById_live() {
 

@@ -253,7 +253,7 @@ export class CompetitionMatchesComponent implements OnInit {
             console.log("date-comapre is d2", d2);
 
             var pos = p - 1;
-            self.selectedposition = pos;
+            self.selectedposition = 0;
             console.log("pos", pos);
 
           }
