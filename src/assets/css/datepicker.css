@@ -305,9 +305,9 @@ span.ui-datepicker-month {
         display: inline-block;
         font-weight: bold;
         text-align: center;
-        width: 35px;
-        height: 35px;
-        line-height: 35px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
         color: #666666;
         text-shadow: 1px 1px 0px #fff;
         margin: 1px;
@@ -344,9 +344,9 @@ span.ui-datepicker-month {
         display: inline-block;
         font-weight: bold;
         text-align: center;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
         color: #666666;
         text-shadow: 1px 1px 0px #fff;
         margin: 1px;

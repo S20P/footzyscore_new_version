@@ -306,7 +306,7 @@ img.lineup_title_img {
     .event-text-main {
         overflow-wrap: break-word;
         word-wrap: break-word;
-        width: 100px;
+        /* width: 100px; */
     }
     #timeline .timeline-movement .timeline-item {
         padding: 10px 1px !important;
