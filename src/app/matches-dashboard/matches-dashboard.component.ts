@@ -335,41 +335,44 @@ export class MatchesDashboardComponent implements OnInit {
           self.comp_id = league_id;
           // self.season = season_name;
           //end self gloab variable----------------
+          console.log("competitions", competitions);
+          if (competitions !== "") {
+            if (!groups[competitions.id]) {
+              groups[competitions.id] = [];
+              grouped.push({ competitions: competitions, group: groups[competitions.id] });
+            }
 
-          if (!groups[competitions.id]) {
-            groups[competitions.id] = [];
-            grouped.push({ competitions: competitions, group: groups[competitions.id] });
+            groups[competitions.id].push({
+              "id": id,
+              "comp_id": league_id,
+              "week": week,
+              "venue_id": venue_id,
+              "venue": venue_name,
+              "venue_city": venue_city,
+              "localteam_id": localteam_id,
+              "localteam_name": localteam_name,
+              "localteam_image": localteam_image,
+              "localteam_score": localteam_score,
+              "ltScore_highest": ltScore_highest,
+              "lats_score_local": lats_score_local,
+              "penalty_local": penalty_local,
+              "visitorteam_id": visitorteam_id,
+              "visitorteam_name": visitorteam_name,
+              "visitorteam_image": visitorteam_image,
+              "visitorteam_score": visitorteam_score,
+              "vtScore_highest": vtScore_highest,
+              "lats_score_vist": lats_score_vist,
+              "penalty_visitor": penalty_visitor,
+              "penalty_localvist": penalty_localvist,
+              "agg_localvist": agg_localvist,
+              "status": status,
+              "time": match_time,
+              "formatted_date": match_time,
+              "competitions": competitions,
+              "live_status": live_status,
+              "score_status_flage": score_status_flage
+            });
           }
-          groups[competitions.id].push({
-            "id": id,
-            "comp_id": league_id,
-            "week": week,
-            "venue_id": venue_id,
-            "venue": venue_name,
-            "venue_city": venue_city,
-            "localteam_id": localteam_id,
-            "localteam_name": localteam_name,
-            "localteam_image": localteam_image,
-            "localteam_score": localteam_score,
-            "ltScore_highest": ltScore_highest,
-            "lats_score_local": lats_score_local,
-            "penalty_local": penalty_local,
-            "visitorteam_id": visitorteam_id,
-            "visitorteam_name": visitorteam_name,
-            "visitorteam_image": visitorteam_image,
-            "visitorteam_score": visitorteam_score,
-            "vtScore_highest": vtScore_highest,
-            "lats_score_vist": lats_score_vist,
-            "penalty_visitor": penalty_visitor,
-            "penalty_localvist": penalty_localvist,
-            "agg_localvist": agg_localvist,
-            "status": status,
-            "time": match_time,
-            "formatted_date": match_time,
-            "competitions": competitions,
-            "live_status": live_status,
-            "score_status_flage": score_status_flage
-          });
         });
         console.log("grouped", grouped);
         this.match_ground_details = grouped;
@@ -377,9 +380,9 @@ export class MatchesDashboardComponent implements OnInit {
     })
   }
 
-  CompetitionDetails(comp_id, comp_name, season) {
+  CompetitionDetails(comp_id) {
     console.log("going to CompetitionDetails page...", comp_id);
-    this.router.navigate(['/competition', comp_id, { "comp_name": comp_name, "season": season }]);
+    this.router.navigate(['/competition', comp_id]);
   }
 
   matchdetails(id) {

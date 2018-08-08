@@ -82,19 +82,44 @@ export class JsCustomeFunScriptService {
 
 
   HandleDataofAPI(item) {
-    console.log("dynamic handle data in jsfile", item);
+    // console.log("dynamic handle data in jsfile", item);
 
     var id: any = item['id'];
     var comp_id = item['league_id'];
     var stage: any = item['stage'];
     var week: any = "";
+    var round_id: any = item['round_id'];
+    var round: any = item['round'];
+    if (round_id) {
+      if (round_id !== undefined || round_id !== "" || round_id !== null) {
+        if (round) {
+          var round_data = round['data'];
+          if (round_data !== undefined || round_data['length'] !== 0 || round_data !== null) {
+            week = round_data.name;
+            var checkstr = $.isNumeric(week);
 
-    if (stage) {
-      var stage_data = stage['data'];
-      if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
-        week = stage_data.name;
+            if (checkstr == true) {
+              week = "Week " + week;
+            } else {
+              week = week;
+            }
+            if (week == "") {
+              week = "Week all";
+            } else {
+              week = week;
+            }
+          }
+        }
+      }
+    } else {
+      if (stage) {
+        var stage_data = stage['data'];
+        if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
+          week = stage_data.name;
+        }
       }
     }
+
     //LocalTeam Data---------------------------------------------------------
     var localteam_id: any = item['localteam_id'];
     var localteam_name: any = "";
@@ -126,10 +151,11 @@ export class JsCustomeFunScriptService {
     var time_formatte = "";
     let live_minuts: any = "";
     var live_status: boolean = false;
-
+    var date: any = "";
     if (time) {
       starting_at = time.starting_at;
       date_time = starting_at.date_time; //YYYY-MM-DD H:MM:SS
+      date = starting_at.date;
       match_time = this.ChangeTimeZone(date_time);
       status = time.status;
       time_formatte = moment(new Date(match_time)).format('hh:mm a');
@@ -147,7 +173,7 @@ export class JsCustomeFunScriptService {
         live_status = false;
         status = status;
       }
-      else if (status == "NS" || status == "") {
+      else if (status == "NS" || status == "TBA" || status == "") {
         live_status = false;
         status = time_formatte;
       }
@@ -294,7 +320,7 @@ export class JsCustomeFunScriptService {
       }
     }
     //end season---------------------------------------------------------
-    var competitions: any;
+    var competitions: any = "";
     if (item['league']) {
       var competitions_data = item.league['data'];
       if (competitions_data !== undefined || competitions_data !== "" || competitions_data !== null) {
@@ -335,7 +361,9 @@ export class JsCustomeFunScriptService {
       "agg_localvist": agg_localvist,
       "score_status_flage": score_status_flage,
       "live_status": live_status,
+      "date": date
     }
+
     return collection;
   }
 }

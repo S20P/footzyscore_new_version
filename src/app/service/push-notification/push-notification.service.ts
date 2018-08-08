@@ -5,8 +5,6 @@ import {
   Observable
 } from 'rxjs/Observable';
 
-
-
 @Injectable()
 export class PushNotificationService {
   public permission: Permission;
@@ -44,19 +42,12 @@ export class PushNotificationService {
       };
       _notify.onclick = function (e) {
 
-        console.log("onclick msg", e['currentTarget']);
         let notification = e['currentTarget'];
 
-        console.log("notification", notification);
         let matche_id = notification['data'];
 
-
-        //http://localhost:4200/matches/2323219;comp_id=1056
-
-        let str_link = window.location.origin + "/matches/" + matche_id + ";comp_id=1056";
+        let str_link = window.location.origin + "/matches/" + matche_id;
         console.log("str is", str_link);
-
-        //this.router.navigate(['/matches', matche_id, { "comp_id": comp_id }]);
 
         window.open(str_link);
 
@@ -81,10 +72,10 @@ export class PushNotificationService {
     source.forEach((item) => {
       let options = {
         body: item.alertContent,
-        icon: "/assets/img/ic_goal.png",
+        icon: "/assets/img/ic_event_goal.png",
         data: item.action_id,
       };
-      let title = "footzylive";
+      let title = "footzyScore";
       let notify = self.create(title, options).subscribe();
     })
   }

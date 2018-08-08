@@ -20,8 +20,9 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div *ngFor="let paire of item.group|groupBy:'date'|orderBy:'formatted_date';let j=index">
-                            <h5 class="groupBy-date-title"> {{paire.value[0].time|date:'EEEE, d MMMM y'}}</h5>
+                        <div *ngFor="let paire of item.group|groupBy:'date'|orderBy:'date';let j=index">
+
+                            <h5 class="groupBy-date-title"> {{paire.key|date:'EEEE, d MMMM y'}}</h5>
                             <div *ngFor="let item_details of paire.value|orderBy:'date';let j=index" class="card">
                                 <div class="row match-detail theme-hover" (click)="matchdetails(item_details.id)">
                                     <!-- hide Responshive -->

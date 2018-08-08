@@ -651,251 +651,255 @@ export class MatchesDetailComponentComponent implements OnInit {
 
                 //  match_Events-------------------------------------------------------------
 
-                var events_data: any = result['events'].data;
 
-                if (events_data !== undefined || events_data['length'] !== 0 || events_data !== null) {
-                    for (var e = 0; e < events_data['length']; e++) {
-                        var team;
-                        if (events_data[e].team_id == localteam_id) {
-                            team = "localteam";
-                        }
-                        if (events_data[e].team_id == visitorteam_id) {
-                            team = "visitorteam";
-                        }
+                if (result['events']) {
+                    var events_data: any = result['events'].data;
+                    if (events_data !== undefined || events_data['length'] !== 0 || events_data !== null) {
+                        for (var e = 0; e < events_data['length']; e++) {
+                            var team;
+                            if (events_data[e].team_id == localteam_id) {
+                                team = "localteam";
+                            }
+                            if (events_data[e].team_id == visitorteam_id) {
+                                team = "visitorteam";
+                            }
 
-                        var event_result: any;
-                        if (events_data[e].result !== null) {
-                            event_result = events_data[e].result
-                        }
+                            var event_result: any;
+                            if (events_data[e].result !== null) {
+                                event_result = events_data[e].result
+                            }
 
-                        let ic_event_penalty = false;
-                        let ic_event_own_goal = false;
-                        let ic_event_goal = false;
-                        let ic_event_yellow_card = false;
-                        let ic_event_substitution = false;
-                        let ic_event_yellowred = false;
-                        let ic_event_missed_penalty = false;
-                        let ic_event_pen_shootout_goal = false;
-                        let ic_event_pen_shootout_miss = false;
-                        let ic_event_redcard = false;
+                            let ic_event_penalty = false;
+                            let ic_event_own_goal = false;
+                            let ic_event_goal = false;
+                            let ic_event_yellow_card = false;
+                            let ic_event_substitution = false;
+                            let ic_event_yellowred = false;
+                            let ic_event_missed_penalty = false;
+                            let ic_event_pen_shootout_goal = false;
+                            let ic_event_pen_shootout_miss = false;
+                            let ic_event_redcard = false;
 
-                        var type: any = events_data[e].type;
+                            var type: any = events_data[e].type;
 
-                        if (type == "goal") {
-                            ic_event_goal = true;
-                        }
-                        if (type == "penalty") {
-                            ic_event_penalty = true;
-                        }
-                        if (type == "missed_penalty") {
-                            ic_event_missed_penalty = true;
-                        }
-                        if (type == "own-goal") {
-                            ic_event_own_goal = true;
-                        }
-                        if (type == "substitution") {
-                            ic_event_substitution = true;
-                        }
-                        if (type == "yellowcard") {
-                            ic_event_yellow_card = true;
-                        }
-                        if (type == "yellowred") {
-                            ic_event_yellowred = true;
-                        }
-                        if (type == "redcard") {
-                            ic_event_redcard = true;
-                        }
-                        if (type == "pen_shootout_goal") {
-                            ic_event_pen_shootout_goal = true;
-                        }
-                        if (type == "pen_shootout_miss") {
-                            ic_event_pen_shootout_miss = true;
-                        }
-
-
+                            if (type == "goal") {
+                                ic_event_goal = true;
+                            }
+                            if (type == "penalty") {
+                                ic_event_penalty = true;
+                            }
+                            if (type == "missed_penalty") {
+                                ic_event_missed_penalty = true;
+                            }
+                            if (type == "own-goal") {
+                                ic_event_own_goal = true;
+                            }
+                            if (type == "substitution") {
+                                ic_event_substitution = true;
+                            }
+                            if (type == "yellowcard") {
+                                ic_event_yellow_card = true;
+                            }
+                            if (type == "yellowred") {
+                                ic_event_yellowred = true;
+                            }
+                            if (type == "redcard") {
+                                ic_event_redcard = true;
+                            }
+                            if (type == "pen_shootout_goal") {
+                                ic_event_pen_shootout_goal = true;
+                            }
+                            if (type == "pen_shootout_miss") {
+                                ic_event_pen_shootout_miss = true;
+                            }
 
 
-                        self.events_collection
-                            .push({
-                                "id": events_data[e].id,
-                                "type": events_data[e].type,
-                                "minute": events_data[e].minute,
-                                "extra_min": events_data[e].extra_min,
-                                "team": team,
-                                "assist": events_data[e].related_player_name,
-                                "assist_id": events_data[e].related_player_id,
-                                "player": events_data[e].player_name,
-                                "player_id": events_data[e].player_id,
-                                "result": event_result,
-                                "ic_event_goal": ic_event_goal,
-                                "ic_event_penalty": ic_event_penalty,
-                                "ic_event_missed_penalty": ic_event_missed_penalty,
-                                "ic_event_own_goal": ic_event_own_goal,
-                                "ic_event_substitution": ic_event_substitution,
-                                "ic_event_yellow_card": ic_event_yellow_card,
-                                "ic_event_yellowred": ic_event_yellowred,
-                                "ic_event_redcard": ic_event_redcard,
-                                "ic_event_pen_shootout_goal": ic_event_pen_shootout_goal,
-                                "ic_event_pen_shootout_miss": ic_event_pen_shootout_miss
+
+
+                            self.events_collection
+                                .push({
+                                    "id": events_data[e].id,
+                                    "type": events_data[e].type,
+                                    "minute": events_data[e].minute,
+                                    "extra_min": events_data[e].extra_min,
+                                    "team": team,
+                                    "assist": events_data[e].related_player_name,
+                                    "assist_id": events_data[e].related_player_id,
+                                    "player": events_data[e].player_name,
+                                    "player_id": events_data[e].player_id,
+                                    "result": event_result,
+                                    "ic_event_goal": ic_event_goal,
+                                    "ic_event_penalty": ic_event_penalty,
+                                    "ic_event_missed_penalty": ic_event_missed_penalty,
+                                    "ic_event_own_goal": ic_event_own_goal,
+                                    "ic_event_substitution": ic_event_substitution,
+                                    "ic_event_yellow_card": ic_event_yellow_card,
+                                    "ic_event_yellowred": ic_event_yellowred,
+                                    "ic_event_redcard": ic_event_redcard,
+                                    "ic_event_pen_shootout_goal": ic_event_pen_shootout_goal,
+                                    "ic_event_pen_shootout_miss": ic_event_pen_shootout_miss
+                                });
+                        }
+                    }
+                }
+                self.events_collection.reverse();
+                // end match_Events---------------------------------------------------------
+
+                //match_stats---------------------------------------------------------------
+                if (result['stats']) {
+                    let match_stats = result['stats'].data;
+                    if (match_stats) {
+                        var match_stats_lt = [];
+                        var match_stats_vt = [];
+                        if (match_stats !== undefined || match_stats['length'] !== 0 || match_stats !== null) {
+                            for (var st = 0; st < match_stats['length']; st++) {
+
+                                var corners: any = match_stats[st].corners;
+                                var offsides: any = match_stats[st].offsides;
+                                var fouls: any = match_stats[st].fouls;
+                                var possessiontime: any = match_stats[st].possessiontime;
+                                var redcards: any = match_stats[st].redcards;
+                                var saves: any = match_stats[st].saves;
+                                var yellowcards: any = match_stats[st].yellowcards;
+
+                                var shots = match_stats[st].shots;
+                                var ongoal: any = shots.ongoal;
+                                var total: any = shots.total;
+
+                                if (corners == null) {
+                                    corners = 0;
+                                }
+                                if (fouls == null) {
+                                    fouls = 0;
+                                }
+                                if (offsides == null) {
+                                    offsides = 0;
+                                }
+                                if (possessiontime == null) {
+                                    possessiontime = 0;
+                                }
+                                if (redcards == null) {
+                                    redcards = 0;
+                                } if (saves == null) {
+                                    saves = 0;
+                                }
+                                if (ongoal == null) {
+                                    ongoal = 0;
+                                }
+                                if (total == null) {
+                                    total = 0;
+                                }
+                                if (yellowcards == null) {
+                                    yellowcards = 0;
+                                }
+
+                                if (match_stats[st].team_id == localteam_id) {
+                                    match_stats_lt.push({
+                                        "lt_corners": corners,
+                                        "lt_fouls": fouls,
+                                        "lt_offsides": offsides,
+                                        "lt_possesiontime": possessiontime,
+                                        "lt_redcards": redcards,
+                                        "lt_saves": saves,
+                                        "lt_shots_ongoal": ongoal,
+                                        "lt_shots_total": total,
+                                        "lt_yellowcards": yellowcards,
+                                    });
+                                }
+                                if (match_stats[st].team_id == visitorteam_id) {
+                                    match_stats_vt.push({
+                                        "vt_corners": corners,
+                                        "vt_fouls": fouls,
+                                        "vt_offsides": offsides,
+                                        "vt_possesiontime": possessiontime,
+                                        "vt_redcards": redcards,
+                                        "vt_saves": saves,
+                                        "vt_shots_ongoal": ongoal,
+                                        "vt_shots_total": total,
+                                        "vt_yellowcards": yellowcards
+                                    });
+                                }
+                            }
+
+                            console.log("l-status", match_stats_lt);
+                            console.log("v-status", match_stats_vt);
+                            if (match_stats_vt['length'] > 0 || match_stats_vt['length'] > 0) {
+                                self.match_stats_collection.push(Object.assign(match_stats_lt[0], match_stats_vt[0]));
+                            }
+                        }
+                    }
+                }
+                //end match_stats----------------------------------------------------------
+
+                // lineup------------------------------------------------------------------
+                let lineup = result['lineup'].data;
+                if (lineup !== undefined || lineup['length'] !== 0 || lineup !== null) {
+
+                    for (var lp = 0; lp < lineup['length']; lp++) {
+                        // localteam_lineup-------------------------------------------------------------
+                        if (lineup[lp].team_id == localteam_id) {
+                            self.localteam_player_lineup.push({
+                                "id": lineup[lp].player_id,
+                                "name": lineup[lp].player_name,
+                                "number": lineup[lp].number,
+                                "pos": lineup[lp].position,
                             });
-                    }
-                    self.events_collection.reverse();
-                    // end match_Events---------------------------------------------------------
-
-                    //match_stats---------------------------------------------------------------
-                    if (result['stats']) {
-                        let match_stats = result['stats'].data;
-                        if (match_stats) {
-                            var match_stats_lt = [];
-                            var match_stats_vt = [];
-                            if (match_stats !== undefined || match_stats['length'] !== 0 || match_stats !== null) {
-                                for (var st = 0; st < match_stats['length']; st++) {
-
-                                    var corners: any = match_stats[st].corners;
-                                    var offsides: any = match_stats[st].offsides;
-                                    var fouls: any = match_stats[st].fouls;
-                                    var possessiontime: any = match_stats[st].possessiontime;
-                                    var redcards: any = match_stats[st].redcards;
-                                    var saves: any = match_stats[st].saves;
-                                    var yellowcards: any = match_stats[st].yellowcards;
-
-                                    var shots = match_stats[st].shots;
-                                    var ongoal: any = shots.ongoal;
-                                    var total: any = shots.total;
-
-                                    if (corners == null) {
-                                        corners = 0;
-                                    }
-                                    if (fouls == null) {
-                                        fouls = 0;
-                                    }
-                                    if (offsides == null) {
-                                        offsides = 0;
-                                    }
-                                    if (possessiontime == null) {
-                                        possessiontime = 0;
-                                    }
-                                    if (redcards == null) {
-                                        redcards = 0;
-                                    } if (saves == null) {
-                                        saves = 0;
-                                    }
-                                    if (ongoal == null) {
-                                        ongoal = 0;
-                                    }
-                                    if (total == null) {
-                                        total = 0;
-                                    }
-                                    if (yellowcards == null) {
-                                        yellowcards = 0;
-                                    }
-
-                                    if (match_stats[st].team_id == localteam_id) {
-                                        match_stats_lt.push({
-                                            "lt_corners": corners,
-                                            "lt_fouls": fouls,
-                                            "lt_offsides": offsides,
-                                            "lt_possesiontime": possessiontime,
-                                            "lt_redcards": redcards,
-                                            "lt_saves": saves,
-                                            "lt_shots_ongoal": ongoal,
-                                            "lt_shots_total": total,
-                                            "lt_yellowcards": yellowcards,
-                                        });
-                                    }
-                                    if (match_stats[st].team_id == visitorteam_id) {
-                                        match_stats_vt.push({
-                                            "vt_corners": corners,
-                                            "vt_fouls": fouls,
-                                            "vt_offsides": offsides,
-                                            "vt_possesiontime": possessiontime,
-                                            "vt_redcards": redcards,
-                                            "vt_saves": saves,
-                                            "vt_shots_ongoal": ongoal,
-                                            "vt_shots_total": total,
-                                            "vt_yellowcards": yellowcards
-                                        });
-                                    }
-                                }
-
-                                console.log("l-status", match_stats_lt);
-                                console.log("v-status", match_stats_vt);
-                                if (match_stats_vt['length'] > 0 || match_stats_vt['length'] > 0) {
-                                    self.match_stats_collection.push(Object.assign(match_stats_lt[0], match_stats_vt[0]));
-                                }
-                            }
                         }
-                    }
-                    //end match_stats----------------------------------------------------------
+                        //end localteam_lineup--------------------------------------------------------
 
-                    // lineup------------------------------------------------------------------
-                    let lineup = result['lineup'].data;
-                    if (lineup !== undefined || lineup['length'] !== 0 || lineup !== null) {
-
-                        for (var lp = 0; lp < lineup['length']; lp++) {
-                            // localteam_lineup-------------------------------------------------------------
-                            if (lineup[lp].team_id == localteam_id) {
-                                self.localteam_player_lineup.push({
-                                    "id": lineup[lp].player_id,
-                                    "name": lineup[lp].player_name,
-                                    "number": lineup[lp].number,
-                                    "pos": lineup[lp].position,
-                                });
-                            }
-                            //end localteam_lineup--------------------------------------------------------
-
-                            //visitorteam_lineup-----------------------------------------------------------
-                            if (lineup[lp].team_id == visitorteam_id) {
-                                self.visitorteam_player_lineup.push({
-                                    "id": lineup[lp].player_id,
-                                    "name": lineup[lp].player_name,
-                                    "number": lineup[lp].number,
-                                    "pos": lineup[lp].position,
-                                });
-                            }
-                            //end visitorteam_lineup---------------------------------------------------------
+                        //visitorteam_lineup-----------------------------------------------------------
+                        if (lineup[lp].team_id == visitorteam_id) {
+                            self.visitorteam_player_lineup.push({
+                                "id": lineup[lp].player_id,
+                                "name": lineup[lp].player_name,
+                                "number": lineup[lp].number,
+                                "pos": lineup[lp].position,
+                            });
                         }
+                        //end visitorteam_lineup---------------------------------------------------------
                     }
-                    //Substitutes(bench)-------------------------------------------------------------
+                }
+                //Substitutes(bench)-------------------------------------------------------------
 
-                    let Substitutes = result['bench'].data;
-                    if (Substitutes !== undefined || Substitutes['length'] !== 0 || Substitutes !== null) {
+                let Substitutes = result['bench'].data;
+                if (Substitutes !== undefined || Substitutes['length'] !== 0 || Substitutes !== null) {
 
-                        for (var lp = 0; lp < Substitutes['length']; lp++) {
-                            // localteam_lineup------------------------------------------------------------------------------------
-                            if (Substitutes[lp].team_id == localteam_id) {
-                                self.localteam_player_subs.push({
-                                    "id": Substitutes[lp].player_id,
-                                    "name": Substitutes[lp].player_name,
-                                    "number": Substitutes[lp].number,
-                                    "pos": Substitutes[lp].position,
-                                });
-                            }
-                            //end localteam_Substitutes--------------------------------------------
-
-                            //visitorteam_Substitutes----------------------------------------------
-                            if (Substitutes[lp].team_id == visitorteam_id) {
-                                self.visitorteam_player_subs.push({
-                                    "id": Substitutes[lp].player_id,
-                                    "name": Substitutes[lp].player_name,
-                                    "number": Substitutes[lp].number,
-                                    "pos": Substitutes[lp].position,
-                                });
-                            }
-                            //end visitorteam_Substitutes---------------------------------------------
+                    for (var lp = 0; lp < Substitutes['length']; lp++) {
+                        // localteam_lineup------------------------------------------------------------------------------------
+                        if (Substitutes[lp].team_id == localteam_id) {
+                            self.localteam_player_subs.push({
+                                "id": Substitutes[lp].player_id,
+                                "name": Substitutes[lp].player_name,
+                                "number": Substitutes[lp].number,
+                                "pos": Substitutes[lp].position,
+                            });
                         }
+                        //end localteam_Substitutes--------------------------------------------
+
+                        //visitorteam_Substitutes----------------------------------------------
+                        if (Substitutes[lp].team_id == visitorteam_id) {
+                            self.visitorteam_player_subs.push({
+                                "id": Substitutes[lp].player_id,
+                                "name": Substitutes[lp].player_name,
+                                "number": Substitutes[lp].number,
+                                "pos": Substitutes[lp].position,
+                            });
+                        }
+                        //end visitorteam_Substitutes---------------------------------------------
                     }
-                    //end Substitutes(bench)-----------------------------------------------------
+                }
+                //end Substitutes(bench)-----------------------------------------------------
 
-                    //  comments-----------------------------------------------------------------
+                //  comments-----------------------------------------------------------------
 
-                    let commentaries_status = result['commentaries'];
+                let commentaries_status = result['commentaries'];
 
-                    if (commentaries_status == true) {
-                        self.matchService.GetCommentariesByMatchId(id).subscribe(data => {
-                            var comments: any = data['data'];
+                if (commentaries_status == true) {
+                    self.matchService.GetCommentariesByMatchId(id).subscribe(data => {
+                        console.log("comments", data);
+                        var comments: any = data['data'];
+                        if (comments) {
                             if (comments !== undefined || comments['length'] !== 0 || comments !== null) {
-
 
                                 for (var c = 0; c < comments['length']; c++) {
                                     var GoalType: boolean = false;
@@ -1023,10 +1027,12 @@ export class MatchesDetailComponentComponent implements OnInit {
                                 }
 
                             }
-                        });
-                    }
-                    // end comments------------------------------------------------------------
+                        }
+                    });
                 }
+                // end comments------------------------------------------------------------
+
+
             }
         });
     }

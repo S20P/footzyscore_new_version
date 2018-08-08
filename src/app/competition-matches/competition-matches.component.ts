@@ -153,6 +153,7 @@ export class CompetitionMatchesComponent implements OnInit {
           var live_status: any = collection["live_status"];
           var status: any = collection["status"];
           var match_time: any = collection["match_time"];
+          // var date: any = collection["date"];
           //end time---------------------------------------------------------------------
 
           //scores----------------------------------------------------------------------
@@ -193,7 +194,8 @@ export class CompetitionMatchesComponent implements OnInit {
           // self.comp_id = league_id;
           // self.season = season_name;
           //end self gloab variable----------------
-
+          var date = moment(new Date(match_time)).format('YYYY-MM-DD');
+          var date_short = collection['date'];
           var obj = {
             "id": id,
             "comp_id": league_id,
@@ -222,51 +224,46 @@ export class CompetitionMatchesComponent implements OnInit {
             "formatted_date": match_time,
             "competitions": competitions,
             "live_status": live_status,
-            "score_status_flage": score_status_flage
+            "score_status_flage": score_status_flage,
+            "date": date
           };
 
           if (last && last.week.week === week) {
             last.group.push(obj);
           } else {
-            r.push({ week: { week, match_time }, group: [obj] });
+            r.push({ week: { week, date }, group: [obj] });
           }
           return r;
         }, []);
-        //console.log(array);
-        for (let p = 0; p < array.reverse()['length']; p++) {
-          console.log("item_week", array[p].week);
-          var timezone = array[p].week.match_time;
-          var trans_date = timezone;
-          console.log("trans_date", trans_date);
+        console.log(array);
 
-          var date1 = new Date(trans_date);
-          var date2 = new Date();
-
-          console.log("date1", date1);
-          console.log("date2", date2);
-
-          var d1 = date1.getTime();
-          var d2 = date2.getTime();
-
-          if (d1 > d2) {
-            console.log("date-comapre is d1", d1);
-            console.log("date-comapre is d2", d2);
-
-            var pos = p - 1;
-            self.selectedposition = pos;
-            console.log("pos", pos);
-
-          }
-          else {
-            self.selectedposition = 0;
-          }
-        }
-
-        this.match_ground_details = array.reverse();
-
+        var pos = getTodayWeekPosition(array);
+        self.selectedposition = pos;
+        console.log("pos", pos);
+        this.match_ground_details = array;
       }
     });
 
+
+
+    function getTodayWeekPosition(array) {
+      for (let p = 0; p < array['length']; p++) {
+        console.log("item_week", array[p].week);
+        var dl = array[p].week.date;
+        var date1 = moment(new Date(dl + " 00:00:00")).format('YYYY-MM-DD HH:mm:ss');
+        var todays = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        console.log("GetCurrentPos todays", todays);
+        console.log("GetCurrentPos date-from", date1);
+        var d1 = moment(date1).valueOf();
+        var d2 = moment(todays).valueOf();
+        console.log("d1", d1);
+        console.log("d2", d2);
+        if (p !== 0 && d1 > d2) {
+          return p - 1;
+        }
+      }
+      return array.length > 1 ? array.length - 1 : 0;
+    }
     console.log("All Tops Matches by week are", this.match_ground_details);
     console.log("list dropdown", this.list_matches);
   }

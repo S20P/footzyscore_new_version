@@ -41,13 +41,11 @@ export class AppComponent {
         localStorage.removeItem('firebase:previous_websocket_failure');
         this.loading = "none";
         this._notificationService.requestPermission();
-   
-   }
+      }
 
     ngOnInit() {
 
         this.msgService.getPermission();
-
 
         this.msgService.currentMessage.subscribe(data => {
             console.log("message-resis", data);
@@ -64,7 +62,6 @@ export class AppComponent {
                 });
                 this._notificationService.generateNotification(datamsg);
             }
-
         });
 
 
