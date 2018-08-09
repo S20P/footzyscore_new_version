@@ -18,7 +18,7 @@ export class JsCustomeFunScriptService {
 
 
   ChangeTimeZone(dateto) {
-    var utcTime = moment.utc(dateto).format('YYYY-MM-DD HH:mm');
+    var utcTime = moment.utc(dateto, 'YYYY-MM-DD HH:mm:ss a').format('YYYY-MM-DD HH:mm');
     //get text from divUTC and conver to local timezone  
     var localTime = moment.utc(utcTime).toDate();
     var result = moment(localTime).format('YYYY-MM-DD hh:mm:ss a')
@@ -82,7 +82,7 @@ export class JsCustomeFunScriptService {
 
 
   HandleDataofAPI(item) {
-    // console.log("dynamic handle data in jsfile", item);
+    //console.log("dynamic handle data in jsfile", item);
 
     var id: any = item['id'];
     var comp_id = item['league_id'];
@@ -120,10 +120,16 @@ export class JsCustomeFunScriptService {
       }
     }
 
-    //LocalTeam Data---------------------------------------------------------
-    var localteam_id: any = item['localteam_id'];
+    var localteam_id: any = "";
+    var visitorteam_id: any = "";
     var localteam_name: any = "";
-    var flag__loal: any
+    var flag__loal: any = "";
+    var visitorteam_name: any = "";
+    var flag_visit: any = "";
+
+    localteam_id = item['localteam_id'];
+    visitorteam_id = item['visitorteam_id'];
+    //LocalTeam Data---------------------------------------------------------
     if (item['localTeam']) {
       var localTeam_details: any = item['localTeam'].data;
       if (localTeam_details !== undefined || localTeam_details['length'] !== 0 || localTeam_details !== null) {
@@ -132,9 +138,6 @@ export class JsCustomeFunScriptService {
       }
     }
     //visitorTeam Data--------------------------------------------------------
-    var visitorteam_id: any = item['visitorteam_id'];
-    var visitorteam_name: any = "";
-    var flag_visit: any = "";
     if (item['visitorTeam']) {
       var visitorTeam_details: any = item['visitorTeam'].data;
       if (visitorTeam_details !== undefined || visitorTeam_details['length'] !== 0 || visitorTeam_details !== null) {
@@ -142,6 +145,8 @@ export class JsCustomeFunScriptService {
         flag_visit = visitorTeam_details.logo_path;
       }
     }
+
+
     //time---------------------------------------------------------------------
     var time: any = item['time'];
     var starting_at: any = "";
@@ -157,8 +162,14 @@ export class JsCustomeFunScriptService {
       date_time = starting_at.date_time; //YYYY-MM-DD H:MM:SS
       date = starting_at.date;
       match_time = this.ChangeTimeZone(date_time);
+      // console.log("match_time", match_time);
       status = time.status;
-      time_formatte = moment(new Date(match_time)).format('hh:mm a');
+      time_formatte = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('hh:mm a');
+      // console.log("time_formatte", time_formatte);
+      // var time_formatte1 = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('DD MMM YYYY');  //ex 09 Aug 2018
+      // console.log("time_formatte1", time_formatte1);
+
+
       live_minuts = time.minute;
       if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
         live_status = true;
@@ -324,7 +335,10 @@ export class JsCustomeFunScriptService {
     if (item['league']) {
       var competitions_data = item.league['data'];
       if (competitions_data !== undefined || competitions_data !== "" || competitions_data !== null) {
-        competitions = competitions_data;
+        competitions = {
+          "id": comp_id,
+          "name": competitions_data.name
+        };
       }
     }
 
@@ -351,7 +365,7 @@ export class JsCustomeFunScriptService {
       "lats_score_vist": lats_score_vist,
       "penalty_visitor": penalty_visitor,
       "vtScore_highest": vtScore_highest,
-      "match_time": match_time,
+      "match_time": moment(match_time, 'YYYY-MM-DD HH:mm:ss a'),
       "status": status,
       "competitions": competitions,
       "ft_score": ft_score,

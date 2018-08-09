@@ -69,7 +69,6 @@ export class TeamPreviousMatchesComponent implements OnInit {
           grouped = [];
 
         array.forEach(function (item) {
-
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
 
           var id: any = collection['id'];
@@ -217,9 +216,9 @@ export class TeamPreviousMatchesComponent implements OnInit {
   matchdetails(id) {
     this.router.navigate(['/matches', id]);
   }
-  CompetitionDetails(comp_id, comp_name, season) {
+  CompetitionDetails(comp_id) {
     console.log("going to CompetitionDetails page...", comp_id);
-    this.router.navigate(['/competition', comp_id, { "comp_name": comp_name, "season": season }]);
+    this.router.navigate(['/competition', comp_id]);
   }
 
 }

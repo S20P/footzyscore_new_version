@@ -1,7 +1,7 @@
 <div class="row  previous-matces-page">
     <div class="col-md-12">
         <div *ngFor="let item of PreviousMatchesTeam; let i = index">
-            <div class="col-md-12 match-page-header" (click)="CompetitionDetails(item.competitions.id,item.competitions.name,item.competitions.season)">
+            <div class="col-md-12 match-page-header" (click)="CompetitionDetails(item.competitions.id)">
                 <h4>{{item.competitions.name}}</h4>
             </div>
             <div class="row">

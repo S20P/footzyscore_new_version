@@ -41,7 +41,7 @@ export class AppComponent {
         localStorage.removeItem('firebase:previous_websocket_failure');
         this.loading = "none";
         this._notificationService.requestPermission();
-      }
+    }
 
     ngOnInit() {
 

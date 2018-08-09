@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
+declare var $: any;
+declare var jQuery: any;
+import * as moment from 'moment-timezone';
+import "moment-timezone";
 @Injectable()
 export class MatchService {
 
@@ -34,7 +37,7 @@ export class MatchService {
   GetAllMatchesBySeasonId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesBySeasonId";
   GetCommentariesByMatchId_API: string = this._baseurl_local + "MobileAPI/GetCommentariesByMatchId";
   GetSeasonByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetSeasonByLeagueId";
-
+  GetAllLiveMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetAllLiveMatchesByDate";
   constructor(private http: HttpClient) {
   }
 
@@ -108,15 +111,39 @@ export class MatchService {
     // ?date=2018-07-07&timezone=Asia/Kolkata
     console.log("**param**", param);
 
+
+
+
     var date = param.date;
     var timezone = param.localtimezone;
+
+    var todays = moment(new Date()).format('YYYY-MM-DD');
+
+    var date1 = moment(new Date(todays + " 00:00:00")).format('YYYY-MM-DD HH:mm:ss');
+    var date2 = moment(new Date(date + " 00:00:00")).format('YYYY-MM-DD HH:mm:ss');
+
+    console.log("date1", date1);
+    console.log("date2", date2);
+
+    var d1 = moment(date1).valueOf();
+    var d2 = moment(date2).valueOf();
+
+    var url_path: any;
+
+    if (d1 == d2) {
+      console.log("current date is todays date", date);
+      url_path = this.GetAllLiveMatchesByDate_API;
+    } else {
+      console.log("current date is not todays date", date);
+      url_path = this.GetAllCompetitionMatchesByDate_API;
+    }
 
     //Ex----
     // var fromdate = "2018-07-01";
     // var todate = "2018-07-31";
     // var timezone = "Asia/Kolkata";
 
-    let apiurl = `${this.GetAllCompetitionMatchesByDate_API + '?date=' + date + '&timezone=' + timezone}`;
+    let apiurl = `${url_path + '?date=' + date + '&timezone=' + timezone}`;
     return this.http.get(apiurl);
 
   }

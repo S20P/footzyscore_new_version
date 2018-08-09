@@ -75,6 +75,7 @@ export class TeamNextMatchesComponent implements OnInit {
 
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
 
+
           var id: any = collection['id'];
           var league_id = collection['league_id'];
           var week: any = collection['week'];
@@ -199,6 +200,7 @@ export class TeamNextMatchesComponent implements OnInit {
 
               var collection: any = this.jsCustomeFun.HandleDataofAPI(item);
 
+
               var id: any = collection['id'];
               //time---------------------------------------------------------------------
               var live_status: any = collection["live_status"];
@@ -243,9 +245,9 @@ export class TeamNextMatchesComponent implements OnInit {
 
 
 
-  CompetitionDetails(comp_id, comp_name, season) {
+  CompetitionDetails(comp_id) {
     console.log("going to CompetitionDetails page...", comp_id);
-    this.router.navigate(['/competition', comp_id, { "comp_name": comp_name, "season": season }]);
+    this.router.navigate(['/competition', comp_id]);
   }
 
 

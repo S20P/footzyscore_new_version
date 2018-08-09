@@ -94,7 +94,6 @@ export class CompetitionAsideRightComponent implements OnInit {
           grouped = [];
 
         array.forEach(function (item) {
-
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
 
           var id: any = collection['id'];

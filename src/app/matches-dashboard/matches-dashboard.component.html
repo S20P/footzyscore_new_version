@@ -38,8 +38,9 @@
                 <div *ngFor="let item of match_ground_details; let i = index">
                     <div class="card">
                         <div class="col-md-12 header">
+
                             <h4>{{item.competitions.name}}
-                                <span class="more-link" (click)="CompetitionDetails(item.competitions.id,item.competitions.name,item.competitions.season)">  More
+                                <span class="more-link" (click)="CompetitionDetails(item.competitions.id)">  More
                                         <i class="fa right-icon">&#xf105;</i>
                                 </span>
                             </h4>

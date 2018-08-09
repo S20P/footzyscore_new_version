@@ -25,6 +25,7 @@ import "moment-timezone";
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
 import { concat } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-matches-dashboard',
   templateUrl: './matches-dashboard.component.html',
@@ -65,16 +66,18 @@ export class MatchesDashboardComponent implements OnInit {
     this.lastDay_Month = this.jsCustomeFun.lastDay_Month();
   }
 
-
   ngOnInit() {
-    var dm = moment("2014 04 25", "YYYY MM DD");
-    console.log("date_momt", dm);
-    // console.log("flageurl url is", this.flage_baseUrl);
+
+
+    var a = {
+      "key":"1",
+      "value":"abcd"
+    }
+    console.log("a-object",a);
+
 
     this.match_ground_details = [];
-
     this.setTimer();
-
     this.dateSchedule_ini();
 
     $('#datepicker').datepicker();
@@ -265,7 +268,7 @@ export class MatchesDashboardComponent implements OnInit {
     }
 
     this.matchService.GetAllCompetitionMatchesByDate(param).subscribe(record => {
-      // console.log("record by selected Date", record);
+      console.log("record by selected Date", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -276,6 +279,9 @@ export class MatchesDashboardComponent implements OnInit {
         array.forEach(function (item) {
 
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
+
+
+          console.log("collection", collection);
 
           var id: any = collection['id'];
           var league_id = collection['league_id'];

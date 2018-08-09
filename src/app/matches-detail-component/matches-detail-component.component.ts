@@ -92,7 +92,6 @@ export class MatchesDetailComponentComponent implements OnInit {
     }
 
 
-
     GetMatchesByCompetition_ById_live() {
         let current_matchId;
         this.liveMatchesApiService.liveMatches().subscribe(record => {
@@ -110,7 +109,6 @@ export class MatchesDetailComponentComponent implements OnInit {
                         this.visitorteam_player_subs = [];
                         this.match_stats_collection = [];
                         this.events_collection = [];
-
                         var collection: any = this.jsCustomeFun.HandleDataofAPI(item);
 
                         var id: any = collection['id'];
@@ -554,6 +552,7 @@ export class MatchesDetailComponentComponent implements OnInit {
 
                 var collection: any = self.jsCustomeFun.HandleDataofAPI(result);
 
+
                 var id: any = collection['id'];
                 var league_id = collection['league_id'];
                 var week: any = collection['week'];
@@ -612,8 +611,7 @@ export class MatchesDetailComponentComponent implements OnInit {
                 self.comp_id = league_id;
                 self.season = season_name;
                 //end self gloab variable----------------
-
-
+                //  var time = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('DD MMM YYYY');
                 self.match_detailcollection
                     .push({
                         "id": id,

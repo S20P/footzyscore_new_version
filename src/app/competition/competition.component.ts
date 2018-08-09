@@ -93,12 +93,10 @@ export class CompetitionComponent implements OnInit {
 
     this.matchService.GetSeasonByLeagueId(this.comp_id).subscribe(record => {
       console.log("season_list_by_league", record);
-      var result = record['data'];
+      var result = record['data'].reverse();
       if (result !== undefined) {
         for (let i = 0; i < result['length']; i++) {
-
           if (this.comp_id == result[i].league_id) {
-
             this.season_list.push({
               "id": result[i].id,
               "name": result[i].name,
@@ -107,6 +105,7 @@ export class CompetitionComponent implements OnInit {
 
             if (result[i].is_current_season == true) {
               this.position = i;
+              console.log("selected session position is", i);
               this.season_id = result[i].id;
               console.log("season_id", this.season_id);
               var season_name = result[i].name;
@@ -114,6 +113,7 @@ export class CompetitionComponent implements OnInit {
             }
           }
         }
+
       }
     });
 

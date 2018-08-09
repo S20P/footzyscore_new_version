@@ -39,3 +39,14 @@ export const environment = {
 //   firebase.initializeApp(config);
 // </script>
 
+
+
+// var config = {
+//   apiKey: "AIzaSyAyzGsdCrxMZoWngMNDLZRH1Bj9gMto-Fg",
+//   authDomain: "fifaapps-cfb25.firebaseapp.com",
+//   databaseURL: "https://fifaapps-cfb25.firebaseio.com",
+//   projectId: "fifaapps-cfb25",
+//   storageBucket: "fifaapps-cfb25.appspot.com",
+//   messagingSenderId: "1098681878297"
+// };
+
