@@ -24,9 +24,7 @@ import 'rxjs/add/operator/pairwise';
     styleUrls: ['./app.component.css']
 })
 
-
 export class AppComponent {
-
     loading;
     albums;
     items;
@@ -64,22 +62,7 @@ export class AppComponent {
             }
         });
 
-
         let data = this.msgService.Subscribe_topic();
         console.log("mess-dd", data);
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
 }

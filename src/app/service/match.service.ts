@@ -23,7 +23,7 @@ export class MatchService {
   StaticMatch_API: string = "/assets/data/json/FifaMatchSchedule.json";
 
   //new
-  GetAllCompetitionMatchesByMonth_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByMonth";
+  GetAllCompetitionMatchesByMonth_API: string = this._baseurl_local + "MobileAPI/GetAllMatchDatesByMonth";
   GetAllCompetitionMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetMatchesByDate";
   GetMatchDeatilByMatchId_API: string = this._baseurl_local + "MobileAPI/GetMatchDeatilByMatchId";
   GetStandingBySeasonId_API: string = this._baseurl_local + "MobileAPI/GetStandingBySeasonId";
@@ -34,10 +34,16 @@ export class MatchService {
   GetPreviousMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetPreviousMatchesTeamById";
   GetNextMatchesTeamById_API: string = this._baseurl_local + "MobileAPI/GetNextMatchesTeamById";
   GetAllLeague_API: string = this._baseurl_local + "MobileAPI/GetAllLeague";
-  GetAllMatchesBySeasonId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesBySeasonId";
+  GetAllGroupsBySeasonId_API: string = this._baseurl_local + "MobileAPI/GetAllGroupsBySeasonId";
   GetCommentariesByMatchId_API: string = this._baseurl_local + "MobileAPI/GetCommentariesByMatchId";
   GetSeasonByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetSeasonByLeagueId";
   GetAllLiveMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetAllLiveMatchesByDate";
+
+
+  GetAllMatchesByRoundId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByRoundId";
+  GetAllMatchesByStageId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByStageId";
+
+
   constructor(private http: HttpClient) {
   }
 
@@ -145,9 +151,7 @@ export class MatchService {
 
     let apiurl = `${url_path + '?date=' + date + '&timezone=' + timezone}`;
     return this.http.get(apiurl);
-
   }
-
 
   GetMatchDeatilByMatchId(match_id) {
     let apiurl = `${this.GetMatchDeatilByMatchId_API + '?match_id=' + match_id}`;
@@ -162,15 +166,7 @@ export class MatchService {
 
 
 
-  GetAllMatchesBySeasonId(season_id) {
-    // console.log("comp_id is",comp_id);
-    let apiurl = `${this.GetAllMatchesBySeasonId_API + '?season_id=' + season_id}`;
-    return this.http.get(apiurl);
-  }
-
   //Teams------------
-
-
 
   GetAllTopTeamByLeagueId(league_id, season_id) {
     let apiurl = `${this.GetAllTopTeamByLeagueId_API + '?league_id=' + league_id + '&season_id=' + season_id}`;
@@ -205,4 +201,42 @@ export class MatchService {
   }
 
 
+  //competion-matches-com----API
+  GetAllGroupsBySeasonId(season_id) {
+    let apiurl = `${this.GetAllGroupsBySeasonId_API + '?season_id=' + season_id}`;
+    return this.http.get(apiurl);
+  }
+  // GetAllMatchesByRoundId(season_id, round_id) {
+  //   let apiurl = `${this.GetAllMatchesByRoundId_API + '?season_id=' + season_id + '?round_id=' + round_id}`;
+  //   return this.http.get(apiurl);
+  // }
+  // GetAllMatchesByStageId(season_id, stage_id) {
+  //   let apiurl = `${this.GetAllMatchesByStageId_API + '?season_id=' + season_id + '?stage_id=' + stage_id}`;
+  //   return this.http.get(apiurl);
+  // }
+
+
+  GetAllMatchesByWeek(paramobject) {
+
+    var season_id = paramobject.season_id;
+    var islistType = paramobject.islistType;
+    var id = paramobject.id;
+    var round_id;
+    var stage_id;
+    var query_str;
+    var query_url;
+    if (islistType == "round") {
+      console.log("call GetAllMatchesByRoundId API");
+      query_str = '&round_id=' + id;
+      query_url = this.GetAllMatchesByRoundId_API;
+    }
+    if (islistType == "stage") {
+      console.log("call GetAllMatchesByStageId API");
+      query_str = '&stage_id=' + id;
+      query_url = this.GetAllMatchesByStageId_API;
+    }
+    let apiurl = `${query_url + '?season_id=' + season_id + query_str}`;
+    console.log("full query string url is", apiurl);
+    return this.http.get(apiurl);
+  }
 }

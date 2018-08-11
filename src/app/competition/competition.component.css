@@ -109,6 +109,9 @@
     .nav>li>a {
         padding: 10px 10px !important;
     }
+    #dropdown_btn {
+        padding: 8px 0px!important;
+    }
 }
 
 @media (max-width: 669px) {

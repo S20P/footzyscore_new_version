@@ -22,6 +22,7 @@ export class CompetitionPlayerComponent implements OnInit {
   public comp_id: any;
   public competition_name: any;
   public season: any;
+  public array_length: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +31,7 @@ export class CompetitionPlayerComponent implements OnInit {
     private orderPipe: OrderPipe,
     private jsCustomeFun: JsCustomeFunScriptService
   ) {
+    this.array_length = 1;
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.comp_id = parseInt(params.get("id"));
@@ -44,7 +46,9 @@ export class CompetitionPlayerComponent implements OnInit {
 
   }
   filterData(season_id) {
-    this.GetAllTopPlayerByLeagueId(season_id);
+    if (season_id) {
+      this.GetAllTopPlayerByLeagueId(season_id);
+    }
   }
   GetAllTopPlayerByLeagueId(season_id) {
     var season_id = season_id;
@@ -100,12 +104,13 @@ export class CompetitionPlayerComponent implements OnInit {
             // var flag = self.player_baseUrl + teams['player_id'] + ".jpg";
             // "player_flag": flag
             // <img [src]="item_details.player_flag" onError="this.src='assets/img/avt_player.png'" /> 
-
-            groups[type].push({
-              "player_id": teams['player_id'],
-              "player_name": teams['player_name'],
-              "count": teams['count'],
-            });
+            if (teams['player_name'] !== null) {
+              groups[type].push({
+                "player_id": teams['player_id'],
+                "player_name": teams['player_name'],
+                "count": teams['count'],
+              });
+            }
           }
         });
         var orderedKeys = ["Goal", "Yellowcard", "Redcard", "Yellowred", "Penalty missed", "Substitution", "Own goal"]; //Array of preordered keys
@@ -123,7 +128,13 @@ export class CompetitionPlayerComponent implements OnInit {
         this.player_collection = sortedArrayOfMaps;
 
         console.log("player_group", grouped);
+        this.array_length = this.player_collection.length;
       }
+      else {
+        this.array_length = 0;
+        console.log("array_length is 0");
+      }
+
     });
 
     console.log("All Tops Player are", this.player_collection);

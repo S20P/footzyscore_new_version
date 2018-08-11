@@ -25,6 +25,7 @@ export class CompetitionAsideRightComponent implements OnInit {
   // public flage_baseUrl: any;
   public currentdaydate: any;
   public localtimezone: any;
+  public array_length: any;
 
 
   constructor(
@@ -36,7 +37,6 @@ export class CompetitionAsideRightComponent implements OnInit {
     private liveMatchesApiService: MatchesApiService,
 
   ) {
-
     // this.flage_baseUrl = "/assets/img/TeamFlage/";
     this.localtimezone = this.jsCustomeFun.LocalTimeZone();
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -46,6 +46,7 @@ export class CompetitionAsideRightComponent implements OnInit {
     this.liveMatchesApiService.liveMatches().subscribe(data => {
       this.GetMatchesByCompetition_ById_live();
     });
+    this.array_length = 1;
 
   }
 
@@ -197,7 +198,13 @@ export class CompetitionAsideRightComponent implements OnInit {
         });
         console.log("grouped", grouped);
         this.match_ground_details = grouped;
+        this.array_length = this.match_ground_details.length;
       }
+      else {
+        this.array_length = 0;
+        console.log("array_length is 0");
+      }
+
     })
     console.log("All Tops Matches by week are", this.match_ground_details);
   }
@@ -241,9 +248,12 @@ export class CompetitionAsideRightComponent implements OnInit {
               var ltScore_highest: any = collection["ltScore_highest"];
               var vtScore_highest: any = collection["vtScore_highest"];
               //end scores------------------------------------------
-              //PEN (0-0)------------------------------------------------
-              var penalty_localvist: any = collection["penalty_localvist"];
-              //end PEN (0-0)--------------------------------------------
+
+              // AGG (0-0)--------------------------------------------
+              var lats_score_local: any = collection["lats_score_local"];
+              var lats_score_vist: any = collection["lats_score_vist"];
+              var agg_localvist: any = collection['agg_localvist'];
+              // end AGG (0-0)-------------------------------------------
 
               group[i]['id'] = id;
               group[i]['status'] = status;
@@ -253,10 +263,11 @@ export class CompetitionAsideRightComponent implements OnInit {
               group[i]['score_status_flage'] = score_status_flage;
               group[i]['ltScore_highest'] = ltScore_highest;
               group[i]['vtScore_highest'] = vtScore_highest;
-              //.pen
-              group[i]['penalty_local'] = penalty_local;
-              group[i]['penalty_visitor'] = penalty_visitor;
-              group[i]['penalty_localvist'] = penalty_localvist;
+              //agg---
+              group[i]['lats_score_local'] = lats_score_local;
+              group[i]['lats_score_vist'] = lats_score_vist;
+              group[i]['agg_localvist'] = agg_localvist;
+              //end egg        
 
             }
           }

@@ -22,6 +22,9 @@ export class PlayerDetailComponent implements OnInit {
   private timer: Observable<any>;
   public player_id: any;
   public player_status: boolean;
+  public player_collection_length: any;
+  public playerStats_collection_length: any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -29,7 +32,8 @@ export class PlayerDetailComponent implements OnInit {
     private jsCustomeFun: JsCustomeFunScriptService
 
   ) {
-
+    this.player_collection_length = 1;
+    this.playerStats_collection_length = 1;
   }
 
   ngOnInit() {
@@ -43,6 +47,8 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   PlayerDetails() {
+    this.showloader = true;
+
     this.player_collection = [];
     this.playerStats_collection = [];
 
@@ -181,6 +187,7 @@ export class PlayerDetailComponent implements OnInit {
             if (stats_record !== undefined || stats_record['length'] !== 0 || stats_record !== null) {
 
               for (let row of stats_record) {
+                console.log("row", row);
 
                 var status_yellowcards: any = row["yellowcards"];
                 var status_redcards: any = row["redcards"];
@@ -189,7 +196,7 @@ export class PlayerDetailComponent implements OnInit {
 
                 //Team---
                 var StatsTeam: any = row["team"];
-                var status_TeamName: any;
+                var status_TeamName: any = "-";
                 var status_TeamId: any;
                 var status_Teamlogo_path: any;
                 if (StatsTeam) {
@@ -246,12 +253,22 @@ export class PlayerDetailComponent implements OnInit {
           // <!--******* end Domestic League ***********-->
 
         }
-
+        this.player_collection_length = this.player_collection.length;
+        this.playerStats_collection_length = this.playerStats_collection.length;
+        this.showloader = false;
       }
+      else {
+        this.player_collection_length = 0;
+        this.playerStats_collection_length = 0;
+        this.showloader = false;
+      }
+
+
     });
     console.log("Player collection", this.player_collection);
 
   }
+
 
 
 

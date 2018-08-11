@@ -21,6 +21,7 @@ export class TeamSquadComponent implements OnInit {
   public team_name: any;
   public team_flage: any;
   public flage_baseUrl: any;
+  public array_length: any;
 
 
   constructor(
@@ -38,6 +39,8 @@ export class TeamSquadComponent implements OnInit {
       let id = parseInt(params.get("id"));
       this.team_id = id;
     });
+    this.array_length = 1;
+
   }
 
 
@@ -115,7 +118,13 @@ export class TeamSquadComponent implements OnInit {
             console.log("Squad_group", grouped);
           }
         }
+        this.array_length = this.SquadTeam.length;
+
       }
+      else {
+        this.array_length = 0;
+      }
+
     });
   }
 

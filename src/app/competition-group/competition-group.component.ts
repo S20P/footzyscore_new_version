@@ -27,6 +27,7 @@ export class CompetitionGroupComponent implements OnInit {
   public competition_name: any;
   public season: any;
   public selectedpositionofGroup: any;
+  public array_length: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,8 +48,7 @@ export class CompetitionGroupComponent implements OnInit {
         return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
       }
     };
-
-
+    this.array_length = 1;
 
   }
   @Input()
@@ -66,7 +66,9 @@ export class CompetitionGroupComponent implements OnInit {
   }
 
   filterData(season_id) {
-    this.GetStandingBySeasonId(season_id);
+    if (season_id) {
+      this.GetStandingBySeasonId(season_id);
+    }
   }
 
   GetStandingBySeasonId(season_id) {
@@ -124,20 +126,22 @@ export class CompetitionGroupComponent implements OnInit {
                 "points": points
               });
             }
-
           });
           this.Group_collection = grouped;
           console.log("Group_collection", grouped);
         }
-      }
 
+        this.array_length = this.Group_collection.length;
+      }
+      else {
+        this.array_length = 0;
+        console.log("array_length is 0");
+      }
     });
   }
   teamdetails(team_id) {
     this.router.navigate(['/team', team_id]);
   }
-
-
   onchangefillter_group(pos) {
     console.log("filter is change", pos);
     this.selectedpositionofGroup = pos;

@@ -25,7 +25,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div *ngIf="Group_collection.length > 0;else nogroup">
+        <div *ngIf="Group_collection.length > 0">
             <!-- tabs menu  -->
             <div class="row">
                 <!-- group tab -->
@@ -71,13 +71,13 @@
             </div>
         </div>
 
-        <ng-template #nogroup>
+        <div *ngIf="array_length<=0">
             <div class="card">
                 <div class="list-line row match-list">
                     <p class="col-md-12 text-left">No Groups Found</p>
                 </div>
             </div>
-        </ng-template>
+        </div>
 
     </div>
 </div>

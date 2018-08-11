@@ -21,6 +21,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
   public team_name: any;
   public team_flage: any;
   public flage_baseUrl: any;
+  public array_length: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
       let team_name = params.get("team_name");
       this.team_name = team_name;
     });
+    this.array_length = 1;
 
   }
 
@@ -60,7 +62,7 @@ export class TeamPreviousMatchesComponent implements OnInit {
 
     let team_id = this.team_id;
     this.matchService.GetPreviousMatchesTeamById(team_id).subscribe(record => {
-      console.log("record by selected Date", record);
+      console.log("record GetPreviousMatchesTeamById", record);
       var result: any = record['data'];
       var self = this;
       if (result !== undefined) {
@@ -209,7 +211,13 @@ export class TeamPreviousMatchesComponent implements OnInit {
         });
         console.log("grouped", grouped);
         this.PreviousMatchesTeam = grouped;
+        this.array_length = this.PreviousMatchesTeam.length;
+
       }
+      else {
+        this.array_length = 0;
+      }
+
     })
   }
 

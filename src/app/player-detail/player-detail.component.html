@@ -8,7 +8,7 @@
 </div>
 <div class="container">
     <div class="match-detail-section">
-        <div *ngIf="player_collection.length > 0;else noplayer">
+        <div *ngIf="player_collection.length > 0">
 
             <div *ngFor="let player of player_collection;let i=index">
                 <!-- team-detail-header -->
@@ -56,7 +56,7 @@
 
                                         <div *ngFor="let player of player_collection;let i=index">
                                             <!-- team-detail-header -->
-                                            <div *ngIf="player_collection.length > 0;else noplayer">
+                                            <div *ngIf="player_collection.length > 0">
                                                 <div class="row player_sec">
                                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                                         <div class="card">
@@ -149,12 +149,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ng-template #noplayer>
+                                            <div *ngIf="player_collection_length<=0">
                                                 <div class="list-line row match-list">
                                                     <p>Not found Player details</p>
                                                 </div>
-                                            </ng-template>
-
+                                            </div>
 
                                         </div>
                                     </div>
@@ -193,7 +192,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div *ngIf="playerStats_collection.length <= 0" class="card">
+                                                <div *ngIf="playerStats_collection_length <= 0" class="card">
                                                     <div class="list-line row match-list">
                                                         <p class="col-md-12 text-left">No Domestic League Found</p>
                                                     </div>
@@ -216,13 +215,13 @@
                 </div>
             </div>
         </div>
-        <ng-template #noplayer>
+        <div *ngIf="player_collection_length<=0">
             <div class="card">
                 <div class="list-line row match-list">
                     <p class="col-md-12 text-left">Not found Player details</p>
                 </div>
             </div>
-        </ng-template>
+        </div>
     </div>
 </div>
 <!--container -->

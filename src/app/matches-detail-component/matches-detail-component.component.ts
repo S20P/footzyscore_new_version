@@ -49,6 +49,17 @@ export class MatchesDetailComponentComponent implements OnInit {
     // public player_baseUrl: any;
     public season: any;
 
+    public events_collection_length: any;
+    public localteam_player_lineup_length: any;
+    public visitorteam_player_lineup_length: any;
+    public localteam_player_subs_length: any;
+    public visitorteam_player_subs_length: any;
+    public match_stats_collection_length: any;
+    public Commentary_collection_length: any;
+
+
+
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -68,6 +79,13 @@ export class MatchesDetailComponentComponent implements OnInit {
             this.id = id;
             this.GetMatchDeatilByMatchId(this.id);
         });
+        this.events_collection_length = 1;
+        this.localteam_player_lineup_length = 1;
+        this.visitorteam_player_lineup_length = 1;
+        this.localteam_player_subs_length = 1;
+        this.visitorteam_player_subs_length = 1;
+        this.match_stats_collection_length = 1;
+        this.Commentary_collection_length = 1;
     }
 
     ngOnInit() {
@@ -738,9 +756,14 @@ export class MatchesDetailComponentComponent implements OnInit {
                                     "ic_event_pen_shootout_miss": ic_event_pen_shootout_miss
                                 });
                         }
+                        self.events_collection.reverse();
+                        self.events_collection_length = self.events_collection.length;
+                    }
+                    else {
+                        self.events_collection_length = 0;
                     }
                 }
-                self.events_collection.reverse();
+
                 // end match_Events---------------------------------------------------------
 
                 //match_stats---------------------------------------------------------------
@@ -824,7 +847,13 @@ export class MatchesDetailComponentComponent implements OnInit {
                             if (match_stats_vt['length'] > 0 || match_stats_vt['length'] > 0) {
                                 self.match_stats_collection.push(Object.assign(match_stats_lt[0], match_stats_vt[0]));
                             }
+                            self.match_stats_collection_length = self.match_stats_collection.length;
                         }
+                        else {
+                            self.match_stats_collection_length = 0;
+                        }
+
+
                     }
                 }
                 //end match_stats----------------------------------------------------------
@@ -856,7 +885,16 @@ export class MatchesDetailComponentComponent implements OnInit {
                         }
                         //end visitorteam_lineup---------------------------------------------------------
                     }
+                    self.localteam_player_lineup_length = self.localteam_player_lineup.length;
+                    self.visitorteam_player_lineup_length = self.visitorteam_player_lineup.length;
                 }
+                else {
+                    self.localteam_player_lineup_length = 0;
+                    self.visitorteam_player_lineup_length = 0;
+                }
+
+
+
                 //Substitutes(bench)-------------------------------------------------------------
 
                 let Substitutes = result['bench'].data;
@@ -885,7 +923,16 @@ export class MatchesDetailComponentComponent implements OnInit {
                         }
                         //end visitorteam_Substitutes---------------------------------------------
                     }
+                    self.localteam_player_subs_length = self.localteam_player_subs.length;
+                    self.visitorteam_player_subs_length = self.visitorteam_player_subs.length;
+
                 }
+                else {
+                    self.localteam_player_subs_length = 0;
+                    self.visitorteam_player_subs_length = 0;
+                }
+
+
                 //end Substitutes(bench)-----------------------------------------------------
 
                 //  comments-----------------------------------------------------------------
@@ -1023,10 +1070,17 @@ export class MatchesDetailComponentComponent implements OnInit {
                                         "icon": comment_icon
                                     });
                                 }
-
                             }
+                            self.Commentary_collection_length = self.Commentary_collection.length;
+                        }
+                        else {
+                            self.Commentary_collection_length = 0;
                         }
                     });
+                }
+                else {
+                    self.Commentary_collection_length = 0;
+
                 }
                 // end comments------------------------------------------------------------
 

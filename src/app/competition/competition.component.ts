@@ -46,6 +46,7 @@ export class CompetitionComponent implements OnInit {
   public season_group;
   public season_list = [];
 
+
   previousUrl: string;
   constructor(
     private matchesApiService: MatchesApiService,
@@ -64,6 +65,8 @@ export class CompetitionComponent implements OnInit {
       this.comp_id = parseInt(params.get("id"));
       this.GetAllCompetitions_list();
     });
+  
+
   }
 
   ngOnInit() {
@@ -90,7 +93,6 @@ export class CompetitionComponent implements OnInit {
 
   GetSeason_byleague() {
     this.season_list = [];
-
     this.matchService.GetSeasonByLeagueId(this.comp_id).subscribe(record => {
       console.log("season_list_by_league", record);
       var result = record['data'].reverse();

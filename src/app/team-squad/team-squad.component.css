@@ -70,7 +70,7 @@ td.first {
         width: 45%;
     }
     table.table.grouptable tr td {
-        font-size: var(--theme-body-font-sm);
+        font-size: var(--theme-body-font-sm)!important;
         padding: 13px 2px;
     }
     .player_img img {
@@ -80,7 +80,7 @@ td.first {
 
 @media (max-width: 367px) {
     table.table.grouptable tr td {
-        font-size: 10px;
+        font-size: var(--theme-body-font-sm)!important;
         padding: 13px 2px;
     }
     .text-left {
@@ -88,5 +88,11 @@ td.first {
     }
     .player_img img {
         width: 25px;
+    }
+    .first-letters-circle {
+        font-size: var(--theme-body-font-sm)!important;
+        width: 2.0em;
+        height: 2.0em;
+        line-height: 2.02em;
     }
 }

@@ -98,7 +98,7 @@ export class MessagingService {
         "url": apiurl,
         "method": "POST",
         "headers": {
-          "authorization": "key=AIzaSyAnYT98H8ny59MxNXQJq1R3KKcUWyZtdpY",
+          "authorization": "key=1bjd6tfuqjclam7j66mbios7015ugpl388dlsru8lp2eb6i1e0c",
           "content-type": "application/x-www-form-urlencoded",
           "cache-control": "no-cache",
         }

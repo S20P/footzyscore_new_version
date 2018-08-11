@@ -10,13 +10,12 @@
             <div class="list-cursor" *ngIf="match_ground_details.length>0" (click)="matchdetails_go(item_details.id)">
 
                 <div class="r-dashbord-team">
-                    <div class="col-md-5 col-sm-5 col-xs-5 match-team-group">
+                    <div class="col-md-4 col-sm-2 col-xs-4 match-team-group">
                         <div class="numerType">
                             <p class="match_time" [class.theme-color]="item_details.live_status">{{item_details.status}}</p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 r-flag-team">
-
+                    <div class="col-md-7 col-sm-9 col-xs-7 r-flag-team">
                         <p [class.text-bold]="item_details.ltScore_highest">
                             <span *ngIf="item_details.score_status_flage" class="score"> {{item_details.localteam_score}}
                             </span> {{item_details.localteam_name}}
@@ -26,7 +25,6 @@
                                                 {{item_details.visitorteam_score}} 
                                           </span>{{item_details.visitorteam_name}}
                         </p>
-
                         <div *ngIf="item_details.agg_localvist || item_details.penalty_localvist" class="col-xs-12 agg_pen" id="agg_pen_responsve">
                             <ul>
                                 <li *ngIf="item_details.agg_localvist">(AGG {{item_details.lats_score_local}}-{{item_details.lats_score_vist}})</li>
@@ -44,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="list-cursor" *ngIf="match_ground_details.length<=0">
+    <div class="list-cursor" *ngIf="array_length<=0">
         <div class="card-body sidebar-card-body sidebar-nomatche">
             <div class="col-md-12 col-sm-12 col-xs-12  match-team-group">
                 <div class="list-line">

@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "socket.io"
+        "name": "Footzy Score"
     },
     "apps": [{
         "root": "src",
@@ -21,12 +21,10 @@
         "prefix": "app",
         "styles": [
             "styles/bootstrap/css/bootstrap.min.css",
-            "styles/MDB Free/css/mdb.min.css",
             "styles.css"
         ],
         "scripts": [
             "styles/bootstrap/js/bootstrap.min.js",
-            "styles/MDB Free/js/mdb.min.js",
             "../node_modules/moment/min/moment.min.js"
         ],
         "environmentSource": "environments/environment.ts",

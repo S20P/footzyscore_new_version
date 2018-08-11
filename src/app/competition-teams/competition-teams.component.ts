@@ -21,6 +21,7 @@ export class CompetitionTeamsComponent implements OnInit {
   public comp_id: any;
   public competition_name: any;
   public season: any;
+  public array_length: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,8 @@ export class CompetitionTeamsComponent implements OnInit {
     private orderPipe: OrderPipe,
     private jsCustomeFun: JsCustomeFunScriptService
   ) {
+    this.array_length = 1;
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.comp_id = parseInt(params.get("id"));
     });
@@ -43,7 +46,9 @@ export class CompetitionTeamsComponent implements OnInit {
   }
 
   filterData(season_id) {
-    this.GetAllTopTeamByLeagueId(season_id);
+    if (season_id) {
+      this.GetAllTopTeamByLeagueId(season_id);
+    }
   }
 
   GetAllTopTeamByLeagueId(season_id) {
@@ -53,8 +58,8 @@ export class CompetitionTeamsComponent implements OnInit {
     this.matchService.GetAllTopTeamByLeagueId(this.comp_id, season_id).subscribe(data => {
       console.log("GetAllTopTeamByCompId", data);
       var result = data['data'];
-
       if (result !== undefined) {
+        console.log("topteam-data-length", result.length);
 
         var array = result,
           groups = Object.create(null),
@@ -119,7 +124,13 @@ export class CompetitionTeamsComponent implements OnInit {
         });
         console.log("sortedArrayOfMaps_team", sortedArrayOfMaps);
         this.teams_collection = sortedArrayOfMaps;
+        this.array_length = this.teams_collection.length;
       }
+      else {
+        this.array_length = 0;
+        console.log("array_length is 0");
+      }
+
     });
   }
   teamdetails(team_id) {

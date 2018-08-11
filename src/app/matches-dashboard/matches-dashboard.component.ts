@@ -24,6 +24,7 @@ import * as moment from 'moment-timezone';
 import "moment-timezone";
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
 import { concat } from 'rxjs/operators';
+import { variable } from '../../../node_modules/@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -47,6 +48,8 @@ export class MatchesDashboardComponent implements OnInit {
   public showloader: boolean = false;
   private subscription: Subscription;
   private timer: Observable<any>;
+  public array_length: any;
+
 
   // public flage_baseUrl: any;
 
@@ -64,17 +67,10 @@ export class MatchesDashboardComponent implements OnInit {
     this.localtimezone = this.jsCustomeFun.LocalTimeZone();
     this.firstDay_Month = this.jsCustomeFun.firstDay_Month();
     this.lastDay_Month = this.jsCustomeFun.lastDay_Month();
+    this.array_length = 1;
   }
 
   ngOnInit() {
-
-
-    var a = {
-      "key":"1",
-      "value":"abcd"
-    }
-    console.log("a-object",a);
-
 
     this.match_ground_details = [];
     this.setTimer();
@@ -91,11 +87,8 @@ export class MatchesDashboardComponent implements OnInit {
 
     var dateofday = Date();
     var currentdaydate = this.jsCustomeFun.ChangeDateFormat(dateofday);
-
     this.GetMatchesByDate(this.paramDate);
-
     let self = this;
-
     $("#datepicker").on("change", function () {
       var selected = $(this).val();
       console.log("date is one", selected);
@@ -104,21 +97,20 @@ export class MatchesDashboardComponent implements OnInit {
       console.log("date is currentdaydate", currentdaydate);
       self.GetMatchesByDate(self.paramDate);
     });
-
     this.liveMatchesApiService.liveMatches().subscribe(data => {
       console.log("APP is now live //socket starting");
       this.GetMatchesByCompetition_ById_live();
     });
-
     var param = {
       "firstDay": this.firstDay_Month,
       "lastDay": this.lastDay_Month,
       "localtimezone": this.localtimezone
     }
-
     this.GetAllCompetitionMatchesByMonth(param);
-
   }
+
+
+
 
 
   //Render date in datepicker
@@ -188,6 +180,8 @@ export class MatchesDashboardComponent implements OnInit {
               var live_status: any = collection["live_status"];
               var status: any = collection["status"];
 
+
+
               //scores----------------------------------------------------------------------
               var localteam_score: any = collection["localteam_score"];
               var visitorteam_score: any = collection["visitorteam_score"];
@@ -199,9 +193,11 @@ export class MatchesDashboardComponent implements OnInit {
               var ltScore_highest: any = collection["ltScore_highest"];
               var vtScore_highest: any = collection["vtScore_highest"];
               //end scores------------------------------------------
-              //PEN (0-0)------------------------------------------------
-              var penalty_localvist: any = collection["penalty_localvist"];
-              //end PEN (0-0)--------------------------------------------
+              // AGG (0-0)--------------------------------------------
+              var lats_score_local: any = collection["lats_score_local"];
+              var lats_score_vist: any = collection["lats_score_vist"];
+              var agg_localvist: any = collection['agg_localvist'];
+              // end AGG (0-0)-------------------------------------------
 
               group[i]['id'] = id;
               group[i]['status'] = status;
@@ -211,10 +207,12 @@ export class MatchesDashboardComponent implements OnInit {
               group[i]['score_status_flage'] = score_status_flage;
               group[i]['ltScore_highest'] = ltScore_highest;
               group[i]['vtScore_highest'] = vtScore_highest;
-              //.pen
-              group[i]['penalty_local'] = penalty_local;
-              group[i]['penalty_visitor'] = penalty_visitor;
-              group[i]['penalty_localvist'] = penalty_localvist;
+
+              //agg---
+              group[i]['lats_score_local'] = lats_score_local;
+              group[i]['lats_score_vist'] = lats_score_vist;
+              group[i]['agg_localvist'] = agg_localvist;
+              //end egg           
 
             }
           }
@@ -231,16 +229,11 @@ export class MatchesDashboardComponent implements OnInit {
   GetAllCompetitionMatchesByMonth(param) {
 
     this.matchService.GetAllCompetitionMatchesByMonth(param).subscribe(record => {
-
       var result: any = record['data'];
-
+      console.log("Date array by month", result);
       if (result !== undefined) {
-
         for (var k = 0; k < result.length; k++) {
-
-          var time: any = result[k].time;
-          var starting_at: any = time.starting_at;
-          var fulldate: any = starting_at.date;
+          var fulldate: any = result[k];
           //I have a simple case of pushing unique values into array.
           if (this.alldaymatch_list.indexOf(fulldate) == -1) {
             this.alldaymatch_list.push(fulldate);
@@ -254,6 +247,9 @@ export class MatchesDashboardComponent implements OnInit {
   }
 
   GetMatchesByDate(paramDate) {
+
+    this.showloader = true;
+
     this.todays_Matches_title = paramDate;
     this.match_ground_details = [];
 
@@ -382,7 +378,16 @@ export class MatchesDashboardComponent implements OnInit {
         });
         console.log("grouped", grouped);
         this.match_ground_details = grouped;
+        console.log("length", this.match_ground_details.length);
+        this.array_length = this.match_ground_details.length;
+        this.showloader = false;
       }
+      else {
+        this.array_length = 0;
+        console.log("array_length is 0");
+        this.showloader = false;
+      }
+
     })
   }
 
