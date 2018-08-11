@@ -44,7 +44,6 @@ export class CompetitionMatchesComponent implements OnInit {
     private liveMatchesApiService: MatchesApiService,
 
   ) {
-
     this.liveMatchesApiService.liveMatches().subscribe(data => {
       this.GetMatchesByCompetition_ById_live();
     });
@@ -593,13 +592,6 @@ export class CompetitionMatchesComponent implements OnInit {
         this.showloader = false;
       }
     });
-
-
     console.log("All Tops Matches by week are", this.match_ground_details);
-
-
-
-
   }
-
 }

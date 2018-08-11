@@ -336,6 +336,8 @@ export class JsCustomeFunScriptService {
       }
     }
 
+
+
     var collection = {
       "id": id,
       "league_id": comp_id,
@@ -374,4 +376,28 @@ export class JsCustomeFunScriptService {
 
     return collection;
   }
+
+
+  ordereLeaguebylist(grouped) {
+    console.log("sort league list function call", grouped);
+    var orderedKeys = [2, 8, 564, 384, 82, 570, 5, 1371, 1007, 12, 24, 9, 301, 72, 181, 208, 271, 390, 444, 462, 486, 501, 573, 609, 1128]; //Array of preordered keys
+    var sortedArrayOfMaps = [];
+    orderedKeys.map(function (key) {
+      for (let row of grouped) {
+        console.log("row", row);
+        if (key == row['competitions'].id) {
+          console.log("key", key);
+          console.log("comp_id-key is", row['competitions'].id);
+          sortedArrayOfMaps.push({ competitions: row.competitions, group: row.group });
+        }
+      }
+    });
+
+    return sortedArrayOfMaps;
+
+  }
+
+
+
+
 }

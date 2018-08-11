@@ -629,7 +629,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="card-body  theme-hover" *ngIf="localteam_player_subs_length <= 0">
-                                                                <p>No LocalTeam Substitutes </p>
+                                                                <p>No LocalTeam Bench </p>
                                                             </div>
 
                                                         </div>
@@ -681,7 +681,6 @@
 
                                                             <div class="card-body  theme-hover" *ngFor="let player of visitorteam_player_subs|orderBy_ace_desc:'number':ascending;let i=index">
                                                                 <div class="lineup_data" (click)="Playerdetails(player.id)">
-
                                                                     <div class="col-xs-2 lineup_img">
                                                                         <p><span class="first-letters-circle">{{player.name[0]}}</span> </p>
                                                                     </div>
@@ -695,7 +694,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="card-body  theme-hover" *ngIf="visitorteam_player_subs_length <= 0">
-                                                                <p>No VisitorTeam Substitutes </p>
+                                                                <p>No VisitorTeam Bench </p>
                                                             </div>
 
                                                         </div>
@@ -761,7 +760,7 @@
                         </div>
                         <!--side bar  -->
                         <div class="col-md-4 col-sm-12 col-lg-4 remove_left_padding sidebar_page">
-                            <app-sidebar></app-sidebar>
+                            <app-sidebar [Selectedleague]="comp_id"></app-sidebar>
                         </div>
                         <!--end side bar  -->
                     </div>

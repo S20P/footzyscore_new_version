@@ -207,13 +207,11 @@ export class MatchesDashboardComponent implements OnInit {
               group[i]['score_status_flage'] = score_status_flage;
               group[i]['ltScore_highest'] = ltScore_highest;
               group[i]['vtScore_highest'] = vtScore_highest;
-
               //agg---
               group[i]['lats_score_local'] = lats_score_local;
               group[i]['lats_score_vist'] = lats_score_vist;
               group[i]['agg_localvist'] = agg_localvist;
               //end egg           
-
             }
           }
         }
@@ -277,7 +275,7 @@ export class MatchesDashboardComponent implements OnInit {
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
 
 
-          console.log("collection", collection);
+          // console.log("collection", collection);
 
           var id: any = collection['id'];
           var league_id = collection['league_id'];
@@ -337,7 +335,7 @@ export class MatchesDashboardComponent implements OnInit {
           self.comp_id = league_id;
           // self.season = season_name;
           //end self gloab variable----------------
-          console.log("competitions", competitions);
+          // console.log("competitions", competitions);
           if (competitions !== "") {
             if (!groups[competitions.id]) {
               groups[competitions.id] = [];
@@ -376,8 +374,22 @@ export class MatchesDashboardComponent implements OnInit {
             });
           }
         });
-        console.log("grouped", grouped);
-        this.match_ground_details = grouped;
+        //console.log("grouped", grouped);
+
+        //var orderedKeys = [2, 8, 564, 384, 82, 570, 5, 1371, 1007, 12, 24, 9, 301, 72, 181, 208, 271, 390, 444, 462, 486, 501, 573, 609, 1128]; //Array of preordered keys
+        var sortedArrayOfleague: any = this.jsCustomeFun.ordereLeaguebylist(grouped);
+        // var sortedArrayOfMaps = [];
+        // orderedKeys.map(function (key) {
+        //   for (let row of grouped) {
+        //     if (key == row.comp_id) {
+        //       console.log("key", key);
+        //       console.log("comp_id-key is", row.comp_id);
+        //       sortedArrayOfMaps.push({ competitions: row.competitions, group: row.group });
+        //     }
+        //   }
+        // });
+        console.log("sortedArrayOfMaps_team", sortedArrayOfleague);
+        this.match_ground_details = sortedArrayOfleague;
         console.log("length", this.match_ground_details.length);
         this.array_length = this.match_ground_details.length;
         this.showloader = false;

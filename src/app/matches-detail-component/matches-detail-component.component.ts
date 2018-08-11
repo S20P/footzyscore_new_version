@@ -58,8 +58,6 @@ export class MatchesDetailComponentComponent implements OnInit {
     public Commentary_collection_length: any;
 
 
-
-
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -244,10 +242,12 @@ export class MatchesDetailComponentComponent implements OnInit {
                                         "ic_event_pen_shootout_goal": ic_event_pen_shootout_goal,
                                         "ic_event_pen_shootout_miss": ic_event_pen_shootout_miss
                                     });
-
-                                this.events_collection.reverse();
-
                             }
+                            this.events_collection.reverse();
+                            this.events_collection_length = this.events_collection.length;
+                        }
+                        else {
+                            this.events_collection_length = 0;
                         }
                         //console.log("end live events======================================================");
 
@@ -332,6 +332,11 @@ export class MatchesDetailComponentComponent implements OnInit {
                                     if (match_stats_vt['length'] > 0 || match_stats_vt['length'] > 0) {
                                         this.match_stats_collection.push(Object.assign(match_stats_lt[0], match_stats_vt[0]));
                                     }
+
+                                    this.match_stats_collection_length = this.match_stats_collection.length;
+                                }
+                                else {
+                                    this.match_stats_collection_length = 0;
                                 }
                             }
                         }
@@ -343,28 +348,38 @@ export class MatchesDetailComponentComponent implements OnInit {
                         if (lineup !== undefined || lineup['length'] !== 0 || lineup !== null) {
 
                             for (var lp = 0; lp < lineup['length']; lp++) {
-                                // localteam_lineup-------------------------------------------------------------
-                                if (lineup[lp].team_id == localteam_id) {
-                                    this.localteam_player_lineup.push({
-                                        "id": lineup[lp].player_id,
-                                        "name": lineup[lp].player_name,
-                                        "number": lineup[lp].number,
-                                        "pos": lineup[lp].position,
-                                    });
-                                }
-                                //end localteam_lineup--------------------------------------------------------
+                                if (lineup[lp].player_name !== null && lineup[lp].player_name !== "" && lineup[lp].player_id !== null && lineup[lp].player_id !== "") {
 
-                                //visitorteam_lineup-----------------------------------------------------------
-                                if (lineup[lp].team_id == visitorteam_id) {
-                                    this.visitorteam_player_lineup.push({
-                                        "id": lineup[lp].player_id,
-                                        "name": lineup[lp].player_name,
-                                        "number": lineup[lp].number,
-                                        "pos": lineup[lp].position,
-                                    });
+                                    // localteam_lineup-------------------------------------------------------------
+                                    if (lineup[lp].team_id == localteam_id) {
+                                        this.localteam_player_lineup.push({
+                                            "id": lineup[lp].player_id,
+                                            "name": lineup[lp].player_name,
+                                            "number": lineup[lp].number,
+                                            "pos": lineup[lp].position,
+                                        });
+                                    }
+                                    //end localteam_lineup--------------------------------------------------------
+
+                                    //visitorteam_lineup-----------------------------------------------------------
+                                    if (lineup[lp].team_id == visitorteam_id) {
+                                        this.visitorteam_player_lineup.push({
+                                            "id": lineup[lp].player_id,
+                                            "name": lineup[lp].player_name,
+                                            "number": lineup[lp].number,
+                                            "pos": lineup[lp].position,
+                                        });
+                                    }
                                 }
                                 //end visitorteam_lineup---------------------------------------------------------
                             }
+
+                            this.localteam_player_lineup_length = this.localteam_player_lineup.length;
+                            this.visitorteam_player_lineup_length = this.visitorteam_player_lineup.length;
+                        }
+                        else {
+                            this.localteam_player_lineup_length = 0;
+                            this.visitorteam_player_lineup_length = 0;
                         }
                         //Substitutes(bench)-------------------------------------------------------------
 
@@ -372,28 +387,37 @@ export class MatchesDetailComponentComponent implements OnInit {
                         if (Substitutes !== undefined || Substitutes['length'] !== 0 || Substitutes !== null) {
 
                             for (var lp = 0; lp < Substitutes['length']; lp++) {
-                                // localteam_lineup------------------------------------------------------------------------------------
-                                if (Substitutes[lp].team_id == localteam_id) {
-                                    this.localteam_player_subs.push({
-                                        "id": Substitutes[lp].player_id,
-                                        "name": Substitutes[lp].player_name,
-                                        "number": Substitutes[lp].number,
-                                        "pos": Substitutes[lp].position,
-                                    });
-                                }
-                                //end localteam_Substitutes--------------------------------------------
+                                if (Substitutes[lp].player_name !== null && lineup[lp].player_name !== "" && Substitutes[lp].player_id !== null && Substitutes[lp].player_id !== "") {
 
-                                //visitorteam_Substitutes----------------------------------------------
-                                if (Substitutes[lp].team_id == visitorteam_id) {
-                                    this.visitorteam_player_subs.push({
-                                        "id": Substitutes[lp].player_id,
-                                        "name": Substitutes[lp].player_name,
-                                        "number": Substitutes[lp].number,
-                                        "pos": Substitutes[lp].position,
-                                    });
+                                    // localteam_lineup------------------------------------------------------------------------------------
+                                    if (Substitutes[lp].team_id == localteam_id) {
+                                        this.localteam_player_subs.push({
+                                            "id": Substitutes[lp].player_id,
+                                            "name": Substitutes[lp].player_name,
+                                            "number": Substitutes[lp].number,
+                                            "pos": Substitutes[lp].position,
+                                        });
+                                    }
+                                    //end localteam_Substitutes--------------------------------------------
+
+                                    //visitorteam_Substitutes----------------------------------------------
+                                    if (Substitutes[lp].team_id == visitorteam_id) {
+                                        this.visitorteam_player_subs.push({
+                                            "id": Substitutes[lp].player_id,
+                                            "name": Substitutes[lp].player_name,
+                                            "number": Substitutes[lp].number,
+                                            "pos": Substitutes[lp].position,
+                                        });
+                                    }
                                 }
                                 //end visitorteam_Substitutes---------------------------------------------
                             }
+                            this.localteam_player_subs_length = this.localteam_player_subs.length;
+                            this.visitorteam_player_subs_length = this.visitorteam_player_subs.length;
+                        }
+                        else {
+                            this.localteam_player_subs_length = 0;
+                            this.visitorteam_player_subs_length = 0;
                         }
                         //end Substitutes(bench)-----------------------------------------------------
                     }
@@ -542,6 +566,10 @@ export class MatchesDetailComponentComponent implements OnInit {
                                 "icon": comment_icon
                             });
                         }
+                        this.Commentary_collection_length = this.Commentary_collection.length;
+                    }
+                    else {
+                        this.Commentary_collection_length = 0;
                     }
                     // end comments------------------------------------------------------------
                 }
@@ -852,8 +880,6 @@ export class MatchesDetailComponentComponent implements OnInit {
                         else {
                             self.match_stats_collection_length = 0;
                         }
-
-
                     }
                 }
                 //end match_stats----------------------------------------------------------
@@ -863,28 +889,35 @@ export class MatchesDetailComponentComponent implements OnInit {
                 if (lineup !== undefined || lineup['length'] !== 0 || lineup !== null) {
 
                     for (var lp = 0; lp < lineup['length']; lp++) {
-                        // localteam_lineup-------------------------------------------------------------
-                        if (lineup[lp].team_id == localteam_id) {
-                            self.localteam_player_lineup.push({
-                                "id": lineup[lp].player_id,
-                                "name": lineup[lp].player_name,
-                                "number": lineup[lp].number,
-                                "pos": lineup[lp].position,
-                            });
-                        }
-                        //end localteam_lineup--------------------------------------------------------
+                        if (lineup[lp].player_name !== null && lineup[lp].player_name !== "" && lineup[lp].player_id !== null && lineup[lp].player_id !== "") {
+                            // localteam_lineup-------------------------------------------------------------
 
-                        //visitorteam_lineup-----------------------------------------------------------
-                        if (lineup[lp].team_id == visitorteam_id) {
-                            self.visitorteam_player_lineup.push({
-                                "id": lineup[lp].player_id,
-                                "name": lineup[lp].player_name,
-                                "number": lineup[lp].number,
-                                "pos": lineup[lp].position,
-                            });
+
+                            if (lineup[lp].team_id == localteam_id) {
+                                self.localteam_player_lineup.push({
+                                    "id": lineup[lp].player_id,
+                                    "name": lineup[lp].player_name,
+                                    "number": lineup[lp].number,
+                                    "pos": lineup[lp].position,
+                                });
+                            }
+                            //end localteam_lineup--------------------------------------------------------
+
+                            //visitorteam_lineup-----------------------------------------------------------
+                            if (lineup[lp].team_id == visitorteam_id) {
+                                self.visitorteam_player_lineup.push({
+                                    "id": lineup[lp].player_id,
+                                    "name": lineup[lp].player_name,
+                                    "number": lineup[lp].number,
+                                    "pos": lineup[lp].position,
+                                });
+                            }
                         }
-                        //end visitorteam_lineup---------------------------------------------------------
                     }
+                    //end visitorteam_lineup---------------------------------------------------------
+                    console.log("lp", self.localteam_player_lineup);
+                    console.log("vp", self.visitorteam_player_lineup);
+
                     self.localteam_player_lineup_length = self.localteam_player_lineup.length;
                     self.visitorteam_player_lineup_length = self.visitorteam_player_lineup.length;
                 }
@@ -901,28 +934,35 @@ export class MatchesDetailComponentComponent implements OnInit {
                 if (Substitutes !== undefined || Substitutes['length'] !== 0 || Substitutes !== null) {
 
                     for (var lp = 0; lp < Substitutes['length']; lp++) {
-                        // localteam_lineup------------------------------------------------------------------------------------
-                        if (Substitutes[lp].team_id == localteam_id) {
-                            self.localteam_player_subs.push({
-                                "id": Substitutes[lp].player_id,
-                                "name": Substitutes[lp].player_name,
-                                "number": Substitutes[lp].number,
-                                "pos": Substitutes[lp].position,
-                            });
-                        }
-                        //end localteam_Substitutes--------------------------------------------
+                        if (Substitutes[lp].player_name !== null && Substitutes[lp].player_name !== "" && Substitutes[lp].player_id !== null && Substitutes[lp].player_id !== "") {
+                            // localteam_lineup------------------------------------------------------------------------------------
 
-                        //visitorteam_Substitutes----------------------------------------------
-                        if (Substitutes[lp].team_id == visitorteam_id) {
-                            self.visitorteam_player_subs.push({
-                                "id": Substitutes[lp].player_id,
-                                "name": Substitutes[lp].player_name,
-                                "number": Substitutes[lp].number,
-                                "pos": Substitutes[lp].position,
-                            });
+                            console.log("player_id is", Substitutes[lp].player_id);
+
+                            if (Substitutes[lp].team_id == localteam_id) {
+                                self.localteam_player_subs.push({
+                                    "id": Substitutes[lp].player_id,
+                                    "name": Substitutes[lp].player_name,
+                                    "number": Substitutes[lp].number,
+                                    "pos": Substitutes[lp].position,
+                                });
+                            }
+                            //end localteam_Substitutes--------------------------------------------
+
+                            //visitorteam_Substitutes----------------------------------------------
+                            if (Substitutes[lp].team_id == visitorteam_id) {
+                                self.visitorteam_player_subs.push({
+                                    "id": Substitutes[lp].player_id,
+                                    "name": Substitutes[lp].player_name,
+                                    "number": Substitutes[lp].number,
+                                    "pos": Substitutes[lp].position,
+                                });
+                            }
                         }
                         //end visitorteam_Substitutes---------------------------------------------
                     }
+                    console.log("ls", self.localteam_player_subs);
+                    console.log("vs", self.visitorteam_player_subs);
                     self.localteam_player_subs_length = self.localteam_player_subs.length;
                     self.visitorteam_player_subs_length = self.visitorteam_player_subs.length;
 

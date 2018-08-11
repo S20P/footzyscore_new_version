@@ -104,7 +104,8 @@ export class CompetitionPlayerComponent implements OnInit {
             // var flag = self.player_baseUrl + teams['player_id'] + ".jpg";
             // "player_flag": flag
             // <img [src]="item_details.player_flag" onError="this.src='assets/img/avt_player.png'" /> 
-            if (teams['player_name'] !== null) {
+            if (teams['player_name'] !== null && teams['player_name'] !== "" && teams['player_id'] !== null && teams['player_id'] !== "") {
+
               groups[type].push({
                 "player_id": teams['player_id'],
                 "player_name": teams['player_name'],

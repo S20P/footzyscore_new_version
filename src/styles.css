@@ -1262,6 +1262,10 @@ ul.nav.nav-tabs {
     .header_logo {
         margin: 5px;
     }
+    .r-dashbord-team .match_time,
+    p {
+        font-size: 10px!important;
+    }
 }
 
 @media (max-width: 300px) {
