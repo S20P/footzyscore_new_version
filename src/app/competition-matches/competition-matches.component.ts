@@ -247,7 +247,8 @@ export class CompetitionMatchesComponent implements OnInit {
         console.log("date", array[p].date);
         var dl = array[p].date;
         var date1 = moment(new Date(dl + " 00:00:00")).format('YYYY-MM-DD HH:mm:ss');
-        var todays = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        var todays1 = moment(new Date()).format('YYYY-MM-DD');
+        var todays = moment(new Date(todays1 + " 00:00:00")).format('YYYY-MM-DD HH:mm:ss');
         console.log("dt1", date1);
         console.log("dt2", todays);
         //check month 
@@ -265,7 +266,7 @@ export class CompetitionMatchesComponent implements OnInit {
         console.log("d1", d1);
         console.log("d2", d2);
 
-        if (d1 > d2) {
+        if (d1 >= d2) {
           return p;
         }
       }
@@ -581,7 +582,9 @@ export class CompetitionMatchesComponent implements OnInit {
           }
         });
         console.log("grouped", grouped);
+
         this.match_ground_details = grouped;
+
         console.log("length", this.match_ground_details.length);
         this.array_length = this.match_ground_details.length;
         this.showloader = false;

@@ -56,6 +56,11 @@ export class MatchesDetailComponentComponent implements OnInit {
     public visitorteam_player_subs_length: any;
     public match_stats_collection_length: any;
     public Commentary_collection_length: any;
+    public match_ground_details = [];
+    public currentdaydate: any;
+    public localtimezone: any;
+    public array_length: any;
+    public show_btn: boolean;
 
 
     constructor(
@@ -68,6 +73,8 @@ export class MatchesDetailComponentComponent implements OnInit {
     ) {
         // this.flage_baseUrl = "/assets/img/TeamFlage/";
         // this.player_baseUrl = "https://s3.amazonaws.com/starapps/footzy/players/";
+        var dateofday = Date();
+        this.currentdaydate = this.jsCustomeFun.ChangeDateFormat(dateofday);
         this.ic_event_penalty_scored = false;
         this.ic_event_own_goal = false;
         this.ic_event_goal = false;
@@ -76,6 +83,11 @@ export class MatchesDetailComponentComponent implements OnInit {
             let id = parseInt(params.get("id"));
             this.id = id;
             this.GetMatchDeatilByMatchId(this.id);
+            var dateofday = Date();
+            this.currentdaydate = this.jsCustomeFun.ChangeDateFormat(dateofday);
+            this.localtimezone = this.jsCustomeFun.LocalTimeZone();
+            this.GetMatchesByDate(this.currentdaydate);
+            this.currentdaydate = this.currentdaydate;
         });
         this.events_collection_length = 1;
         this.localteam_player_lineup_length = 1;
@@ -84,6 +96,10 @@ export class MatchesDetailComponentComponent implements OnInit {
         this.visitorteam_player_subs_length = 1;
         this.match_stats_collection_length = 1;
         this.Commentary_collection_length = 1;
+        this.array_length = 1;
+        this.localtimezone = this.jsCustomeFun.LocalTimeZone();
+        this.show_btn = false;
+
     }
 
     ngOnInit() {
@@ -98,6 +114,18 @@ export class MatchesDetailComponentComponent implements OnInit {
 
         this.statsA_min = '20';
         this.setTimer();
+
+        this.match_ground_details = [];
+
+        this.liveMatchesApiService.liveMatches().subscribe(data => {
+            this.GetMatchesByCompetition_ById_live();
+        });
+        //console.log("today side bar", currentdaydate);
+
+        this.GetMatchesByDate(this.currentdaydate);
+        this.currentdaydate = this.currentdaydate;
+
+
     }
     public setTimer() {
         this.showloader = true;
@@ -349,7 +377,12 @@ export class MatchesDetailComponentComponent implements OnInit {
 
                             for (var lp = 0; lp < lineup['length']; lp++) {
                                 if (lineup[lp].player_name !== null && lineup[lp].player_name !== "" && lineup[lp].player_id !== null && lineup[lp].player_id !== "") {
-
+                                    var number = lineup[lp].number;
+                                    var number_sort = number;
+                                    if (number == null) {
+                                        number_sort = lp + 1;
+                                        number = "-";
+                                    }
                                     // localteam_lineup-------------------------------------------------------------
                                     if (lineup[lp].team_id == localteam_id) {
                                         this.localteam_player_lineup.push({
@@ -388,13 +421,19 @@ export class MatchesDetailComponentComponent implements OnInit {
 
                             for (var lp = 0; lp < Substitutes['length']; lp++) {
                                 if (Substitutes[lp].player_name !== null && lineup[lp].player_name !== "" && Substitutes[lp].player_id !== null && Substitutes[lp].player_id !== "") {
-
+                                    var number = Substitutes[lp].number;
+                                    var number_sort = number;
+                                    if (number == null) {
+                                        number_sort = lp + 1;
+                                        number = "-";
+                                    }
                                     // localteam_lineup------------------------------------------------------------------------------------
                                     if (Substitutes[lp].team_id == localteam_id) {
                                         this.localteam_player_subs.push({
                                             "id": Substitutes[lp].player_id,
                                             "name": Substitutes[lp].player_name,
-                                            "number": Substitutes[lp].number,
+                                            "number": number,
+                                            "number_sort": number_sort,
                                             "pos": Substitutes[lp].position,
                                         });
                                     }
@@ -405,7 +444,8 @@ export class MatchesDetailComponentComponent implements OnInit {
                                         this.visitorteam_player_subs.push({
                                             "id": Substitutes[lp].player_id,
                                             "name": Substitutes[lp].player_name,
-                                            "number": Substitutes[lp].number,
+                                            "number": number,
+                                            "number_sort": number_sort,
                                             "pos": Substitutes[lp].position,
                                         });
                                     }
@@ -420,6 +460,54 @@ export class MatchesDetailComponentComponent implements OnInit {
                             this.visitorteam_player_subs_length = 0;
                         }
                         //end Substitutes(bench)-----------------------------------------------------
+                    }
+                }
+                for (let j = 0; j < this.match_ground_details['length']; j++) {
+                    console.log("**", this.match_ground_details[j]);
+                    var group = this.match_ground_details[j].group;
+
+                    for (let i = 0; i < group['length']; i++) {
+                        if (group[i].id == current_matchId) {
+
+                            var collection: any = this.jsCustomeFun.HandleDataofAPI(item);
+
+                            var id: any = collection['id'];
+                            //time---------------------------------------------------------------------
+                            var live_status: any = collection["live_status"];
+                            var status: any = collection["status"];
+
+                            //scores----------------------------------------------------------------------
+                            var localteam_score: any = collection["localteam_score"];
+                            var visitorteam_score: any = collection["visitorteam_score"];
+                            var score_status_flage: any = collection["score_status_flage"];
+                            var penalty_visitor: any = collection["penalty_visitor"];
+                            var penalty_local: any = collection["penalty_local"];
+                            //Which team is high scores------------------------------------------
+                            //*apply class for text-bold=>font-wight:bold if team run is highest
+                            var ltScore_highest: any = collection["ltScore_highest"];
+                            var vtScore_highest: any = collection["vtScore_highest"];
+                            //end scores------------------------------------------
+                            // AGG (0-0)--------------------------------------------
+                            var lats_score_local: any = collection["lats_score_local"];
+                            var lats_score_vist: any = collection["lats_score_vist"];
+                            var agg_localvist: any = collection['agg_localvist'];
+                            // end AGG (0-0)-------------------------------------------
+
+                            group[i]['id'] = id;
+                            group[i]['status'] = status;
+                            group[i]['live_status'] = live_status;
+                            group[i]['localteam_score'] = localteam_score;
+                            group[i]['visitorteam_score'] = visitorteam_score;
+                            group[i]['score_status_flage'] = score_status_flage;
+                            group[i]['ltScore_highest'] = ltScore_highest;
+                            group[i]['vtScore_highest'] = vtScore_highest;
+                            //agg---
+                            group[i]['lats_score_local'] = lats_score_local;
+                            group[i]['lats_score_vist'] = lats_score_vist;
+                            group[i]['agg_localvist'] = agg_localvist;
+                            //end egg     
+
+                        }
                     }
                 }
             }
@@ -891,13 +979,20 @@ export class MatchesDetailComponentComponent implements OnInit {
                     for (var lp = 0; lp < lineup['length']; lp++) {
                         if (lineup[lp].player_name !== null && lineup[lp].player_name !== "" && lineup[lp].player_id !== null && lineup[lp].player_id !== "") {
                             // localteam_lineup-------------------------------------------------------------
-
+                            console.log("number", lineup[lp].number);
+                            var number = lineup[lp].number;
+                            var number_sort = number;
+                            if (number == null) {
+                                number_sort = lp + 1;
+                                number = "-";
+                            }
 
                             if (lineup[lp].team_id == localteam_id) {
                                 self.localteam_player_lineup.push({
                                     "id": lineup[lp].player_id,
                                     "name": lineup[lp].player_name,
-                                    "number": lineup[lp].number,
+                                    "number": number,
+                                    "number_sort": number_sort,
                                     "pos": lineup[lp].position,
                                 });
                             }
@@ -908,7 +1003,8 @@ export class MatchesDetailComponentComponent implements OnInit {
                                 self.visitorteam_player_lineup.push({
                                     "id": lineup[lp].player_id,
                                     "name": lineup[lp].player_name,
-                                    "number": lineup[lp].number,
+                                    "number": number,
+                                    "number_sort": number_sort,
                                     "pos": lineup[lp].position,
                                 });
                             }
@@ -936,14 +1032,20 @@ export class MatchesDetailComponentComponent implements OnInit {
                     for (var lp = 0; lp < Substitutes['length']; lp++) {
                         if (Substitutes[lp].player_name !== null && Substitutes[lp].player_name !== "" && Substitutes[lp].player_id !== null && Substitutes[lp].player_id !== "") {
                             // localteam_lineup------------------------------------------------------------------------------------
-
+                            var number = Substitutes[lp].number;
+                            var number_sort = number;
+                            if (number == null) {
+                                number_sort = lp + 1;
+                                number = "-";
+                            }
                             console.log("player_id is", Substitutes[lp].player_id);
 
                             if (Substitutes[lp].team_id == localteam_id) {
                                 self.localteam_player_subs.push({
                                     "id": Substitutes[lp].player_id,
                                     "name": Substitutes[lp].player_name,
-                                    "number": Substitutes[lp].number,
+                                    "number": number,
+                                    "number_sort": number_sort,
                                     "pos": Substitutes[lp].position,
                                 });
                             }
@@ -954,7 +1056,8 @@ export class MatchesDetailComponentComponent implements OnInit {
                                 self.visitorteam_player_subs.push({
                                     "id": Substitutes[lp].player_id,
                                     "name": Substitutes[lp].player_name,
-                                    "number": Substitutes[lp].number,
+                                    "number": number,
+                                    "number_sort": number_sort,
                                     "pos": Substitutes[lp].position,
                                 });
                             }
@@ -1128,7 +1231,149 @@ export class MatchesDetailComponentComponent implements OnInit {
             }
         });
     }
+    GetMatchesByDate(selected) {
 
+        console.log("GetMatchesByDate fun is call....");
+
+        this.match_ground_details = [];
+
+
+        var param = {
+            "date": selected,
+            "localtimezone": this.localtimezone
+        }
+
+        this.matchService.GetAllCompetitionMatchesByDate(param).subscribe(record => {
+            console.log("record by selected Date", record);
+            var result: any = record['data'];
+            var self = this;
+            if (result !== undefined) {
+                var array = result,
+                    groups = Object.create(null),
+                    grouped = [];
+
+                array.forEach(function (item, index) {
+
+                    var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
+
+                    var id: any = collection['id'];
+                    var league_id = collection['league_id'];
+                    var week: any = collection['week'];
+
+                    //LocalTeam Data---------------------------------------------------------
+                    var localteam_id: any = collection['localteam_id'];
+                    var localteam_name: any = collection['localteam_name'];
+                    var localteam_image: any = collection['localteam_image'];
+
+                    //visitorTeam Data--------------------------------------------------------
+                    var visitorteam_id: any = collection['visitorteam_id'];
+                    var visitorteam_name: any = collection['visitorteam_name'];
+                    var visitorteam_image: any = collection['visitorteam_image'];
+
+                    //time---------------------------------------------------------------------
+                    var live_status: any = collection["live_status"];
+                    var status: any = collection["status"];
+                    var match_time: any = collection["match_time"];
+                    //end time---------------------------------------------------------------------
+
+                    //scores----------------------------------------------------------------------
+                    var localteam_score: any = collection["localteam_score"];
+                    var visitorteam_score: any = collection["visitorteam_score"];
+                    var score_status_flage: any = collection["score_status_flage"];
+                    var penalty_visitor: any = collection["penalty_visitor"];
+                    var penalty_local: any = collection["penalty_local"];
+                    //Which team is high scores------------------------------------------
+                    //*apply class for text-bold=>font-wight:bold if team run is highest
+                    var ltScore_highest: any = collection["ltScore_highest"];
+                    var vtScore_highest: any = collection["vtScore_highest"];
+                    //end scores------------------------------------------
+
+                    // AGG (0-0)--------------------------------------------
+                    var lats_score_local: any = collection["lats_score_local"];
+                    var lats_score_vist: any = collection["lats_score_vist"];
+                    var agg_localvist: any = collection['agg_localvist'];
+                    // end AGG (0-0)-------------------------------------------
+
+                    //PEN (0-0)------------------------------------------------
+                    var penalty_localvist: any = collection["penalty_localvist"];
+                    //end PEN (0-0)--------------------------------------------
+
+                    //venue---------------------------------------------------------
+                    var venue_id: any = collection['venue_id'];
+                    var venue_name: any = collection["venue"];
+                    var venue_city: any = collection["venue_city"];
+                    //end venue-----------------------------------------------------
+
+                    //season---------------------------------------------------------
+                    var season_id: any = collection['season_id'];
+                    var season_name = collection['season_name'];
+                    //end season------------------------------------------------------
+                    var competitions = collection['competitions'];
+
+                    //self gloab variable----------------
+                    //  self.comp_id = league_id;
+                    // self.season = season_name;
+                    //end self gloab variable----------------
+                    if (competitions !== "") {
+                        if (competitions.id == self.comp_id) {
+                            console.log("competitions.id", competitions.id);
+                            if (!groups[competitions.id]) {
+                                groups[competitions.id] = [];
+                                if (grouped.length < 6) {
+                                    grouped.push({ competitions: competitions, group: groups[competitions.id] });
+                                    console.log("grouped -", grouped);
+                                }
+                            }
+                            console.log("groups--", groups[competitions.id]);
+                            if (groups[competitions.id].length < 1) {
+                                groups[competitions.id].push({
+                                    "id": id,
+                                    "comp_id": league_id,
+                                    "week": week,
+                                    "venue_id": venue_id,
+                                    "venue": venue_name,
+                                    "venue_city": venue_city,
+                                    "localteam_id": localteam_id,
+                                    "localteam_name": localteam_name,
+                                    "localteam_image": localteam_image,
+                                    "localteam_score": localteam_score,
+                                    "ltScore_highest": ltScore_highest,
+                                    "lats_score_local": lats_score_local,
+                                    "penalty_local": penalty_local,
+                                    "visitorteam_id": visitorteam_id,
+                                    "visitorteam_name": visitorteam_name,
+                                    "visitorteam_image": visitorteam_image,
+                                    "visitorteam_score": visitorteam_score,
+                                    "vtScore_highest": vtScore_highest,
+                                    "lats_score_vist": lats_score_vist,
+                                    "penalty_visitor": penalty_visitor,
+                                    "penalty_localvist": penalty_localvist,
+                                    "agg_localvist": agg_localvist,
+                                    "status": status,
+                                    "time": match_time,
+                                    "formatted_date": match_time,
+                                    "competitions": competitions,
+                                    "live_status": live_status,
+                                    "score_status_flage": score_status_flage
+                                });
+                            }
+                        }
+                    }
+                });
+                console.log("grouped", grouped);
+                this.match_ground_details = grouped;
+                this.array_length = this.match_ground_details.length;
+                if (this.array_length > 0) {
+                    this.show_btn = true;
+                }
+                console.log(" this.array_length", grouped.length);
+            }
+            else {
+                this.array_length = 0;
+            }
+        })
+        //console.log("filter-date_data", this.match_ground_details);
+    }
     Playerdetails(player_id) {
         this.router.navigate(['/player', player_id]);
     }
@@ -1140,6 +1385,9 @@ export class MatchesDetailComponentComponent implements OnInit {
 
     teamdetails(team_id) {
         this.router.navigate(['/team', team_id]);
+    }
+    AllMatchList() {
+        this.router.navigate(['/matches']);
     }
 
 }

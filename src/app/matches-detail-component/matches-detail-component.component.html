@@ -582,7 +582,7 @@
                                                             </div>
 
 
-                                                            <div class="card-body theme-hover" *ngFor="let player of localteam_player_lineup|orderBy_ace_desc:'number':ascending;let i=index">
+                                                            <div class="card-body theme-hover" *ngFor="let player of localteam_player_lineup|orderBy_ace_desc:'number_sort':ascending;let i=index">
                                                                 <div class="lineup_data" (click)="Playerdetails(player.id)">
 
                                                                     <div class="col-xs-2 lineup_img">
@@ -651,7 +651,7 @@
                                                                 </h4>
                                                             </div>
 
-                                                            <div class="card-body  theme-hover" *ngFor="let player of visitorteam_player_lineup|orderBy_ace_desc:'number':ascending;let i=index">
+                                                            <div class="card-body  theme-hover" *ngFor="let player of visitorteam_player_lineup|orderBy_ace_desc:'number_sort':ascending;let i=index">
                                                                 <div class="lineup_data" (click)="Playerdetails(player.id)">
 
                                                                     <div class="col-xs-2 lineup_img">
@@ -760,7 +760,65 @@
                         </div>
                         <!--side bar  -->
                         <div class="col-md-4 col-sm-12 col-lg-4 remove_left_padding sidebar_page">
-                            <app-sidebar [Selectedleague]="comp_id"></app-sidebar>
+                            <div class="card sidebar-card">
+                                <div class="header">
+                                    <h4><b>{{currentdaydate|date:'MMM d, y'}}</b></h4>
+                                </div>
+                                <div *ngIf="array_length<10">
+                                    <div class=" card sidebar-card" *ngFor="let item of match_ground_details;let l=index">
+                                        <div class="sidebar_date">
+                                            <p>{{item.competitions.name}} <span (click)="CompetitionDetails(item.competitions.id)" class="more-link">More <i class="fa fa-chevron-right" aria-hidden="true"></i></span></p>
+                                        </div>
+                                        <div class="card-body sidebar-card-body theme-hover" *ngFor="let item_details of item.group|orderBy: 'time';let j=index">
+
+                                            <div class="list-cursor" *ngIf="match_ground_details.length>0" (click)="matchdetails_go(item_details.id)">
+                                                <div class="r-dashbord-team">
+                                                    <div class="col-md-4 col-sm-2 col-xs-4 match-team-group">
+                                                        <div class="numerType">
+                                                            <p class="match_time" [class.theme-color]="item_details.live_status">{{item_details.status}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 col-sm-9 col-xs-7 r-flag-team">
+                                                        <p [class.text-bold]="item_details.ltScore_highest">
+                                                            <span *ngIf="item_details.score_status_flage" class="score"> {{item_details.localteam_score}}
+                                                        </span> {{item_details.localteam_name}}
+                                                        </p>
+                                                        <p [class.text-bold]="item_details.vtScore_highest">
+                                                            <span *ngIf="item_details.score_status_flage" class="score">
+                                                                            {{item_details.visitorteam_score}} 
+                                                                      </span>{{item_details.visitorteam_name}}
+                                                        </p>
+                                                        <div *ngIf="item_details.agg_localvist || item_details.penalty_localvist" class="col-xs-12 agg_pen" id="agg_pen_responsve">
+                                                            <ul>
+                                                                <li *ngIf="item_details.agg_localvist">(AGG {{item_details.lats_score_local}}-{{item_details.lats_score_vist}})</li>
+                                                                <li *ngIf="item_details.penalty_localvist">(PEN {{item_details.penalty_local}}-{{item_details.penalty_visitor}})</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1 col-sm-1 col-xs-1 circle">
+                                                        <div *ngIf="item_details.live_status" class="live_badge">
+                                                            <span class="status_offon">LIVE</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-pagelink-section" *ngIf="show_btn">
+                                    <button class="btn-pagelink" (click)="AllMatchList()"><h4>All Matches <span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></h4></button>
+                                </div>
+
+                                <div class="list-cursor" *ngIf="array_length<=0">
+                                    <div class="card-body sidebar-card-body sidebar-nomatche">
+                                        <div class="col-md-12 col-sm-12 col-xs-12  match-team-group">
+                                            <div class="list-line">
+                                                <p>No Matches today</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!--end side bar  -->
                     </div>

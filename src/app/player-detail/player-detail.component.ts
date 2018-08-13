@@ -231,18 +231,19 @@ export class PlayerDetailComponent implements OnInit {
                   if (StatsSeason_record !== undefined || StatsSeason_record['length'] !== 0 || StatsSeason_record !== null) {
                     status_SeasonName = StatsSeason_record.name;
                     status_SeasonId = StatsSeason_record.id;
-
-                    this.playerStats_collection.push({
-                      "season_name": status_SeasonName,
-                      "team_name": status_TeamName,
-                      "team_id": status_TeamId,
-                      "team_flag": status_Teamlogo_path,
-                      "league_name": status_LeagueName,
-                      "yellowcards": status_yellowcards,
-                      "redcards": status_redcards,
-                      "goals": status_goals,
-                      "appearences": status_appearences
-                    })
+                    if (status_appearences !== 0) {
+                      this.playerStats_collection.push({
+                        "season_name": status_SeasonName,
+                        "team_name": status_TeamName,
+                        "team_id": status_TeamId,
+                        "team_flag": status_Teamlogo_path,
+                        "league_name": status_LeagueName,
+                        "yellowcards": status_yellowcards,
+                        "redcards": status_redcards,
+                        "goals": status_goals,
+                        "appearences": status_appearences
+                      })
+                    }
                   }
                 }
                 // end Season---

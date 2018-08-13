@@ -14,6 +14,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Pipe load----
 import { OrderModule } from 'ngx-order-pipe';
@@ -55,7 +56,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    NgxPaginationModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [MatchesApiService, MatchService, DatePipe, PushNotificationService, MessagingService, JsCustomeFunScriptService

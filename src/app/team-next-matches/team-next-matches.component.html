@@ -97,9 +97,15 @@
                 </div>
             </div>
         </div>
-        <!-- <div *ngIf="NextMatchesTeam.length <=0" class="card">
-            <p class="text-left not_avilable_content">No matches Found </p>
-        </div> -->
+
+        <!-- pagination -->
+        <div *ngIf="page_length>=1">
+            <div *ngFor="let paire of pages_Total | paginate: { itemsPerPage: 1,currentPage: p }; let i = index">
+            </div>
+            <pagination-controls class="my-pagination" (pageChange)="p = $event" (click)="GetNextMatches(p)" responsive="true"></pagination-controls>
+        </div>
+        <!--end pagination -->
+
         <div *ngIf="array_length <= 0" class="card">
             <div class="list-line row match-list">
                 <p class="col-md-12 text-left">Not matches Found</p>

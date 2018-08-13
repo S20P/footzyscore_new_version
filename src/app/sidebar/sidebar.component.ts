@@ -37,9 +37,8 @@ export class SidebarComponent implements OnInit {
   public localtimezone: any;
   public comp_id: any;
   public array_length: any;
-  public league_id: any;
-  league_status: boolean;
 
+  public show_btn: boolean;
   // public flage_baseUrl: any;
   constructor(private matchesApiService: MatchesApiService,
     private matchService: MatchService,
@@ -53,27 +52,17 @@ export class SidebarComponent implements OnInit {
     // this.flage_baseUrl = "/assets/img/TeamFlage/";
     this.localtimezone = this.jsCustomeFun.LocalTimeZone();
     this.array_length = 1;
-    this.league_status = false;
+    this.show_btn = false;
   }
-  @Input()
-  set Selectedleague(league_id) {
-    console.log("league_id", league_id);
-    if (league_id !== undefined) {
-      this.league_id = league_id;
-      this.league_status = true;
-      console.log("perent matches_details league_id", this.league_id);
-    }
-  }
+
   ngOnInit() {
     console.log("sidebar ini");
     this.match_ground_details = [];
     var dateofday = Date();
-
     var currentdaydate = this.jsCustomeFun.ChangeDateFormat(dateofday);
     this.liveMatchesApiService.liveMatches().subscribe(data => {
       this.GetMatchesByCompetition_ById_live();
     });
-
     //console.log("today side bar", currentdaydate);
     this.GetMatchesByDate(currentdaydate);
     this.currentdaydate = currentdaydate;
@@ -168,7 +157,7 @@ export class SidebarComponent implements OnInit {
           groups = Object.create(null),
           grouped = [];
 
-        array.forEach(function (item) {
+        array.forEach(function (item, index) {
 
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
 
@@ -231,57 +220,16 @@ export class SidebarComponent implements OnInit {
           // self.season = season_name;
           //end self gloab variable----------------
           if (competitions !== "") {
-            if (competitions.id == self.league_id && self.league_id !== undefined && self.league_status == true) {
-              console.log("if");
-              console.log("self.league_id", self.league_id);
-              console.log("competitions.id", competitions.id);
-
-              if (!groups[competitions.id]) {
-                groups[competitions.id] = [];
+            console.log("competitions.id", competitions.id);
+            if (!groups[competitions.id]) {
+              groups[competitions.id] = [];
+              if (grouped.length < 6) {
                 grouped.push({ competitions: competitions, group: groups[competitions.id] });
+                console.log("grouped -", grouped);
               }
-
-              groups[competitions.id].push({
-                "id": id,
-                "comp_id": league_id,
-                "week": week,
-                "venue_id": venue_id,
-                "venue": venue_name,
-                "venue_city": venue_city,
-                "localteam_id": localteam_id,
-                "localteam_name": localteam_name,
-                "localteam_image": localteam_image,
-                "localteam_score": localteam_score,
-                "ltScore_highest": ltScore_highest,
-                "lats_score_local": lats_score_local,
-                "penalty_local": penalty_local,
-                "visitorteam_id": visitorteam_id,
-                "visitorteam_name": visitorteam_name,
-                "visitorteam_image": visitorteam_image,
-                "visitorteam_score": visitorteam_score,
-                "vtScore_highest": vtScore_highest,
-                "lats_score_vist": lats_score_vist,
-                "penalty_visitor": penalty_visitor,
-                "penalty_localvist": penalty_localvist,
-                "agg_localvist": agg_localvist,
-                "status": status,
-                "time": match_time,
-                "formatted_date": match_time,
-                "competitions": competitions,
-                "live_status": live_status,
-                "score_status_flage": score_status_flage
-              });
-
             }
-            if (self.league_status == false) {
-              console.log("else league_status is false");
-              console.log("self.league_id", self.league_id);
-              console.log("competitions.id", competitions.id);
-              if (!groups[competitions.id]) {
-                groups[competitions.id] = [];
-                grouped.push({ competitions: competitions, group: groups[competitions.id] });
-              }
-
+            console.log("groups--", groups[competitions.id]);
+            if (groups[competitions.id].length < 1) {
               groups[competitions.id].push({
                 "id": id,
                 "comp_id": league_id,
@@ -314,21 +262,20 @@ export class SidebarComponent implements OnInit {
               });
             }
           }
-
-
         });
         //console.log("grouped", grouped);
-        this.match_ground_details = grouped;
+        var sortedArrayOfleague: any = this.jsCustomeFun.ordereLeaguebylist(grouped);
+        this.match_ground_details = sortedArrayOfleague;
         this.array_length = this.match_ground_details.length;
-
+        if (this.array_length > 0) {
+          this.show_btn = true;
+        }
       }
       else {
         this.array_length = 0;
       }
     })
-
     //console.log("filter-date_data", this.match_ground_details);
-
   }
 
   CompetitionDetails(comp_id) {
@@ -339,4 +286,10 @@ export class SidebarComponent implements OnInit {
   matchdetails_go(id) {
     this.router.navigate(['/matches', id]);
   }
+
+  AllMatchList() {
+    this.router.navigate(['/matches']);
+  }
+
+
 }

@@ -169,8 +169,10 @@ export class JsCustomeFunScriptService {
       // var time_formatte1 = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('DD MMM YYYY');  //ex 09 Aug 2018
       // console.log("time_formatte1", time_formatte1);
 
-
       live_minuts = time.minute;
+      if (live_minuts == null) {
+        live_minuts = "0";
+      }
       if (status == "LIVE" || status == "PEN_LIVE" || status == "ET") {
         live_status = true;
         status = live_minuts;
@@ -335,9 +337,6 @@ export class JsCustomeFunScriptService {
         };
       }
     }
-
-
-
     var collection = {
       "id": id,
       "league_id": comp_id,
@@ -373,7 +372,6 @@ export class JsCustomeFunScriptService {
       "live_status": live_status,
       "date": date
     }
-
     return collection;
   }
 
@@ -392,9 +390,32 @@ export class JsCustomeFunScriptService {
         }
       }
     });
-
     return sortedArrayOfMaps;
+  }
 
+  //this function used for top Team & player list
+  orderEventsbylist(grouped) {
+    var orderedKeys = ["Goal", "Yellowcard", "Redcard", "Yellowred", "Penalty missed", "Substitution", "Own goal"]; //Array of preordered keys
+    var sortedArrayOfMaps = [];
+    orderedKeys.map(function (key) {
+      for (let row of grouped) {
+        if (key == row.type) {
+          console.log("key", key);
+          console.log("match-key is", row.type);
+          sortedArrayOfMaps.push({ type: key, group: row.group });
+        }
+      }
+    });
+    return sortedArrayOfMaps;
+  }
+
+
+  range(start, end) {
+    var myArray = [];
+    for (var i = start; i <= end; i += 1) {
+      myArray.push(i);
+    }
+    return myArray;
   }
 
 

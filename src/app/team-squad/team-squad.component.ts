@@ -86,7 +86,7 @@ export class TeamSquadComponent implements OnInit {
                 }
 
                 var player = item['player'].data;
-                var fullname = player.fullname;
+                var fullname = player.common_name;
                 var birthdate: any = player.birthdate;
 
                 console.log("birthdate", birthdate);

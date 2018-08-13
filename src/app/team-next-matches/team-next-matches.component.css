@@ -1,35 +1,65 @@
-.card {
-    margin-bottom: 0px!important;
-}
-
-.groupBy-date-title {
-    font-weight: bold;
-    font-size: var(--theme-body-font2);
-    margin: 15px 0px 10px;
-}
-
-.match-page-header {
-    background: unset;
-    color: #3a3a3a;
-    padding: 0px;
-    margin-top: 2px;
-}
-
-.next-matces-page {
-    margin-bottom: 15px;
-}
-
-.match-page-header:after {
-    color: #00d15f;
-    background: transparent !important;
-    content: '';
-    width: 50px;
-    height: 3px;
-    background: #00d15f!important;
-    display: block;
-    margin-top: 10px;
-}
-
-.matches-list-sec {
-    margin-bottom: 15px;
-}
+        .card {
+            margin-bottom: 0px!important;
+        }
+        
+        .groupBy-date-title {
+            font-weight: bold;
+            font-size: var(--theme-body-font2);
+            margin: 15px 0px 10px;
+        }
+        
+        .match-page-header {
+            background: unset;
+            color: #3a3a3a;
+            padding: 0px;
+            margin-top: 2px;
+        }
+        
+        .next-matces-page {
+            margin-bottom: 15px;
+        }
+        
+        .match-page-header:after {
+            color: var(--theme-bg-color);
+            background: transparent !important;
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: var(--theme-bg-color)!important;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .matches-list-sec {
+            margin-bottom: 15px;
+        }
+        /* pagination css */
+        
+        .my-pagination /deep/ .ngx-pagination .current {
+            background: var(--theme-bg-color)!important;
+            color: #fff!important;
+        }
+        
+        .my-pagination /deep/ .ngx-pagination .disabled {
+            cursor: not-allowed;
+        }
+        
+        .my-pagination /deep/ .ngx-pagination a,
+        .my-pagination /deep/ .ngx-pagination .current,
+        .my-pagination /deep/ .ngx-pagination .disabled,
+        .my-pagination /deep/ .ngx-pagination .small-screen,
+        .my-pagination /deep/ .ngx-pagination button {
+            position: relative;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        
+        .my-pagination /deep/ .ngx-pagination a:hover,
+        .my-pagination /deep/ .ngx-pagination button:hover {
+            background-color: var(--theme-bg-color)!important;
+            color: #fff!important;
+        }

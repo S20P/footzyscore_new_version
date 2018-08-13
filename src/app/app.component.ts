@@ -38,31 +38,31 @@ export class AppComponent {
     ) {
         localStorage.removeItem('firebase:previous_websocket_failure');
         this.loading = "none";
-        this._notificationService.requestPermission();
+        // this._notificationService.requestPermission();
     }
 
     ngOnInit() {
 
-        this.msgService.getPermission();
+        // this.msgService.getPermission();
 
-        this.msgService.currentMessage.subscribe(data => {
-            console.log("message-resis", data);
-            if (data !== null) {
-                this.message = data['data'];
-                console.log("message is...*", this.message);
-                console.log("body", this.message.body);
-                let datamsg: Array<any> = [];
-                datamsg.push({
-                    'title': this.message.title,
-                    'alertContent': this.message.body,
-                    'click_action': this.message.click_action,
-                    'action_id': this.message.action_id
-                });
-                this._notificationService.generateNotification(datamsg);
-            }
-        });
+        // this.msgService.currentMessage.subscribe(data => {
+        //     console.log("message-resis", data);
+        //     if (data !== null) {
+        //         this.message = data['data'];
+        //         console.log("message is...*", this.message);
+        //         console.log("body", this.message.body);
+        //         let datamsg: Array<any> = [];
+        //         datamsg.push({
+        //             'title': this.message.title,
+        //             'alertContent': this.message.body,
+        //             'click_action': this.message.click_action,
+        //             'action_id': this.message.action_id
+        //         });
+        //         this._notificationService.generateNotification(datamsg);
+        //     }
+        // });
 
-        let data = this.msgService.Subscribe_topic();
-        console.log("mess-dd", data);
+        // let data = this.msgService.Subscribe_topic();
+        // console.log("mess-dd", data);
     }
 }

@@ -210,7 +210,9 @@ export class TeamPreviousMatchesComponent implements OnInit {
           }
         });
         console.log("grouped", grouped);
-        this.PreviousMatchesTeam = grouped;
+        var sortedArrayOfleague: any = this.jsCustomeFun.ordereLeaguebylist(grouped);
+        this.PreviousMatchesTeam = sortedArrayOfleague;
+
         this.array_length = this.PreviousMatchesTeam.length;
 
       }

@@ -374,22 +374,10 @@ export class MatchesDashboardComponent implements OnInit {
             });
           }
         });
-        //console.log("grouped", grouped);
-
-        //var orderedKeys = [2, 8, 564, 384, 82, 570, 5, 1371, 1007, 12, 24, 9, 301, 72, 181, 208, 271, 390, 444, 462, 486, 501, 573, 609, 1128]; //Array of preordered keys
+        console.log("grouped", grouped);
         var sortedArrayOfleague: any = this.jsCustomeFun.ordereLeaguebylist(grouped);
-        // var sortedArrayOfMaps = [];
-        // orderedKeys.map(function (key) {
-        //   for (let row of grouped) {
-        //     if (key == row.comp_id) {
-        //       console.log("key", key);
-        //       console.log("comp_id-key is", row.comp_id);
-        //       sortedArrayOfMaps.push({ competitions: row.competitions, group: row.group });
-        //     }
-        //   }
-        // });
-        console.log("sortedArrayOfMaps_team", sortedArrayOfleague);
         this.match_ground_details = sortedArrayOfleague;
+        console.log("sortedArrayOfMaps_team", sortedArrayOfleague);
         console.log("length", this.match_ground_details.length);
         this.array_length = this.match_ground_details.length;
         this.showloader = false;
@@ -399,8 +387,7 @@ export class MatchesDashboardComponent implements OnInit {
         console.log("array_length is 0");
         this.showloader = false;
       }
-
-    })
+   })
   }
 
   CompetitionDetails(comp_id) {

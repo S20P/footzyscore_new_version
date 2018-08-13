@@ -114,19 +114,10 @@ export class CompetitionPlayerComponent implements OnInit {
             }
           }
         });
-        var orderedKeys = ["Goal", "Yellowcard", "Redcard", "Yellowred", "Penalty missed", "Substitution", "Own goal"]; //Array of preordered keys
-        var sortedArrayOfMaps = [];
-        orderedKeys.map(function (key) {
-          for (let row of grouped) {
-            if (key == row.type) {
-              console.log("key", key);
-              console.log("match-key is", row.type);
-              sortedArrayOfMaps.push({ type: key, group: row.group });
-            }
-          }
-        });
-        console.log("sortedArrayOfMaps_player", sortedArrayOfMaps);
-        this.player_collection = sortedArrayOfMaps;
+
+        var sortedArrayOfevents: any = this.jsCustomeFun.orderEventsbylist(grouped);
+        this.player_collection = sortedArrayOfevents;
+
 
         console.log("player_group", grouped);
         this.array_length = this.player_collection.length;

@@ -38,8 +38,6 @@ export class MatchService {
   GetCommentariesByMatchId_API: string = this._baseurl_local + "MobileAPI/GetCommentariesByMatchId";
   GetSeasonByLeagueId_API: string = this._baseurl_local + "MobileAPI/GetSeasonByLeagueId";
   GetAllLiveMatchesByDate_API: string = this._baseurl_local + "MobileAPI/GetAllLiveMatchesByDate";
-
-
   GetAllMatchesByRoundId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByRoundId";
   GetAllMatchesByStageId_API: string = this._baseurl_local + "MobileAPI/GetAllMatchesByStageId";
 
@@ -185,8 +183,8 @@ export class MatchService {
     let apiurl = `${this.GetPreviousMatchesTeamById_API + '?team_id=' + team_id}`;
     return this.http.get(apiurl);
   }
-  GetNextMatchesTeamById(team_id) {
-    let apiurl = `${this.GetNextMatchesTeamById_API + '?team_id=' + team_id + '&pageNo=1&size=1000'}`;
+  GetNextMatchesTeamById(team_id, pageNo) {
+    let apiurl = `${this.GetNextMatchesTeamById_API + '?team_id=' + team_id + '&pageNo=' + pageNo + '&size=10'}`;
     return this.http.get(apiurl);
   }
 

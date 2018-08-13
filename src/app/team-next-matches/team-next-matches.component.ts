@@ -26,6 +26,12 @@ export class TeamNextMatchesComponent implements OnInit {
   public flage_baseUrl: any;
   public array_length: any;
 
+  // pagination-----
+  public pages_Total: any;
+  public page_length: any;
+  public selected_page: any;
+  p: number = 1;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,6 +41,7 @@ export class TeamNextMatchesComponent implements OnInit {
     private jsCustomeFun: JsCustomeFunScriptService
 
   ) {
+
     this.flage_baseUrl = "/assets/img/TeamFlage/";
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get("id"));
@@ -47,37 +54,41 @@ export class TeamNextMatchesComponent implements OnInit {
       this.GetMatchesByCompetition_ById_live();
     });
     this.array_length = 1;
-
+    this.page_length = 0;
   }
 
 
   ngOnInit() {
     this.team_flage = this.flage_baseUrl + this.team_id + ".png";
     this.NextMatchesTeam = [];
-    this.GetNextMatches();
+    var pageNo = 1;
+    this.GetNextMatches(pageNo);
   }
 
-  GetNextMatches() {
-
+  GetNextMatches(pageNo) {
+    this.selected_page = pageNo;
+    console.log("selected page no is", pageNo);
     this.NextMatchesTeam = [];
 
     for (let i = 0; i < this.NextMatchesTeam['length']; i++) {
       this.NextMatchesTeam.splice(i, 1);
     }
-    this.matchService.GetNextMatchesTeamById(this.team_id).subscribe(record => {
-      console.log("record by selected Date", record);
-      var result: any = record['data'];
+    this.matchService.GetNextMatchesTeamById(this.team_id, pageNo).subscribe(record => {
+      console.log("record by selected page", record);
       var self = this;
+      self.page_length = record['pages'];
+
+      self.pages_Total = self.jsCustomeFun.range(1, self.page_length);
+      console.log("total page is", self.pages_Total);
+      var result: any = record['data'];
+
       if (result !== undefined) {
         var array = result,
           groups = Object.create(null),
           grouped = [];
 
         array.forEach(function (item) {
-
           var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
-
-
           var id: any = collection['id'];
           var league_id = collection['league_id'];
           var week: any = collection['week'];
@@ -175,7 +186,9 @@ export class TeamNextMatchesComponent implements OnInit {
           }
         });
         console.log("grouped", grouped);
-        this.NextMatchesTeam = grouped;
+
+        var sortedArrayOfleague: any = this.jsCustomeFun.ordereLeaguebylist(grouped);
+        this.NextMatchesTeam = sortedArrayOfleague;
         this.array_length = this.NextMatchesTeam.length;
 
       }
@@ -266,6 +279,9 @@ export class TeamNextMatchesComponent implements OnInit {
   matchdetails(id) {
     this.router.navigate(['/matches', id]);
   }
+
+
+
 
 
 }
