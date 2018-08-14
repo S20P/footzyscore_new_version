@@ -702,3 +702,13 @@ img.lineup_title_img {
 .more-link .fa {
     font-size: 10px;
 }
+
+.viewmore-commments-btn {
+    float: left;
+    margin: 0px;
+    padding: 20px 0px 15px 0px;
+}
+
+.viewmore-commments-btn .btn-pagelink {
+    width: auto!important;
+}

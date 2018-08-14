@@ -1,9 +1,7 @@
 import { Component, OnInit, Pipe, PipeTransform, Directive, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { MatchService } from '../service/match.service';
-
 import { MatchesApiService } from '../service/live_match/matches-api.service';
-
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
@@ -11,11 +9,11 @@ declare var jQuery: any;
 declare var $: any;
 import { DatePipe } from '@angular/common';
 import { JsCustomeFunScriptService } from '../service/jsCustomeFun/jsCustomeFunScript.service';
-
 import * as moment from 'moment-timezone';
 import "moment-timezone";
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
-
+import { Meta } from '@angular/platform-browser';
+import { MetaService } from 'ng2-meta';
 @Component(
     {
         selector: 'app-matches-detail-component',
@@ -61,6 +59,7 @@ export class MatchesDetailComponentComponent implements OnInit {
     public localtimezone: any;
     public array_length: any;
     public show_btn: boolean;
+    showMoreComments = 10;
 
 
     constructor(
@@ -69,7 +68,9 @@ export class MatchesDetailComponentComponent implements OnInit {
         private matchService: MatchService,
         public datepipe: DatePipe,
         private liveMatchesApiService: MatchesApiService,
-        private jsCustomeFun: JsCustomeFunScriptService
+        private jsCustomeFun: JsCustomeFunScriptService,
+        private meta: Meta,
+        private metaService: MetaService
     ) {
         // this.flage_baseUrl = "/assets/img/TeamFlage/";
         // this.player_baseUrl = "https://s3.amazonaws.com/starapps/footzy/players/";
@@ -83,11 +84,6 @@ export class MatchesDetailComponentComponent implements OnInit {
             let id = parseInt(params.get("id"));
             this.id = id;
             this.GetMatchDeatilByMatchId(this.id);
-            var dateofday = Date();
-            this.currentdaydate = this.jsCustomeFun.ChangeDateFormat(dateofday);
-            this.localtimezone = this.jsCustomeFun.LocalTimeZone();
-            this.GetMatchesByDate(this.currentdaydate);
-            this.currentdaydate = this.currentdaydate;
         });
         this.events_collection_length = 1;
         this.localteam_player_lineup_length = 1;
@@ -99,6 +95,10 @@ export class MatchesDetailComponentComponent implements OnInit {
         this.array_length = 1;
         this.localtimezone = this.jsCustomeFun.LocalTimeZone();
         this.show_btn = false;
+        this.currentdaydate = this.currentdaydate;
+
+        //HTTP GET for product in catalogue
+        this.metaService.setTitle('Product page for');
 
     }
 
@@ -700,7 +700,9 @@ export class MatchesDetailComponentComponent implements OnInit {
                 var visitorteam_id: any = collection['visitorteam_id'];
                 var visitorteam_name: any = collection['visitorteam_name'];
                 var visitorteam_image: any = collection['visitorteam_image'];
-
+                self.meta.addTag({ name: 'description', content: visitorteam_name + "---" + localteam_name });
+                self.meta.addTag({ name: 'author', content: 'talkingdotnet' });
+                self.meta.addTag({ name: 'keywords', content: 'Angular, Meta Service' });
                 //time---------------------------------------------------------------------
                 var live_status: any = collection["live_status"];
                 var status: any = collection["status"];
@@ -744,6 +746,8 @@ export class MatchesDetailComponentComponent implements OnInit {
                 //self gloab variable----------------
                 self.comp_id = league_id;
                 self.season = season_name;
+                console.log("comp_id in details", self.comp_id);
+
                 //end self gloab variable----------------
                 //  var time = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('DD MMM YYYY');
                 self.match_detailcollection
@@ -780,6 +784,7 @@ export class MatchesDetailComponentComponent implements OnInit {
                     });
 
                 console.log("NEW ARRAY ------", self.match_detailcollection);
+                this.GetMatchesByDate(this.currentdaydate);
 
                 //  match_Events-------------------------------------------------------------
 
@@ -1232,17 +1237,13 @@ export class MatchesDetailComponentComponent implements OnInit {
         });
     }
     GetMatchesByDate(selected) {
-
         console.log("GetMatchesByDate fun is call....");
-
         this.match_ground_details = [];
-
-
         var param = {
             "date": selected,
             "localtimezone": this.localtimezone
         }
-
+        console.log("paramr is", param);
         this.matchService.GetAllCompetitionMatchesByDate(param).subscribe(record => {
             console.log("record by selected Date", record);
             var result: any = record['data'];
@@ -1252,8 +1253,8 @@ export class MatchesDetailComponentComponent implements OnInit {
                     groups = Object.create(null),
                     grouped = [];
 
-                array.forEach(function (item, index) {
-
+                array.forEach(function (item) {
+                    console.log("array", item);
                     var collection: any = self.jsCustomeFun.HandleDataofAPI(item);
 
                     var id: any = collection['id'];
@@ -1314,18 +1315,20 @@ export class MatchesDetailComponentComponent implements OnInit {
                     //  self.comp_id = league_id;
                     // self.season = season_name;
                     //end self gloab variable----------------
+                    console.log("comp_id in date", self.comp_id);
+
                     if (competitions !== "") {
                         if (competitions.id == self.comp_id) {
                             console.log("competitions.id", competitions.id);
                             if (!groups[competitions.id]) {
                                 groups[competitions.id] = [];
-                                if (grouped.length < 6) {
-                                    grouped.push({ competitions: competitions, group: groups[competitions.id] });
-                                    console.log("grouped -", grouped);
-                                }
+
+                                grouped.push({ competitions: competitions, group: groups[competitions.id] });
+                                console.log("grouped -", grouped);
+
                             }
                             console.log("groups--", groups[competitions.id]);
-                            if (groups[competitions.id].length < 1) {
+                            if (groups[competitions.id].length <= 10) {
                                 groups[competitions.id].push({
                                     "id": id,
                                     "comp_id": league_id,

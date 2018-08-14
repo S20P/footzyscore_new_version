@@ -162,7 +162,7 @@ export class CompetitionAsideRightComponent implements OnInit {
                 groups[competitions.id] = [];
                 grouped.push({ competitions: competitions, group: groups[competitions.id] });
               }
-              if (groups[competitions.id].length < 8) {
+              if (groups[competitions.id].length <= 10) {
                 groups[competitions.id].push({
                   "id": id,
                   "comp_id": league_id,

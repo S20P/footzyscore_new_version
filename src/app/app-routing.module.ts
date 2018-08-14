@@ -18,12 +18,20 @@ import { TeamSquadComponent } from './team-squad/team-squad.component';
 import { TeamNextMatchesComponent } from './team-next-matches/team-next-matches.component';
 import { TeamPreviousMatchesComponent } from './team-previous-matches/team-previous-matches.component';
 import { CompetitionsListComponent } from './competitions-list/competitions-list.component';
-
+import { MetaGuard } from 'ng2-meta';
 
 const routes: Routes = [
   { path: '', redirectTo: 'matches', pathMatch: 'full' },
   { path: 'matches', component: MatchesDashboardComponent },  //All Matches
-  { path: 'matches/:id', component: MatchesDetailComponentComponent },//Matche details
+  { path: 'matches/:id',
+    component: MatchesDetailComponentComponent,
+   canActivate: [MetaGuard],
+   data: {
+    meta: {
+      title: 'Home page',
+      description: 'Description of the home page'
+    }
+  } },//Matche details
   { path: 'group', component: MatchGroupComponent },  //All Group
   { path: 'stadium', component: MatchStadiumComponent },  //All Stadium
   { path: 'stadium/:id', component: StadiumDetailComponent },  //Stadium details

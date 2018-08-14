@@ -896,6 +896,11 @@ ul.nav.nav-tabs {
     .btn-pagelink span {
         font-size: var(--theme-body-font-sm);
     }
+    .viewmore-commments-btn {
+        float: left;
+        margin: 0px;
+        padding: 0px 0px 15px 0px;
+    }
 }
 
 @media (min-width: 1240px) {
@@ -1209,6 +1214,11 @@ ul.nav.nav-tabs {
     }
     .navbar-default .navbar-brand {
         margin-left: 10px !important;
+    }
+    .viewmore-commments-btn {
+        float: left;
+        margin: 0px;
+        padding: 10px 0px 15px 0px;
     }
 }
 

@@ -722,7 +722,7 @@
                                                     </div>
                                                     <p class="slogen cheadlines text-left"> {{match.localteam_name}} {{match.localteam_score}} , {{match.visitorteam_name}} {{match.visitorteam_score}}</p>
 
-                                                    <div class="card-body" *ngFor="let comment of Commentary_collection">
+                                                    <div class="card-body" *ngFor="let comment of Commentary_collection| slice:0:showMoreComments; let i=index">
                                                         <div class="commentary-content">
                                                             <div class="col-xs-3 col-sm-2">
                                                                 <p class="commentary-time">{{comment.minute}}'<span class="smalltime"></span> </p>
@@ -743,6 +743,11 @@
                                                                         </div>
                                                                     </div>
                                                                 </ng-template>
+                                                            </div>
+                                                        </div>
+                                                        <div class="viewmore-commments-btn" *ngIf="i == 9 && showMoreComments == 10">
+                                                            <div class="btn-pagelink-section">
+                                                                <button class="btn-pagelink" (click)="showMoreComments = comment.comment.length"><h4>View More  <span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></h4></button>
                                                             </div>
                                                         </div>
                                                     </div>
