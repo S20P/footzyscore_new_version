@@ -135,8 +135,35 @@ export class CompetitionMatchesComponent implements OnInit {
     this.matchService.GetAllGroupsBySeasonId(season_id).subscribe(record => {
       console.log("GetAllGroupsBySeasonId---dropdown", record);
       var result: any = record['data'];
+
       var self = this;
       if (result !== undefined) {
+        var newRoundResult = [];
+        var index = [];
+        for (let i = 0; i < result.length; i++) {
+          if (result[i].sub_round.length > 0) {
+            for (let j = 0; j < result[i].sub_round.length; j++) {
+              var newRound = {};
+              newRound['round'] = result[i].sub_round[j];
+              newRound['_id'] = result[i].sub_round[j].data.id;
+              newRound['round_id'] = result[i].sub_round[j].data.id;
+              newRoundResult.push(newRound);
+
+            }
+            index.push(i);
+            /*
+             {"id":136888,"name":1,"league_id":2,
+             "season_id":7907,"stage_id":56492,"start":"2017-09-12","end":"2017-09-13"}}
+             */
+          }
+        }
+        for (let i = 0; i < index.length; i++) {
+          result.splice(index[i], 1);
+        }
+        for (let i = 0; i < newRoundResult.length; i++) {
+          result.push(newRoundResult[i]);
+        }
+
         for (let item of result) {
           var dt: any;
           var Id: any;
@@ -147,19 +174,21 @@ export class CompetitionMatchesComponent implements OnInit {
           var round_id: any = item['round_id'];
           var round: any = item['round'];
           var time = item['time'];
+          var sub_round: any = item['sub_round'];
 
-          if (time) {
-            var st = time.starting_at;
-            //    dt = st.date;
-            var date_time = st.date_time; //YYYY-MM-DD H:MM:SS
-            var match_time = this.jsCustomeFun.ChangeTimeZone(date_time);
-            dt = moment(new Date(match_time)).format('YYYY-MM-DD');
-          }
+
 
 
           if (round) {
             console.log("round list");
+
             var round_data = round['data'];
+
+
+            var date_time = round_data.end; //YYYY-MM-DD H:MM:SS
+            var match_time = this.jsCustomeFun.ChangeTimeZone(date_time);
+            dt = moment(new Date(match_time)).format('YYYY-MM-DD');
+
             if (round_data !== undefined || round_data['length'] !== 0 || round_data !== null) {
               week = round_data.name;
               var checkstr = $.isNumeric(week);
@@ -181,6 +210,14 @@ export class CompetitionMatchesComponent implements OnInit {
           }
           else {
             if (stage) {
+
+              if (time) {
+                var st = time.starting_at;
+                //    dt = st.date;
+                var date_time = st.date; //YYYY-MM-DD H:MM:SS
+                var match_time = this.jsCustomeFun.ChangeTimeZone(date_time);
+                dt = moment(new Date(match_time)).format('YYYY-MM-DD');
+              }
               var stage_data = stage['data'];
               if (stage_data !== undefined || stage_data['length'] !== 0 || stage_data !== null) {
                 week = stage_data.name;
@@ -209,6 +246,10 @@ export class CompetitionMatchesComponent implements OnInit {
             "islistType": islistType,
           });
         }
+
+
+
+
 
         //arraysort by ascending using id number order-----------------
         var sort_array = myarray.sort(function (a, b) {

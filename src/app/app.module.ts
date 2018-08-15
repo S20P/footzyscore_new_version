@@ -33,7 +33,7 @@ import { PushNotificationService } from './service/push-notification/push-notifi
 import { AppComponent } from './app.component';
 import { CompetitionAsideRightComponent } from './competition-aside-right/competition-aside-right.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { MetaModule } from 'ng2-meta';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +58,6 @@ import { MetaModule } from 'ng2-meta';
     AngularFireStorageModule,
     NgxPageScrollModule,
     NgxPaginationModule,
-    MetaModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [MatchesApiService, MatchService, DatePipe, PushNotificationService, MessagingService, JsCustomeFunScriptService

@@ -13,7 +13,7 @@ import * as moment from 'moment-timezone';
 import "moment-timezone";
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Meta } from '@angular/platform-browser';
-import { MetaService } from 'ng2-meta';
+
 @Component(
     {
         selector: 'app-matches-detail-component',
@@ -69,8 +69,7 @@ export class MatchesDetailComponentComponent implements OnInit {
         public datepipe: DatePipe,
         private liveMatchesApiService: MatchesApiService,
         private jsCustomeFun: JsCustomeFunScriptService,
-        private meta: Meta,
-        private metaService: MetaService
+        private meta: Meta
     ) {
         // this.flage_baseUrl = "/assets/img/TeamFlage/";
         // this.player_baseUrl = "https://s3.amazonaws.com/starapps/footzy/players/";
@@ -98,7 +97,7 @@ export class MatchesDetailComponentComponent implements OnInit {
         this.currentdaydate = this.currentdaydate;
 
         //HTTP GET for product in catalogue
-        this.metaService.setTitle('Product page for');
+       
 
     }
 
@@ -700,9 +699,7 @@ export class MatchesDetailComponentComponent implements OnInit {
                 var visitorteam_id: any = collection['visitorteam_id'];
                 var visitorteam_name: any = collection['visitorteam_name'];
                 var visitorteam_image: any = collection['visitorteam_image'];
-                self.meta.addTag({ name: 'description', content: visitorteam_name + "---" + localteam_name });
-                self.meta.addTag({ name: 'author', content: 'talkingdotnet' });
-                self.meta.addTag({ name: 'keywords', content: 'Angular, Meta Service' });
+
                 //time---------------------------------------------------------------------
                 var live_status: any = collection["live_status"];
                 var status: any = collection["status"];
@@ -750,6 +747,10 @@ export class MatchesDetailComponentComponent implements OnInit {
 
                 //end self gloab variable----------------
                 //  var time = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('DD MMM YYYY');
+                var meta_date = moment(match_time, 'YYYY-MM-DD HH:mm:ss a').format('DD MMM YYYY');
+                self.meta.addTag({ name: 'title', content: 'Match ' + localteam_name + " vs " + visitorteam_name + " (" + localteam_score + ":" + visitorteam_score + ") - " + competitions.name + " on the " + meta_date + " | FootzyScore" });
+                self.meta.addTag({ name: 'description', content: "All info to the " + competitions.name + " " + localteam_name + " vs " + visitorteam_name + "  on the " + meta_date + " - latest news, live scores and statistics. >>> MORE" });
+
                 self.match_detailcollection
                     .push({
                         "id": id,
